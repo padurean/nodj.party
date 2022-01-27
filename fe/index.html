@@ -1,41 +1,98 @@
 <!DOCTYPE html>
-<html lang="en" class="no-js">
+<html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>NoDJ.party - The social music player - Get the party started! The crowd is the DJ!</title>
-<script type="module">
-  document.documentElement.classList.remove('no-js');
-  document.documentElement.classList.add('js');
-</script>
-<link rel="stylesheet" href="styles.css">
-<meta name="description" content="Share a playlist and anyone can add tracks to it. The whole group can see what’s next and add songs to a shared queue with synced playback and easy-to-use controls.">
-<meta property="og:title" content="NoDJ.party - The social music player">
-<meta property="og:description" content="Share a playlist and anyone can add tracks to it. The whole group can see what’s next and add songs to a shared queue with synced playback and easy-to-use controls.">
-<meta property="og:image" content="https://www.purecore.ro/nodj.party.og-cover.jpg">
-<meta property="og:image:alt" content="NoDJ.party - The social music player">
-<meta property="og:locale" content="en_US">
-<meta property="og:type" content="website">
-<meta name="twitter:card" content="summary_large_image">
-<meta property="og:url" content="https://www.purecore.ro/nodj.party">
-<link rel="canonical" href="https://www.purecore.ro/nodj.party">
-<link rel="icon" href="favicon.ico">
-<link rel="icon" href="favicon.svg" type="image/svg+xml">
-<link rel="apple-touch-icon" href="apple-touch-icon.png">
-<link rel="manifest" href="nodj.party.webmanifest">
-<meta name="theme-color" content="#000000">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NoDJ.party - The social music player - Get the party started! The crowd is the DJ!</title>
+  <link rel="stylesheet" href="styles.css">
+  <meta name="description"
+    content="Share a playlist and anyone can add tracks to it. The whole group can see what’s next and add songs to a shared queue with synced playback and easy-to-use controls.">
+  <meta property="og:title" content="NoDJ.party - The social music player">
+  <meta property="og:description"
+    content="Share a playlist and anyone can add tracks to it. The whole group can see what’s next and add songs to a shared queue with synced playback and easy-to-use controls.">
+  <meta property="og:image" content="https://www.purecore.ro/nodj.party.og-cover.jpg">
+  <meta property="og:image:alt" content="NoDJ.party - The social music player">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta property="og:url" content="https://www.purecore.ro/nodj.party">
+  <link rel="canonical" href="https://www.purecore.ro/nodj.party">
+  <link rel="icon" href="favicon.ico">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="manifest" href="nodj.party.webmanifest">
+  <meta name="theme-color" content="#000000">
 </head>
+
 <body>
-<div class="no-js-alert">
-  <strong>Sorry, NoDJ.party will not work for you :(</strong>
-  <br>your browser has JavaScript disabled or it does not support JavaScript or modules
-</div>
-<header>
-  NoDJ.party
-</header>
-<main>
-Coming soon
-</main>
-<script src="script.js" type="module"></script>
+  <header>
+    <span>NoDJ.party</span>
+  </header>
+  <main>
+    <!-- <iframe> (and video player) will replace this <div> tag. -->
+    <div id="player-1"></div>
+    <section id="playlist" class="playlist">
+      <section id="add" class="add">
+        <input type="url" id="add-to-playlist-input" placeholder="YouTube video URL" />
+        <a href="#" id="add-to-playlist-btn">Add</a>
+      </section>
+      <div id="add-in-progress" class="add-in-progress hidden">Adding ...</div>
+      <div id="add-error" class="add-error hidden" title="Click / tap to hide this message"></div>
+      <!-- BEGIN playlist item template -->
+      <div id="playlist-item-template" class="hidden">
+        <div class="item">
+          <img src="{thumbnail}" alt="{title}">
+          <section class="info">
+            <div class="title">{title}</div>
+            <a class="user" href="#">{user}</a>
+            <footer>
+              <span class="rank">{rank}</span> <a href="#" class="likes">{likes}</a> <a href="#" class="like-btn">Like</a>
+            </footer>
+          </section>
+          <input type="hidden" value="{index}" />
+        </div>
+      </div>
+      <!-- END playlist item template -->
+      <section id="items" class="items">
+        <!-- <div class="item">
+          <img src="http://img.youtube.com/vi/ZGDGdRIxvd0/0.jpg"
+            alt="Gesaffelstein & The Weeknd - Lost in the Fire (Official Video)">
+          <section class="info">
+            <div class="title">Gesaffelstein &amp; The Weeknd - Lost in the Fire (Official Video)</div>
+            <a class="user" href="#">@somePartyGoer1</a>
+            <footer>
+              <span class="rank">10000</span> <a href="#" class="likes">13</a> <a href="#" class="like-btn">Like</a>
+            </footer>
+          </section>
+          <input type="hidden" value="ZGDGdRIxvd0" />
+        </div>
+        <div class="item">
+          <img src="http://img.youtube.com/vi/XkGz_4KYjKM/0.jpg" alt="REZZ - Edge">
+          <section class="info">
+            <div class="title">REZZ - Edge</div>
+            <a class="user" href="#">@someOtherPartyGoer2</a>
+            <footer>
+              <span class="rank">2</span> <a href="#" class="likes">10</a> <a href="#" class="like-btn">Like</a>
+            </footer>
+          </section>
+          <input type="hidden" value="XkGz_4KYjKM" />
+        </div>
+        <div class="item">
+          <img src="http://img.youtube.com/vi/DNhDh3xKwOo/0.jpg" alt="Fantome - Pașii Mei (feat. Ioana Milculescu)">
+          <section class="info">
+            <div class="title">Fantome - Pașii Mei (feat. Ioana Milculescu)</div>
+            <a class="user" href="#">@yetAnotherPartyGoer3</a>
+            <footer>
+              <span class="rank">3</span> <a href="#" class="likes">0</a> <a href="#" class="like-btn">Like</a>
+            </footer>
+          </section>
+          <input type="hidden" value="DNhDh3xKwOo" />
+        </div> -->
+      </section>
+    </section>
+  </main>
+  <script src="script.js"></script>
 </body>
+
 </html>
