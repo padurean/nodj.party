@@ -2,6 +2,8 @@ var state = {
   playlist: []
 }
 
+var topNavHamburger;
+var topNavLinks;
 var addToPlaylistSectionElem;
 var addToPlaylistInputElem;
 var addToPlaylistBtnElem;
@@ -15,6 +17,7 @@ var player;
 window.addEventListener('load', (event) => {
   loadYouTubeIframeAPI();
   loadStaticElems();
+  topNavHamburger.addEventListener('click', toggleTopNav);
   addToPlaylistBtnElem.addEventListener('click', onAddToPlaylistBtnClick);
   addToPlaylistErrorElem.addEventListener('click', function(event) {
     this.classList.add('hidden');
@@ -71,6 +74,8 @@ function stopVideo() {
 //<=== YouTube iFrame API
 
 function loadStaticElems() {
+  topNavLinks = document.getElementById('top-nav-links');
+  topNavHamburger = document.getElementById('top-nav-hamburger');
   addToPlaylistSectionElem = document.getElementById('add');
   addToPlaylistInputElem = document.getElementById('add-to-playlist-input');
   addToPlaylistBtnElem = document.getElementById('add-to-playlist-btn');
@@ -78,6 +83,12 @@ function loadStaticElems() {
   addToPlaylistErrorElem = document.getElementById('add-error');
   playlistElem = document.getElementById('playlist');
   tracksElem = document.getElementById('items');
+}
+
+function toggleTopNav(event) {
+  event.preventDefault();
+  topNavHamburger.classList.toggle('active');
+  topNavLinks.classList.toggle('hidden');
 }
 
 function onAddToPlaylistBtnClick(event) {

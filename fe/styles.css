@@ -6,6 +6,8 @@ html, body {
 }
 
 body > header {
+  display: flex;
+  justify-content: space-between;
   height: 3em;
   margin: 1em .75em 1.5em .75em;
   background-image: url('nodj.party.svg');
@@ -19,6 +21,58 @@ body > header > span:first-child {
   margin: .65rem 0 0 3.75rem;
   font-weight: 500;
 }
+
+/* BEGIN top navigation */
+.top-nav {
+  align-self: flex-start;
+  display: flex;
+  flex-direction: column;
+  align-content: flex-end;
+  margin-right: .25em;
+  overflow: hidden;
+  z-index: 999;
+}
+.top-nav > a {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: space-between;
+  height: 20px;
+  min-height: 20px;
+  max-height: 20px;
+}
+.top-nav > a > div {
+  width: 2em;
+  min-width: 2em;
+  max-width: 2em;
+  height: 4px;
+  min-height: 4px;
+  max-height: 4px;
+  background-color: #393bac;
+}
+.top-nav > a.active > div {
+  background-color: #7274FC;
+}
+.top-nav > nav {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #393bac;
+  text-align: right;
+  padding: .5em 1em;
+  z-index: 999;
+  min-height: 5em;
+  margin-top: 4px;
+  border-radius: 4px 0 4px 4px;
+}
+.top-nav > nav > a {
+  display: block;
+  color: #fff;
+}
+.top-nav > nav > a:hover {
+  color: #D4C2FC;
+}
+/* END top navigation */
 
 main {
   margin: .75em;
@@ -119,6 +173,7 @@ input::placeholder {
   align-self: center;
   flex: 0 0 auto;
   cursor: pointer;
+  margin: .25em;
 }
 .playlist > .items > .item > .info {
   display: flex;
@@ -143,7 +198,7 @@ input::placeholder {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  margin-top: .5em;
+  margin-top: .25em;
 }
 .playlist > .items > .item > .info > footer > .rank,
 .playlist > .items > .item > .info > footer > .likes,
