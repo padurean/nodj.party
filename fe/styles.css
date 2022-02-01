@@ -139,10 +139,10 @@ input::placeholder {
   color: #fff;
 }
 .playlist > .add-in-progress {
-  background-color: #1B998B;
+  background-color: #008A29;
 }
 .playlist > .add-error {
-  background-color: #EF3E36;
+  background-color: #ED1C24;
   cursor: pointer;
 }
 .playlist > .add-error::after {
