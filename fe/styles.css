@@ -168,6 +168,9 @@ input::placeholder {
   margin-top: .5em;
   background-color: #f8f8f8;
 }
+.playlist > .items > .item.active {
+  background-color: #F1FFE7;
+}
 .playlist > .items > .item > img {
   width: 25%;
   align-self: center;
@@ -175,6 +178,19 @@ input::placeholder {
   cursor: pointer;
   margin: .25em;
 }
+/* .playlist > .items > .item > .info::before {
+  position: absolute;
+  top: 33%;
+  left: 11%;
+  font-size: 1.5em;
+  play:
+  content: '\25B6';
+  pause:
+  \23F8
+  stop:
+  \25A0
+  color :#fff;
+} */
 .playlist > .items > .item > .info {
   display: flex;
   width: 100%;
@@ -186,6 +202,14 @@ input::placeholder {
   font-size: .9em;
   font-weight: 500;
 }
+/* @keyframes blinker {
+  50% {
+    opacity: .1;
+  }
+}
+.playlist > .items > .item.active > .info > .title {
+  animation: blinker 3s linear infinite;
+} */
 .playlist > .items > .item > .info > .user {
   font-size: .85em;
   margin-top: .25em;

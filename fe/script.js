@@ -1,5 +1,8 @@
 var state = {
-  playlist: []
+  playlist: [],
+  playlistIndexByVideoID: {},
+  activeIndex: -1,
+  pausedAt: 0
 }
 
 var topNavHamburger;
@@ -19,7 +22,7 @@ window.addEventListener('load', (event) => {
   loadStaticElems();
   topNavHamburger.addEventListener('click', toggleTopNav);
   addToPlaylistBtnElem.addEventListener('click', onAddToPlaylistBtnClick);
-  addToPlaylistErrorElem.addEventListener('click', function(event) {
+  addToPlaylistErrorElem.addEventListener('click', function (event) {
     this.classList.add('hidden');
     addToPlaylistSectionElem.classList.remove('hidden');
   });
@@ -39,6 +42,7 @@ function onYouTubeIframeAPIReady() {
     // ratio is: 640 / 390 = 1.641025641025641
     height: '256',
     width: '420',
+    // TODO OGG: make an NoDJ.party intro video and use it's ID here:
     videoId: 'ZGDGdRIxvd0',
     playerVars: {
       'playsinline': 1,
@@ -55,17 +59,64 @@ function onYouTubeIframeAPIReady() {
 
 function onPlayerReady(event) {
   // event.target.playVideo();
+  setActiveItem(player.getVideoData()['video_id']);
 }
 
-// var done = false;
+// possible states (see them with console.log(YT.PlayerState)):
+// BUFFERING: 3, CUED: 5, ENDED: 0, PAUSED: 2, PLAYING: 1, UNSTARTED: -1
 function onPlayerStateChange(event) {
-  // if (event.data == YT.PlayerState.PLAYING && !done) {
-  //   setTimeout(stopVideo, 6000);
-  //   done = true;
-  // }
-  if (event.data == YT.PlayerState.ENDED) {
-    player.loadVideoById('JXgV1rXUoME');
+  if (event.data == YT.PlayerState.UNSTARTED) {
+    setActiveItem(player.getVideoData()['video_id']);
+    return;
   }
+  if (event.data == YT.PlayerState.PLAYING) {
+    state.pausedAt = 0;
+    return;
+  }
+  if (event.data == YT.PlayerState.PAUSED) {
+    state.pausedAt = player.getCurrentTime();
+    return;
+  }
+  if (event.data == YT.PlayerState.ENDED) {
+    playNext();
+    return;
+  }
+}
+
+function setActiveItem(videoID) {
+  var prevActiveIndex = state.activeIndex;
+  var newActiveIndex = state.playlistIndexByVideoID[videoID];
+  if (newActiveIndex === prevActiveIndex) {
+    return;
+  }
+
+  state.activeIndex = newActiveIndex;
+
+  highlightActiveItem();
+
+  if (prevActiveIndex >= 0) {
+    unhighlightItem(prevActiveIndex);
+  }
+}
+
+function highlightActiveItem() {
+  if (state.activeIndex < 0) {
+    return;
+  }
+  var itemElem = document.getElementById('item-' + state.activeIndex);
+  itemElem.classList.add('active');
+}
+
+function unhighlightItem(index) {
+  var itemElem = document.getElementById('item-' + index);
+  itemElem.classList.remove('active');
+}
+
+function playNext() {
+  if (state.activeIndex === state.playlist.length - 1) {
+    return;
+  }
+  player.loadVideoById(state.playlist[state.activeIndex + 1].videoID);
 }
 
 function stopVideo() {
@@ -97,7 +148,7 @@ function onAddToPlaylistBtnClick(event) {
   if (!youTubeVideoURL) {
     return;
   }
-  youTubeVideoURL = 'https://noembed.com/embed?url='+youTubeVideoURL;
+  youTubeVideoURL = 'https://noembed.com/embed?url=' + youTubeVideoURL;
   addToPlaylistSectionElem.classList.add('hidden');
   addToPlaylistInProgressElem.classList.remove('hidden');
   fetch(youTubeVideoURL).then(function (response) {
@@ -105,27 +156,35 @@ function onAddToPlaylistBtnClick(event) {
   }).then(function (json) {
     addToPlaylistInProgressElem.classList.add('hidden');
     if (json.error) {
-      console.error('Add to playlist failed:', json.error);
+      if (console) {
+        console.error('Add to playlist failed:', json.error);
+      }
       addToPlaylistErrorElem.innerText = 'Add to playlist failed :(';
       addToPlaylistErrorElem.classList.remove('hidden');
       return
     }
+    var videoID = videoIDFromURL(json.url);
     state.playlist.push(
       {
-      url: json.url,
-      thumbnail: json.thumbnail_url,
-      title: json.title,
-      user: 'someCurrentUsername',
-      rank: 1,
-      likes: 0
-    }
+        videoID: videoID,
+        url: json.url,
+        thumbnail: json.thumbnail_url,
+        title: json.title,
+        user: 'someCurrentUsername',
+        rank: (state.playlist.length + 1) * 1000,
+        likes: 0
+      }
     );
+    state.playlistIndexByVideoID[videoID] = state.playlist.length - 1;
     renderPlaylist();
+    highlightActiveItem();
     addToPlaylistInputElem.value = '';
     addToPlaylistSectionElem.classList.remove('hidden');
     // console.log('noembed response:', json);
   }).catch(function (err) {
-    console.error('Error fetching video', youTubeVideoURL, err);
+    if (console) {
+      console.error('Error fetching video', youTubeVideoURL, err);
+    }
     addToPlaylistInProgressElem.classList.add('hidden');
     addToPlaylistErrorElem.innerText = 'Add to playlist failed :(';
     addToPlaylistErrorElem.classList.remove('hidden');
@@ -147,7 +206,7 @@ function loadAndRenderPlaylist() {
       thumbnail: 'http://img.youtube.com/vi/XkGz_4KYjKM/0.jpg',
       title: 'REZZ - Edge',
       user: 'someOtherPartyGoer2',
-      rank: 2,
+      rank: 2000,
       likes: 10
     },
     {
@@ -155,16 +214,23 @@ function loadAndRenderPlaylist() {
       thumbnail: 'http://img.youtube.com/vi/DNhDh3xKwOo/0.jpg',
       title: 'Fantome - Pașii Mei (feat. Ioana Milculescu)',
       user: 'yetAnotherPartyGoer3',
-      rank: 3,
+      rank: 3000,
       likes: 0
     }
   ];
+
+  for (var i = 0; i < state.playlist.length; i++) {
+    state.playlist[i].videoID = videoIDFromURL(state.playlist[i].url);
+    state.playlistIndexByVideoID[state.playlist[i].videoID] = i;
+  }
+
+
   renderPlaylist();
 }
 
 function toHTMLEntities(str) {
-  return str.replace(/./gm, function(s) {
-      return (s.match(/[a-z0-9\s]+/i)) ? s : '&#' + s.charCodeAt(0) + ';';
+  return str.replace(/./gm, function (s) {
+    return (s.match(/[a-z0-9\s]+/i)) ? s : '&#' + s.charCodeAt(0) + ';';
   });
 };
 
@@ -183,7 +249,7 @@ function renderPlaylist() {
   }
 
   var tracksElems = tracksElem.getElementsByClassName('item');
-  for (var i=0; i < tracksElems.length; i++) {
+  for (var i = 0; i < tracksElems.length; i++) {
     var trackImgElem = tracksElems[i].getElementsByTagName('img')[0]
     trackImgElem.addEventListener('click', onTrackClick);
   }
@@ -195,14 +261,21 @@ function onTrackClick(event) {
     elem = elem.parentElement;
   }
   var trackIndex = elem.parentElement.getElementsByTagName('input')[0].value;
-  const urlAndQueryparams = state.playlist[trackIndex].url.split('?');
+  player.loadVideoById(state.playlist[trackIndex].videoID);
+}
+
+function videoIDFromURL(url) {
+  const urlAndQueryparams = url.split('?');
   var videoID;
+  // try to extract it from the 'v' query parameter
   if (urlAndQueryparams.length > 1) {
     const urlSearchParams = new URLSearchParams(urlAndQueryparams[1]);
     videoID = urlSearchParams.get('v');
-  } else {
-    const urlPieces = state.playlist[trackIndex].url.split('?')[0].split('/');
+  }
+  // use the last part of the url path as the videoID
+  if (!videoID) {
+    const urlPieces = urlAndQueryparams[0].split('/');
     videoID = urlPieces[urlPieces.length - 1];
   }
-  player.loadVideoById(videoID);
+  return videoID;
 }
