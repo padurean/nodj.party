@@ -179,6 +179,26 @@ input::placeholder {
 .playlist > .items > .item.active {
   background-color: #E3DAFF;
 }
+.playlist > .items > .item > .overlay-btn {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  width: 25%;
+  height: 100%;
+  margin-left: .25em;
+  text-align: center;
+  cursor: pointer;
+  background-size: 2em;
+  background-repeat:  no-repeat;
+  background-position: center;
+}
+.playlist > .items > .item > .overlay-btn.play {
+  background-image: url('play.svg');
+
+}
+.playlist > .items > .item > .overlay-btn.pause {
+  background-image: url('pause.svg');
+}
 .playlist > .items > .item > img {
   width: 25%;
   align-self: center;

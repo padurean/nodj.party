@@ -2,7 +2,57 @@ var state = {
   playlist: [],
   playlistIndexByVideoID: {},
   activeIndex: -1,
-  pausedAt: 0
+  pausedAt: 0,
+
+  getPlaylist: function () {
+    return this.playlist;
+  },
+  getPlaylistLength: function () {
+    return this.playlist.length;
+  },
+  setPlaylist: function (playlist) {
+    this.playlist = playlist;
+    for (var i = 0; i < this.playlist.length; i++) {
+      this.playlist[i].videoID = videoIDFromURL(this.playlist[i].url);
+      this.playlistIndexByVideoID[this.playlist[i].videoID] = i;
+    }
+  },
+  addToPlaylist: function (trackObj) {
+    this.playlist.push(trackObj);
+    this.playlistIndexByVideoID[trackObj.videoID] = this.playlist.length - 1;
+  },
+  setActiveIndex(videoID) {
+    var prevActiveIndex = this.activeIndex;
+    var newActiveIndex = this.playlistIndexByVideoID[videoID];
+    if (newActiveIndex === prevActiveIndex) {
+      return;
+    }
+    this.activeIndex = newActiveIndex;
+    highlightActiveItem();
+    if (prevActiveIndex >= 0) {
+      unhighlightItem(prevActiveIndex);
+    }
+  },
+  getActiveIndex: function () {
+    return this.activeIndex;
+  },
+  nextVideoID: function () {
+    if (this.activeIndex === this.playlist.length - 1) {
+      return null;
+    }
+    return this.playlist[this.activeIndex + 1].videoID
+  },
+  setPausedAt: function (pausedAt) {
+    this.pausedAt = pausedAt;
+    showPlayOverlayBtn();
+  },
+  unsetPausedAt: function () {
+    this.pausedAt = -1;
+    showPauseOverlayBtn();
+  },
+  getPausedAt: function () {
+    return this.pausedAt;
+  }
 }
 
 var topNavElem;
@@ -70,22 +120,22 @@ function onYouTubeIframeAPIReady() {
 
 function onPlayerReady(event) {
   // event.target.playVideo();
-  setActiveItem(player.getVideoData()['video_id']);
+  state.setActiveIndex(player.getVideoData()['video_id']);
 }
 
 // possible states (see them with console.log(YT.PlayerState)):
 // BUFFERING: 3, CUED: 5, ENDED: 0, PAUSED: 2, PLAYING: 1, UNSTARTED: -1
 function onPlayerStateChange(event) {
   if (event.data == YT.PlayerState.UNSTARTED) {
-    setActiveItem(player.getVideoData()['video_id']);
+    state.setActiveIndex(player.getVideoData()['video_id']);
     return;
   }
   if (event.data == YT.PlayerState.PLAYING) {
-    state.pausedAt = 0;
+    state.unsetPausedAt();
     return;
   }
   if (event.data == YT.PlayerState.PAUSED) {
-    state.pausedAt = player.getCurrentTime();
+    state.setPausedAt(player.getCurrentTime());
     return;
   }
   if (event.data == YT.PlayerState.ENDED) {
@@ -94,27 +144,12 @@ function onPlayerStateChange(event) {
   }
 }
 
-function setActiveItem(videoID) {
-  var prevActiveIndex = state.activeIndex;
-  var newActiveIndex = state.playlistIndexByVideoID[videoID];
-  if (newActiveIndex === prevActiveIndex) {
-    return;
-  }
-
-  state.activeIndex = newActiveIndex;
-
-  highlightActiveItem();
-
-  if (prevActiveIndex >= 0) {
-    unhighlightItem(prevActiveIndex);
-  }
-}
-
 function highlightActiveItem() {
-  if (state.activeIndex < 0) {
+  var activeIndex = state.getActiveIndex();
+  if (activeIndex < 0) {
     return;
   }
-  var itemElem = document.getElementById('item-' + state.activeIndex);
+  var itemElem = document.getElementById('item-' + activeIndex);
   itemElem.classList.add('active');
 }
 
@@ -123,11 +158,26 @@ function unhighlightItem(index) {
   itemElem.classList.remove('active');
 }
 
+function showPlayOverlayBtn() {
+  var activeItemElem = document.getElementById('item-' + state.getActiveIndex());
+  var trackImgOverlayElem = activeItemElem.querySelector('.overlay-btn');
+  trackImgOverlayElem.classList.remove('pause');
+  trackImgOverlayElem.classList.add('play');
+}
+
+function showPauseOverlayBtn() {
+  var activeItemElem = document.getElementById('item-' + state.getActiveIndex());
+  var trackImgOverlayElem = activeItemElem.querySelector('.overlay-btn');
+  trackImgOverlayElem.classList.remove('play');
+  trackImgOverlayElem.classList.add('pause');
+}
+
 function playNext() {
-  if (state.activeIndex === state.playlist.length - 1) {
-    return;
+  showPlayOverlayBtn();
+  var nextVideoID = state.nextVideoID();
+  if (nextVideoID) {
+    player.loadVideoById(state.nextVideoID());
   }
-  player.loadVideoById(state.playlist[state.activeIndex + 1].videoID);
 }
 
 function playOrPause() {
@@ -191,18 +241,15 @@ function onAddToPlaylistBtnClick(event) {
       return
     }
     var videoID = videoIDFromURL(json.url);
-    state.playlist.push(
-      {
-        videoID: videoID,
-        url: json.url,
-        thumbnail: json.thumbnail_url,
-        title: json.title,
-        user: 'someCurrentUsername',
-        rank: (state.playlist.length + 1) * 1000,
-        likes: 0
-      }
-    );
-    state.playlistIndexByVideoID[videoID] = state.playlist.length - 1;
+    state.addToPlaylist({
+      videoID: videoID,
+      url: json.url,
+      thumbnail: json.thumbnail_url,
+      title: json.title,
+      user: 'someCurrentUsername',
+      rank: (state.getPlaylistLength() + 1) * 1000,
+      likes: 0
+    });
     renderPlaylist();
     highlightActiveItem();
     addToPlaylistInputElem.value = '';
@@ -219,7 +266,7 @@ function onAddToPlaylistBtnClick(event) {
 }
 
 function loadAndRenderPlaylist() {
-  state.playlist = [
+  state.setPlaylist([
     {
       url: 'https://www.youtube.com/watch?v=ZGDGdRIxvd0',
       thumbnail: 'http://img.youtube.com/vi/ZGDGdRIxvd0/0.jpg',
@@ -244,14 +291,7 @@ function loadAndRenderPlaylist() {
       rank: 3000,
       likes: 0
     }
-  ];
-
-  for (var i = 0; i < state.playlist.length; i++) {
-    state.playlist[i].videoID = videoIDFromURL(state.playlist[i].url);
-    state.playlistIndexByVideoID[state.playlist[i].videoID] = i;
-  }
-
-
+  ]);
   renderPlaylist();
 }
 
@@ -265,20 +305,23 @@ function renderPlaylist() {
   var templateElem = document.getElementById('playlist-item-template');
 
   tracksElem.innerHTML = '';
-  for (var i = 0; i < state.playlist.length; i++) {
+  var playlist = state.getPlaylist();
+  for (var i = 0; i < playlist.length; i++) {
     var html = templateElem.innerHTML.replaceAll('{index}', i);
-    html = html.replaceAll('{thumbnail}', state.playlist[i].thumbnail);
-    html = html.replaceAll('{title}', toHTMLEntities(state.playlist[i].title));
-    html = html.replaceAll('{user}', state.playlist[i].user);
-    html = html.replaceAll('{rank}', state.playlist[i].rank);
-    html = html.replaceAll('{likes}', state.playlist[i].likes);
+    html = html.replaceAll('{thumbnail}', playlist[i].thumbnail);
+    html = html.replaceAll('{title}', toHTMLEntities(playlist[i].title));
+    html = html.replaceAll('{user}', playlist[i].user);
+    html = html.replaceAll('{rank}', playlist[i].rank);
+    html = html.replaceAll('{likes}', playlist[i].likes);
     tracksElem.innerHTML += html;
   }
 
   var tracksElems = tracksElem.getElementsByClassName('item');
   for (var i = 0; i < tracksElems.length; i++) {
-    var trackImgElem = tracksElems[i].getElementsByTagName('img')[0]
-    trackImgElem.addEventListener('click', onTrackClick);
+    // var trackImgElem = tracksElems[i].getElementsByTagName('img')[0];
+    // trackImgElem.addEventListener('click', onTrackClick);
+    var trackImgOverlayElem = tracksElems[i].querySelector('.overlay-btn');
+    trackImgOverlayElem.addEventListener('click', onTrackClick);
   }
 }
 
@@ -291,11 +334,13 @@ function onTrackClick(event) {
     elem = elem.parentElement;
   }
   var trackIndex = elem.parentElement.getElementsByTagName('input')[0].value;
-  var clickedVideoID = state.playlist[trackIndex].videoID;
+  var playlist = state.getPlaylist();
+  var track = playlist[trackIndex];
+  var clickedVideoID = track.videoID;
   var playerVideoID = player.getVideoData()['video_id'];
   // clicked video is different than video in player
   if (playerVideoID !== clickedVideoID) {
-    player.loadVideoById(state.playlist[trackIndex].videoID);
+    player.loadVideoById(track.videoID);
     return;
   }
   // clicked video is the same as video in player
