@@ -196,7 +196,7 @@ input::placeholder {
   width: 100%;
   flex-direction: column;
   justify-content: space-between;
-  margin: .25em .5em;
+  margin: .25em .5em .25em .25em;
 }
 .playlist > .items > .item > .info > .title {
   font-size: .9em;
