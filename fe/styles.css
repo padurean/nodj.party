@@ -96,10 +96,11 @@ a {
 input {
   border: solid 1px #393bac;
   border-radius: 0;
-  padding-left: .5em;
-  font-size: .95em;
+  padding: .25em 0 .25em .5em;
+  font-size: 1em;
 }
 input::placeholder {
+  font-size: .95em;
   font-style: italic;
   color: gray;
 }
@@ -116,25 +117,32 @@ input::placeholder {
 .playlist > .add {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  height: 2.25em;
 }
 .playlist > .add > input {
   flex: 0 1 80%;
+  height: 1.25em;
 }
 .playlist > .add > a {
   display: inline-block;
-  height: 2em;
-  line-height: 2em;
+  margin-left: .1em;
+  min-width: 3em;
+  height: 1.9em;
+  line-height: 1.9em;
   flex: 1 0 auto;
   text-align: center;
   background-color: #393bac;
   color: #fff;
-  padding: 0 1em;
 }
 
 .playlist > .add-in-progress,
 .playlist > .add-error {
   font-size: .9em;
-  padding: .545em .75em;
+  height: 2.25em;
+  line-height: 2.25em;
+  margin: .25em 0;
+  padding: 0 .5em 0 .5em;
   font-style: italic;
   color: #fff;
 }
@@ -148,8 +156,8 @@ input::placeholder {
 .playlist > .add-error::after {
   content: 'x';
   float: right;
-  margin-top: -.6em;
-  margin-right: -.5em;
+  margin-top: -.7em;
+  margin-right: -.3em;
   font-style: normal;
   transform:scale(1.25,1.0);
 }
