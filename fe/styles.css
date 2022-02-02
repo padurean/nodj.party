@@ -169,7 +169,7 @@ input::placeholder {
   background-color: #f8f8f8;
 }
 .playlist > .items > .item.active {
-  background-color: #F1FFE7;
+  background-color: #E3DAFF;
 }
 .playlist > .items > .item > img {
   width: 25%;
@@ -211,6 +211,7 @@ input::placeholder {
   animation: blinker 3s linear infinite;
 } */
 .playlist > .items > .item > .info > .user {
+  align-self: flex-start;
   font-size: .85em;
   margin-top: .25em;
 }

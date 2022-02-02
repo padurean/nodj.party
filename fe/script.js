@@ -20,6 +20,7 @@ var player;
 window.addEventListener('load', (event) => {
   loadYouTubeIframeAPI();
   loadStaticElems();
+  addOnSpaceKeyUpListener();
   topNavHamburger.addEventListener('click', toggleTopNav);
   addToPlaylistBtnElem.addEventListener('click', onAddToPlaylistBtnClick);
   addToPlaylistErrorElem.addEventListener('click', function (event) {
@@ -28,6 +29,14 @@ window.addEventListener('load', (event) => {
   });
   loadAndRenderPlaylist();
 });
+
+function addOnSpaceKeyUpListener() {
+  document.addEventListener('keyup', event => {
+    if (event.code === 'Space') {
+      playOrPause();
+    }
+  });
+}
 
 //===> YouTube iFrame API
 function loadYouTubeIframeAPI() {
@@ -119,8 +128,16 @@ function playNext() {
   player.loadVideoById(state.playlist[state.activeIndex + 1].videoID);
 }
 
-function stopVideo() {
-  player.stopVideo();
+function playOrPause() {
+  if (!player) {
+    return;
+  }
+  var playerState = player.getPlayerState();
+  if (playerState === YT.PlayerState.PLAYING) {
+    player.pauseVideo();
+    return;
+  }
+  player.playVideo();
 }
 //<=== YouTube iFrame API
 
@@ -256,12 +273,23 @@ function renderPlaylist() {
 }
 
 function onTrackClick(event) {
+  if (!player) {
+    return;
+  }
   var elem = event.target;
   if (elem !== this) {
     elem = elem.parentElement;
   }
   var trackIndex = elem.parentElement.getElementsByTagName('input')[0].value;
-  player.loadVideoById(state.playlist[trackIndex].videoID);
+  var clickedVideoID = state.playlist[trackIndex].videoID;
+  var playerVideoID = player.getVideoData()['video_id'];
+  // clicked video is different than video in player
+  if (playerVideoID !== clickedVideoID) {
+    player.loadVideoById(state.playlist[trackIndex].videoID);
+    return;
+  }
+  // clicked video is the same as video in player
+  playOrPause();
 }
 
 function videoIDFromURL(url) {
