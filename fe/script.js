@@ -5,8 +5,9 @@ var state = {
   pausedAt: 0
 }
 
-var topNavHamburger;
-var topNavLinks;
+var topNavElem;
+var topNavHamburgerElem;
+var topNavLinksElem;
 var addToPlaylistSectionElem;
 var addToPlaylistInputElem;
 var addToPlaylistBtnElem;
@@ -21,7 +22,8 @@ window.addEventListener('load', (event) => {
   loadYouTubeIframeAPI();
   loadStaticElems();
   addOnSpaceKeyUpListener();
-  topNavHamburger.addEventListener('click', toggleTopNav);
+  topNavHamburgerElem.addEventListener('click', toggleTopNav);
+  window.addEventListener('click', hideTopNav);
   addToPlaylistBtnElem.addEventListener('click', onAddToPlaylistBtnClick);
   addToPlaylistErrorElem.addEventListener('click', function (event) {
     this.classList.add('hidden');
@@ -142,8 +144,9 @@ function playOrPause() {
 //<=== YouTube iFrame API
 
 function loadStaticElems() {
-  topNavLinks = document.getElementById('top-nav-links');
-  topNavHamburger = document.getElementById('top-nav-hamburger');
+  topNavElem = document.getElementById('top-nav');
+  topNavHamburgerElem = document.getElementById('top-nav-hamburger');
+  topNavLinksElem = document.getElementById('top-nav-links');
   addToPlaylistSectionElem = document.getElementById('add');
   addToPlaylistInputElem = document.getElementById('add-to-playlist-input');
   addToPlaylistBtnElem = document.getElementById('add-to-playlist-btn');
@@ -155,8 +158,15 @@ function loadStaticElems() {
 
 function toggleTopNav(event) {
   event.preventDefault();
-  topNavHamburger.classList.toggle('active');
-  topNavLinks.classList.toggle('hidden');
+  topNavHamburgerElem.classList.toggle('active');
+  topNavLinksElem.classList.toggle('hidden');
+}
+
+function hideTopNav(event) {
+  if (!topNavElem.contains(event.target)) {
+    topNavLinksElem.classList.add('hidden');
+    topNavHamburgerElem.classList.remove('active');
+  }
 }
 
 function onAddToPlaylistBtnClick(event) {
