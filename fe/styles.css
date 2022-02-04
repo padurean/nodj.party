@@ -13,16 +13,21 @@ body > header {
   justify-content: space-between;
   height: 3em;
   margin: 1em .75em 1.5em .75em;
-  background-image: url('nodj.party.svg');
-  background-repeat: no-repeat;
-  background-size: auto 3em;
 }
 
-body > header > span:first-child {
+body > header > a:first-child {
   display: inline-block;
+  height: 2em;
+  line-height: 2em;
   font-size: 1.5em;
-  margin: .65rem 0 0 3.75rem;
   font-weight: 500;
+  margin: -.25em 0 0 0;
+  padding-left: 2.5em;
+  color: black;
+  background-image: url('nodj.party.svg');
+  background-repeat: no-repeat;
+  background-size: auto 2em;
+  background-position: left top;
 }
 
 body > footer {
@@ -35,14 +40,23 @@ body > footer {
   color: dimgray;
 }
 body > footer > a:first-child {
+  display: inline-block;
+  height: 1.5em;
+  line-height: 1.5em;
+  padding-left: 2em;
+  font-size: 1em;
+  color: black;
   background-image: url('nodj.party.svg');
   /* filter: grayscale(100%); */
   background-repeat: no-repeat;
-  background-position: center left;
+  background-position: left top;
   background-size: auto 1.5em;
-  padding-left: 2em;
-  line-height: 1.5em;
-  color: black;
+}
+body > footer > span:last-child {
+  display: inline-block;
+  height: 1.5em;
+  line-height: 1.75em;
+  font-size: .95em;
 }
 
 /* BEGIN top navigation */
