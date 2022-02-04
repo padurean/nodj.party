@@ -3,6 +3,9 @@ html, body {
   margin: 0;
   padding: 0;
   font-size: 1.05em;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 body > header {
@@ -20,6 +23,12 @@ body > header > span:first-child {
   font-size: 1.5em;
   margin: .65rem 0 0 3.75rem;
   font-weight: 500;
+}
+
+body > footer {
+  font-size: .85em;
+  margin: auto .75em 1em .75em;
+  color: dimgray;
 }
 
 /* BEGIN top navigation */
