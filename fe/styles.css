@@ -29,6 +29,20 @@ body > header > a:first-child {
   background-size: auto 2em;
   background-position: left top;
 }
+body > header > a:nth-child(2) {
+  position: absolute;
+  top: 0;
+  right: 5em;
+  height: 3em;
+  width: 3em;
+  background-image: url('bulb.svg');
+  background-repeat: no-repeat;
+  background-size: auto 3em;
+  background-position: left top;
+}
+body > header > a:nth-child(2):hover {
+  background-position: -3em top;
+}
 
 body > footer {
   display: flex;
