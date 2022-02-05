@@ -12,7 +12,7 @@ body > header {
   display: flex;
   justify-content: space-between;
   height: 3em;
-  margin: 1em .75em 1.5em .75em;
+  padding: .75em .75em 0 .75em;
 }
 
 body > header > a:first-child {
@@ -35,14 +35,15 @@ body > footer {
   justify-content: space-between;
   align-items: center;
   font-size: .9em;
-  margin: auto .75em .75em .75em;
-  height: 1.5em;
+  margin-top: auto;
+  padding: 0 .75em;
+  height: 2em;
   color: dimgray;
 }
 body > footer > a:first-child {
   display: inline-block;
   height: 1.5em;
-  line-height: 1.5em;
+  line-height: 1.6em;
   padding-left: 2em;
   font-size: 1em;
   color: black;
@@ -55,7 +56,7 @@ body > footer > a:first-child {
 body > footer > span:last-child {
   display: inline-block;
   height: 1.5em;
-  line-height: 1.75em;
+  line-height: 1.7em;
   font-size: .95em;
 }
 
