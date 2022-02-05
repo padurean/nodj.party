@@ -55,6 +55,8 @@ var state = {
   }
 }
 
+var bodyElem;
+var toggleColorThemeBtnElem;
 var topNavElem;
 var topNavHamburgerElem;
 var topNavLinksElem;
@@ -71,6 +73,16 @@ var player;
 window.addEventListener('load', (event) => {
   loadYouTubeIframeAPI();
   loadStaticElems();
+
+  if (localStorage.getItem('dark') === 'true') {
+    bodyElem.classList.add('dark');
+  }
+  toggleColorThemeBtnElem.addEventListener('click', function (event) {
+    event.preventDefault();
+    bodyElem.classList.toggle('dark');
+    localStorage.setItem('dark', bodyElem.classList.contains('dark'));
+  });
+
   addOnSpaceKeyUpListener();
   topNavHamburgerElem.addEventListener('click', toggleTopNav);
   window.addEventListener('click', hideTopNav);
@@ -194,6 +206,8 @@ function playOrPause() {
 //<=== YouTube iFrame API
 
 function loadStaticElems() {
+  bodyElem = document.getElementsByTagName('body')[0];
+  toggleColorThemeBtnElem = document.getElementById('toggle-color-theme');
   topNavElem = document.getElementById('top-nav');
   topNavHamburgerElem = document.getElementById('top-nav-hamburger');
   topNavLinksElem = document.getElementById('top-nav-links');

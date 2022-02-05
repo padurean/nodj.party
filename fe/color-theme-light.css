@@ -1,0 +1,65 @@
+body > header > a:first-child {
+  color: black;
+}
+body > footer {
+  color: dimgray;
+}
+body > footer > a:first-child {
+  color: black;
+}
+.top-nav > a > div {
+  background-color: #393bac;
+}
+.top-nav > a.active > div {
+  background-color: #7274FC;
+}
+.top-nav > nav {
+  background-color: #393bac;
+}
+.top-nav > nav > a {
+  color: white;
+}
+.top-nav > nav > a:hover {
+  color: #D4C2FC;
+}
+a {
+  color: #393bac;
+}
+input {
+  border-color: #393bac;
+}
+input::placeholder {
+  color: gray;
+}
+.playlist > .add > a {
+  background-color: #393bac;
+  color: white;
+}
+.playlist > .add-in-progress,
+.playlist > .add-error {
+  color: white;
+}
+.playlist > .add-in-progress {
+  background-color: #008A29;
+}
+.playlist > .add-error {
+  background-color: #ED1C24;
+}
+.playlist > .items > .item {
+  background-color: #f8f8f8;
+}
+.playlist > .items > .item.active {
+  background-color: #E3DAFF;
+}
+.playlist > .items > .item > .info > .user:before {
+  color : gray;
+}
+.playlist > .items > .item > .info > footer > .rank {
+  color: gray;
+}
+.playlist > .items > .item > .info > footer > .rank::before {
+  color: darkgray;
+}
+.playlist > .items > .item > .info > footer > .likes::after {
+  color: gray;
+}

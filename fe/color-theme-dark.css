@@ -1,0 +1,55 @@
+body.dark {
+  background-color: #080808;
+}
+body.dark > header > a:first-child {
+  background-image: url('nodj.party-dark.svg');
+  color: white;
+}
+body.dark > header > a:nth-child(2) {
+  background-position: -3em top;
+}
+body.dark > footer {
+  color: gray;
+}
+body.dark > footer > a:first-child {
+  background-image: url('nodj.party-dark.svg');
+  color: white;
+}
+body.dark .top-nav > a > div {
+  background-color: #7274FC;
+}
+body.dark .top-nav > a.active > div {
+  background-color: #393bac;
+}
+body.dark .top-nav > nav {
+  background-color: #393bac;
+}
+body.dark .top-nav > nav > a {
+  color: white;
+}
+body.dark .top-nav > nav > a:hover {
+  color: #D4C2FC;
+}
+body.dark a {
+  color: #7274FC;
+}
+body.dark input {
+  background-color: #E3DAFF;
+  border-color: #7274FC;
+}
+body.dark input::placeholder {
+  color: dimgray;
+}
+body.dark .playlist > .add > a {
+  background-color: #393bac;
+  color: white;
+}
+body.dark .playlist > .items > .item {
+  background-color: #202020;
+}
+body.dark .playlist > .items > .item.active {
+  background-color: hsl(239, 50%, 22%);
+}
+body.dark .playlist > .items > .item > .info > .title {
+  color : white;
+}
