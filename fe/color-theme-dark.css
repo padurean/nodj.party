@@ -1,5 +1,6 @@
 body.dark {
   background-color: #080808;
+  background-image: url('bg-dark.svg');
 }
 body.dark > header > a:first-child {
   background-image: url('nodj.party-dark.svg');

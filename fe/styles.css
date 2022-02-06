@@ -8,6 +8,13 @@ html, body {
   min-height: 100vh;
 }
 
+body {
+  background-image: url('bg.svg');
+  background-repeat: no-repeat;
+  background-size: auto 7em;
+  background-position: right 1.5em bottom 0;
+}
+
 body > header {
   display: flex;
   justify-content: space-between;
@@ -22,7 +29,7 @@ body > header > a:first-child {
   font-size: 1.5em;
   font-weight: 500;
   margin: -.25em 0 0 0;
-  padding-left: 2.5em;
+  padding-left: 2.25em;
   background-image: url('nodj.party.svg');
   background-repeat: no-repeat;
   background-size: auto 2em;
@@ -31,7 +38,7 @@ body > header > a:first-child {
 body > header > a:nth-child(2) {
   position: absolute;
   top: 0;
-  right: 5em;
+  right: 3.75em;
   height: 3em;
   width: 3em;
   background-image: url('bulb.svg');
@@ -53,10 +60,9 @@ body > footer > a:first-child {
   display: inline-block;
   height: 1.5em;
   line-height: 1.6em;
-  padding-left: 2em;
+  padding-left: 1.75em;
   font-size: 1em;
   background-image: url('nodj.party.svg');
-  /* filter: grayscale(100%); */
   background-repeat: no-repeat;
   background-position: left top;
   background-size: auto 1.5em;
@@ -141,13 +147,14 @@ input::placeholder {
   font-style: italic;
 }
 
+.hidden {
+  display: none !important;
+}
+
 .playlist {
   width: 420px;
   max-width: 100%;
-}
-
-.hidden {
-  display: none !important;
+  margin-bottom: 5em;
 }
 
 .playlist > .add {

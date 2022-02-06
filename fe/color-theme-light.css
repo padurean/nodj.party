@@ -2,7 +2,7 @@ body > header > a:first-child {
   color: black;
 }
 body > footer {
-  color: dimgray;
+  color: #505050;
 }
 body > footer > a:first-child {
   color: black;
