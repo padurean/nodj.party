@@ -3,7 +3,7 @@ body.dark {
 }
 body.dark > header > a:first-child {
   background-image: url('nodj.party-dark.svg');
-  color: white;
+  color: whitesmoke;
 }
 body.dark > header > a:nth-child(2) {
   background-position: -3em top;
@@ -13,7 +13,7 @@ body.dark > footer {
 }
 body.dark > footer > a:first-child {
   background-image: url('nodj.party-dark.svg');
-  color: white;
+  color: whitesmoke;
 }
 body.dark .top-nav > a > div {
   background-color: #7274FC;
@@ -25,7 +25,7 @@ body.dark .top-nav > nav {
   background-color: #393bac;
 }
 body.dark .top-nav > nav > a {
-  color: white;
+  color: whitesmoke;
 }
 body.dark .top-nav > nav > a:hover {
   color: #D4C2FC;
@@ -34,15 +34,15 @@ body.dark a {
   color: #7274FC;
 }
 body.dark input {
-  background-color: #E3DAFF;
-  border-color: #7274FC;
+  background-color: #404040;
+  color: whitesmoke;
 }
 body.dark input::placeholder {
-  color: dimgray;
+  color: #989898;
 }
 body.dark .playlist > .add > a {
   background-color: #393bac;
-  color: white;
+  color: whitesmoke;
 }
 body.dark .playlist > .items > .item {
   background-color: #202020;
@@ -51,7 +51,7 @@ body.dark .playlist > .items > .item.active {
   background-color: #333599;
 }
 body.dark .playlist > .items > .item > .info > .title {
-  color : white;
+  color : whitesmoke;
 }
 body.dark .playlist > .items > .item.active > .info > .user {
   color : #a3a5ff;
@@ -71,10 +71,12 @@ body.dark .playlist > .items > .item.active > .info > footer > .likes {
 body.dark .playlist > .items > .item.active > .info > footer > .likes::after {
   color: darkgray;
 }
-body.dark .playlist > .items > .item > .info > footer > .like-btn {
-  background-image: url('like-dark.svg');
+body.dark .playlist > .items > .item > .info > footer > .like-btn::before {
+  filter: brightness(140%);
+}
+body.dark .playlist > .items > .item.active > .info > footer > .like-btn::before {
+  filter: brightness(200%);
 }
 body.dark .playlist > .items > .item.active > .info > footer > .like-btn {
   color: #a3a5ff;
-  background-image: url('like-dark.svg');
 }

@@ -273,10 +273,14 @@ input::placeholder {
 .playlist > .items > .item > .info > footer > .likes:after {
   content: " likes";
 }
-.playlist > .items > .item > .info > footer > .like-btn {
+.playlist > .items > .item > .info > footer > .like-btn::before {
+  content: "";
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  margin-right: .25em;
   background-image: url('like.svg');
-  background-position: left;
+  background-position: left bottom;
   background-repeat: no-repeat;
-  background-size: 1em;
-  padding-left: 1.25em;
+  background-size: auto 1em;
 }
