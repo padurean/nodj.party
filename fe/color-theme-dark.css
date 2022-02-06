@@ -48,8 +48,33 @@ body.dark .playlist > .items > .item {
   background-color: #202020;
 }
 body.dark .playlist > .items > .item.active {
-  background-color: hsl(239, 50%, 22%);
+  background-color: #333599;
 }
 body.dark .playlist > .items > .item > .info > .title {
   color : white;
+}
+body.dark .playlist > .items > .item.active > .info > .user {
+  color : #a3a5ff;
+}
+body.dark .playlist > .items > .item.active > .info > .user:before {
+  color : darkgray;
+}
+body.dark .playlist > .items > .item.active > .info > footer > .rank {
+  color: darkgray;
+}
+body.dark .playlist > .items > .item > .info > footer > .rank::before {
+  color: gray;
+}
+body.dark .playlist > .items > .item.active > .info > footer > .likes {
+  color: #a3a5ff;
+}
+body.dark .playlist > .items > .item.active > .info > footer > .likes::after {
+  color: darkgray;
+}
+body.dark .playlist > .items > .item > .info > footer > .like-btn {
+  background-image: url('like-dark.svg');
+}
+body.dark .playlist > .items > .item.active > .info > footer > .like-btn {
+  color: #a3a5ff;
+  background-image: url('like-dark.svg');
 }

@@ -233,15 +233,30 @@ function hideTopNav(event) {
   }
 }
 
+function isValidHttpUrl(string) {
+  let url;
+  try {
+    url = new URL(string);
+  } catch (_) {
+    return false;
+  }
+  return url.protocol === "http:" || url.protocol === "https:";
+}
+
 function onAddToPlaylistBtnClick(event) {
   event.preventDefault();
   var youTubeVideoURL = addToPlaylistInputElem.value.trim();
   if (!youTubeVideoURL) {
     return;
   }
-  youTubeVideoURL = 'https://noembed.com/embed?url=' + youTubeVideoURL;
   addToPlaylistSectionElem.classList.add('hidden');
+  if (!isValidHttpUrl(youTubeVideoURL)) {
+    addToPlaylistErrorElem.innerText = 'Invalid URL';
+    addToPlaylistErrorElem.classList.remove('hidden');
+    return;
+  }
   addToPlaylistInProgressElem.classList.remove('hidden');
+  youTubeVideoURL = 'https://noembed.com/embed?url=' + youTubeVideoURL;
   fetch(youTubeVideoURL).then(function (response) {
     return response.json();
   }).then(function (json) {
@@ -252,7 +267,7 @@ function onAddToPlaylistBtnClick(event) {
       }
       addToPlaylistErrorElem.innerText = 'Add to playlist failed :(';
       addToPlaylistErrorElem.classList.remove('hidden');
-      return
+      return;
     }
     var videoID = videoIDFromURL(json.url);
     state.addToPlaylist({
