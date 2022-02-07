@@ -74,7 +74,8 @@ window.addEventListener('load', (event) => {
   loadYouTubeIframeAPI();
   loadStaticElems();
 
-  if (localStorage.getItem('dark') === 'true') {
+  const isDarkModeSet = localStorage.getItem('dark');
+  if (!isDarkModeSet || isDarkModeSet === 'true') {
     bodyElem.classList.add('dark');
   }
   toggleColorThemeBtnElem.addEventListener('click', function (event) {
