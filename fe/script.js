@@ -21,6 +21,7 @@ var state = {
     this.playlist.push(trackObj);
     this.playlistIndexByVideoID[trackObj.videoID] = this.playlist.length - 1;
   },
+  // TODO OGG: this is not working fine if the same video is added multiple times to the playlist
   setActiveIndex(videoID) {
     var prevActiveIndex = this.activeIndex;
     var newActiveIndex = this.playlistIndexByVideoID[videoID];

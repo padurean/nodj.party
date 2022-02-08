@@ -35,11 +35,11 @@ body.dark a {
   color: #7274FC;
 }
 body.dark input {
-  background-color: #404040;
+  background-color: #080808;
   color: whitesmoke;
 }
 body.dark input::placeholder {
-  color: #989898;
+  color: gray;
 }
 body.dark .playlist > .add > a {
   background-color: #393bac;
