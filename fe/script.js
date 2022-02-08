@@ -164,6 +164,7 @@ function highlightActiveItem() {
   }
   var itemElem = document.getElementById('item-' + activeIndex);
   itemElem.classList.add('active');
+  itemElem.scrollIntoView(true);
 }
 
 function unhighlightItem(index) {
