@@ -9,7 +9,6 @@ html, body {
 }
 
 body {
-  background-image: url('bg.svg');
   background-repeat: no-repeat;
   background-size: auto 7em;
   background-position: right 1.5em bottom 0;
