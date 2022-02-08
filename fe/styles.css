@@ -128,7 +128,7 @@ iframe {
   max-width: 100%;
   /* so that ratio is approx. 1.641025641025641 */
   max-height: 60vw;
-  margin-bottom: 1.5em;
+  margin: .2em 0 1.5em 0;
 }
 
 a {
@@ -199,8 +199,7 @@ input::placeholder {
 
 .playlist > .items {
   margin-top: .5em;
-  max-height: 60vw;
-  /* max-height: 20vh; */
+  max-height: 55vh;
   overflow-x: scroll;
 }
 
@@ -290,3 +289,11 @@ input::placeholder {
   background-repeat: no-repeat;
   background-size: auto 1em;
 }
+
+/* BEGIN media queries */
+@media only screen and (min-width: 867px) {
+  main {
+    margin-top: 3em;
+  }
+}
+/* END media queries */
