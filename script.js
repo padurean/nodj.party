@@ -104,6 +104,27 @@ function addOnSpaceKeyUpListener() {
   });
 }
 
+function scrollParentToChild(parent, child) {
+  var parentRect = parent.getBoundingClientRect(); // where is the parent on page
+  var parentViewableArea = { // what can be seen
+    height: parent.clientHeight,
+    width: parent.clientWidth
+  };
+  var childRect = child.getBoundingClientRect(); // where is the child
+  // is the child viewable
+  var isViewable = (childRect.top >= parentRect.top) && (childRect.bottom <= parentRect.top + parentViewableArea.height);
+  if (!isViewable) { // if child is not visible, try to scroll parent
+        // find the smaller ABS adjustment to decide whether to scroll using top or bottom
+        const scrollTop = childRect.top - parentRect.top;
+        const scrollBot = childRect.bottom - parentRect.bottom;
+        if (Math.abs(scrollTop) < Math.abs(scrollBot)) {
+            parent.scrollTop += scrollTop; // we're near the top of the list
+        } else {
+            parent.scrollTop += scrollBot; // we're near the bottom of the list
+        }
+  }
+}
+
 //===> YouTube iFrame API
 function loadYouTubeIframeAPI() {
   var tag = document.createElement('script');
@@ -165,7 +186,7 @@ function highlightActiveItem() {
   }
   var itemElem = document.getElementById('item-' + activeIndex);
   itemElem.classList.add('active');
-  itemElem.scrollIntoView(true);
+  scrollParentToChild(tracksElem, itemElem);
 }
 
 function unhighlightItem(index) {
