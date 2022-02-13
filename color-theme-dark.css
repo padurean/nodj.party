@@ -29,7 +29,7 @@ body.dark .top-nav > nav > a {
   color: whitesmoke;
 }
 body.dark .top-nav > nav > a:hover {
-  color: #D4C2FC;
+  color: #FFCD37;
 }
 body.dark a {
   color: #7274FC;
@@ -41,7 +41,17 @@ body.dark input {
 body.dark input::placeholder {
   color: gray;
 }
-body.dark .playlist > .add > a {
+body.dark .playlist > .tabs > .tab-btns > a {
+  background-color: #181818;
+  color: gray;
+}
+body.dark .playlist > .tabs > .tab-btns > a.active {
+  background-color: #202020;
+}
+body.dark .playlist > .tabs > .tab {
+  background-color: #202020;
+}
+body.dark .playlist > .tabs > .add-tab > .add > a {
   background-color: #393bac;
   color: whitesmoke;
 }

@@ -48,15 +48,28 @@
     <!-- <iframe> (and video player) will replace this <div> tag. -->
     <div id="player-1"></div>
     <section id="playlist" class="playlist">
-      <section id="add" class="add">
-        <input type="url" id="add-to-playlist-input" placeholder="YouTube video URL" />
-        <a href="#" id="add-to-playlist-btn">Add</a>
+      <section id="tabs" class="tabs">
+        <section id="tab-btns" class="tab-btns">
+          <a href="#" id="share-tab-btn" class="share-tab-btn" title="Share party"></a>
+          <a href="#" id="filter-tab-btn" class="filter-tab-btn" title="Filter playlist"></a>
+          <a href="#" id="notifications-tab-btn" class="notifications-tab-btn" title="Notifications"></a>
+          <a href="#" id="add-tab-btn" class="add-tab-btn active" title="Add to playlist"></a>
+        </section>
+        <section id="share-tab" class="tab share-tab hidden"></section>
+        <section id="filter-tab" class="tab filter-tab hidden"></section>
+        <section id="notifications-tab" class="tab notifications-tab hidden"></section>
+        <section id="add-tab" class="tab add-tab">
+          <section id="add" class="add">
+            <input type="url" id="add-to-playlist-input" placeholder="YouTube video URL" />
+            <a href="#" id="add-to-playlist-btn">Add</a>
+          </section>
+          <div id="add-in-progress" class="add-in-progress hidden">Adding ...</div>
+          <div id="add-error" class="add-error hidden" title="Click / tap to hide this message"></div>
+        </section>
       </section>
-      <div id="add-in-progress" class="add-in-progress hidden">Adding ...</div>
-      <div id="add-error" class="add-error hidden" title="Click / tap to hide this message"></div>
       <!-- BEGIN playlist item template -->
       <div id="playlist-item-template" class="hidden">
-        <div class="item" id="item-{index}" style="position: relative;">
+        <div class="item" id="item-{index}">
           <div class="overlay-btn play">&nbsp;</div>
           <img src="{thumbnail}" alt="{title}">
           <section class="info">

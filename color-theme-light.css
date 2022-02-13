@@ -24,7 +24,7 @@ body > footer > a:first-child {
   color: white;
 }
 .top-nav > nav > a:hover {
-  color: #D4C2FC;
+  color: #FFCD37;
 }
 a {
   color: #393bac;
@@ -35,18 +35,28 @@ input {
 input::placeholder {
   color: gray;
 }
-.playlist > .add > a {
+.playlist > .tabs > .tab-btns > a {
+  background-color: #f8f8f8;
+  color: gray;
+}
+.playlist > .tabs > .tab-btns > a.active {
+  background-color: #e8e8e8;
+}
+.playlist > .tabs > .tab {
+  background-color: #e8e8e8;
+}
+.playlist > .tabs > .add-tab > .add > a {
   background-color: #393bac;
   color: white;
 }
-.playlist > .add-in-progress,
-.playlist > .add-error {
+.playlist > .tabs > .add-tab > .add-in-progress,
+.playlist > .tabs > .add-tab > .add-error {
   color: white;
 }
-.playlist > .add-in-progress {
+.playlist > .tabs > .add-tab > .add-in-progress {
   background-color: #008A29;
 }
-.playlist > .add-error {
+.playlist > .tabs > .add-tab > .add-error {
   background-color: #ED1C24;
 }
 .playlist > .items > .item {

@@ -128,7 +128,7 @@ iframe {
   max-width: 100%;
   /* so that ratio is approx. 1.641025641025641 */
   max-height: 60vw;
-  margin: .2em 0 1.5em 0;
+  margin: 0 0 1.5em 0;
 }
 
 a {
@@ -156,19 +156,62 @@ input::placeholder {
   margin-bottom: 5em;
 }
 
-.playlist > .add {
+.playlist > .tabs > .tab-btns {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  /* margin-bottom: 1px; */
+}
+.playlist > .tabs > .tab-btns > a {
+  display: inline-block;
+  margin-right: 1px;
+  margin-bottom: 1px;
+  width: 25%;
+  height: 1.75em;
+  line-height: 1.75em;
+  text-align: center;
+  background-repeat: no-repeat;
+  background-size: auto 1em;
+  background-position: center;
+}
+.playlist > .tabs > .tab-btns > a.active {
+  margin-bottom: 0;
+}
+.playlist > .tabs > .tab-btns > a:last-child {
+  margin-right: 0;
+}
+
+.playlist > .tabs > .tab-btns > a.share-tab-btn {
+  background-image: url('share.svg');
+}
+.playlist > .tabs > .tab-btns > a.filter-tab-btn {
+  background-image: url('filter.svg');
+}
+.playlist > .tabs > .tab-btns > a.notifications-tab-btn {
+  background-image: url('bell.svg');
+}
+.playlist > .tabs > .tab-btns > a.add-tab-btn {
+  background-image: url('plus.svg');
+}
+
+.playlist > .tabs > .tab {
+  padding: .25em;
+}
+
+.playlist > .tabs > .add-tab > .add {
   display: flex;
   justify-content: space-between;
   align-items: center;
   height: 2.25em;
 }
-.playlist > .add > input {
+.playlist > .tabs > .add-tab > .add > input {
   flex: 0 1 80%;
   height: 1.25em;
 }
-.playlist > .add > a {
+.playlist > .tabs > .add-tab > .add > a {
   display: inline-block;
   margin-left: .1em;
+  margin-right: .1em;
   min-width: 3em;
   height: 1.9em;
   line-height: 1.9em;
@@ -176,23 +219,23 @@ input::placeholder {
   text-align: center;
 }
 
-.playlist > .add-in-progress,
-.playlist > .add-error {
+.playlist > .tabs > .add-tab > .add-in-progress,
+.playlist > .tabs > .add-tab > .add-error {
   font-size: .9em;
-  height: 2.25em;
+  height: 2em;
   line-height: 2.25em;
-  margin: .25em 0;
+  margin: .25em .2em;
   padding: 0 .5em 0 .5em;
   font-style: italic;
 }
-.playlist > .add-error {
+.playlist > .tabs > .add-tab > .add-error {
   cursor: pointer;
 }
-.playlist > .add-error::after {
+.playlist > .tabs > .add-tab > .add-error::after {
   content: 'x';
   float: right;
   margin-top: -.7em;
-  margin-right: -.3em;
+  margin-right: -.325em;
   font-style: normal;
   transform:scale(1.25,1.0);
 }

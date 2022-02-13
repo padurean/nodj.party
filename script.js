@@ -61,6 +61,17 @@ var toggleColorThemeBtnElem;
 var topNavElem;
 var topNavHamburgerElem;
 var topNavLinksElem;
+
+var shareTabBtnElem;
+var filterTabBtnElem;
+var notificationsTabBtnElem;
+var addTabBtnElem;
+
+var shareTabElem;
+var filterTabElem;
+var notificationsTabElem;
+var addTabElem;
+
 var addToPlaylistSectionElem;
 var addToPlaylistInputElem;
 var addToPlaylistBtnElem;
@@ -88,6 +99,9 @@ window.addEventListener('load', (event) => {
   addOnSpaceKeyUpListener();
   topNavHamburgerElem.addEventListener('click', toggleTopNav);
   window.addEventListener('click', hideTopNav);
+
+  addTabBtnsEventListeners();
+
   addToPlaylistBtnElem.addEventListener('click', onAddToPlaylistBtnClick);
   addToPlaylistErrorElem.addEventListener('click', function (event) {
     this.classList.add('hidden');
@@ -98,10 +112,63 @@ window.addEventListener('load', (event) => {
 
 function addOnSpaceKeyUpListener() {
   document.addEventListener('keyup', event => {
-    if (event.code === 'Space') {
+    if (event.code === 'Space' && event.target.tagName !== 'INPUT') {
+      // event.stopPropagation();
       playOrPause();
     }
   });
+}
+
+function addTabBtnsEventListeners() {
+  shareTabBtnElem.addEventListener('click', onTabBtnClick);
+  filterTabBtnElem.addEventListener('click', onTabBtnClick);
+  notificationsTabBtnElem.addEventListener('click', onTabBtnClick);
+  addTabBtnElem.addEventListener('click', onTabBtnClick);
+}
+
+function onTabBtnClick(event) {
+  event.preventDefault();
+  if (this == shareTabBtnElem) {
+    switchToTab(
+      shareTabBtnElem,
+      shareTabElem,
+      [filterTabBtnElem, notificationsTabBtnElem, addTabBtnElem],
+      [filterTabElem, notificationsTabElem, addTabElem]);
+    return;
+  }
+  if (this == filterTabBtnElem) {
+    switchToTab(
+      filterTabBtnElem,
+      filterTabElem,
+      [shareTabBtnElem, notificationsTabBtnElem, addTabBtnElem],
+      [shareTabElem, notificationsTabElem, addTabElem]);
+    return;
+  }
+  if (this == notificationsTabBtnElem) {
+    switchToTab(
+      notificationsTabBtnElem,
+      notificationsTabElem,
+      [shareTabBtnElem, filterTabBtnElem, addTabBtnElem],
+      [shareTabElem, filterTabElem, addTabElem]);
+    return;
+  }
+  if (this == addTabBtnElem) {
+    switchToTab(
+      addTabBtnElem,
+      addTabElem,
+      [shareTabBtnElem, filterTabBtnElem, notificationsTabBtnElem],
+      [shareTabElem, filterTabElem, notificationsTabElem]);
+    return;
+  }
+}
+
+function switchToTab(tabBtnToActivate, tabToActivate, tabBtnsToDeactivate, tabsToDeactivate) {
+  tabToActivate.classList.remove('hidden');
+  tabBtnToActivate.classList.add('active');
+  for (var i = 0; i < tabBtnsToDeactivate.length; i++) {
+    tabsToDeactivate[i].classList.add('hidden');
+    tabBtnsToDeactivate[i].classList.remove('active');
+  }
 }
 
 function scrollParentToChild(parent, child) {
@@ -114,14 +181,14 @@ function scrollParentToChild(parent, child) {
   // is the child viewable
   var isViewable = (childRect.top >= parentRect.top) && (childRect.bottom <= parentRect.top + parentViewableArea.height);
   if (!isViewable) { // if child is not visible, try to scroll parent
-        // find the smaller ABS adjustment to decide whether to scroll using top or bottom
-        const scrollTop = childRect.top - parentRect.top;
-        const scrollBot = childRect.bottom - parentRect.bottom;
-        if (Math.abs(scrollTop) < Math.abs(scrollBot)) {
-            parent.scrollTop += scrollTop; // we're near the top of the list
-        } else {
-            parent.scrollTop += scrollBot; // we're near the bottom of the list
-        }
+    // find the smaller ABS adjustment to decide whether to scroll using top or bottom
+    const scrollTop = childRect.top - parentRect.top;
+    const scrollBot = childRect.bottom - parentRect.bottom;
+    if (Math.abs(scrollTop) < Math.abs(scrollBot)) {
+      parent.scrollTop += scrollTop; // we're near the top of the list
+    } else {
+      parent.scrollTop += scrollBot; // we're near the bottom of the list
+    }
   }
 }
 
@@ -235,6 +302,17 @@ function loadStaticElems() {
   topNavElem = document.getElementById('top-nav');
   topNavHamburgerElem = document.getElementById('top-nav-hamburger');
   topNavLinksElem = document.getElementById('top-nav-links');
+
+  shareTabBtnElem = document.getElementById('share-tab-btn');
+  filterTabBtnElem = document.getElementById('filter-tab-btn');
+  notificationsTabBtnElem = document.getElementById('notifications-tab-btn');
+  addTabBtnElem = document.getElementById('add-tab-btn');
+
+  shareTabElem = document.getElementById('share-tab');
+  filterTabElem = document.getElementById('filter-tab');
+  notificationsTabElem = document.getElementById('notifications-tab');
+  addTabElem = document.getElementById('add-tab');
+
   addToPlaylistSectionElem = document.getElementById('add');
   addToPlaylistInputElem = document.getElementById('add-to-playlist-input');
   addToPlaylistBtnElem = document.getElementById('add-to-playlist-btn');
