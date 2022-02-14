@@ -190,6 +190,10 @@ input::placeholder {
 .playlist > .tabs > .tab-btns > a.notifications-tab-btn {
   background-image: url('bell.svg');
 }
+.playlist > .tabs > .tab-btns > a.notifications-tab-btn.unread {
+  background-image: url('bell-on.svg');
+  background-size: auto 1.1em;
+}
 .playlist > .tabs > .tab-btns > a.add-tab-btn {
   background-image: url('plus.svg');
 }
