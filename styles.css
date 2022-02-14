@@ -230,12 +230,11 @@ input::placeholder {
 
 .playlist > .tabs > .add-tab > .add-in-progress,
 .playlist > .tabs > .add-tab > .add-error {
-  font-size: .9em;
-  height: 2em;
-  line-height: 2.25em;
+  font-size: 1em;
+  height: 1.75em;
+  line-height: 1.85em;
   margin: .25em .2em;
-  padding: 0 .5em 0 .5em;
-  font-style: italic;
+  padding: 0 .4em;
 }
 .playlist > .tabs > .add-tab > .add-error {
   cursor: pointer;
@@ -243,9 +242,8 @@ input::placeholder {
 .playlist > .tabs > .add-tab > .add-error::after {
   content: 'x';
   float: right;
-  margin-top: -.7em;
-  margin-right: -.325em;
-  font-style: normal;
+  margin-top: -.55em;
+  margin-right: -.25em;
   transform:scale(1.25,1.0);
 }
 
