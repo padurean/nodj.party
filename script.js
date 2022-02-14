@@ -111,9 +111,9 @@ window.addEventListener('load', (event) => {
 });
 
 function addOnSpaceKeyUpListener() {
-  document.addEventListener('keyup', event => {
+  document.addEventListener('keydown', event => {
     if (event.code === 'Space' && event.target.tagName !== 'INPUT') {
-      // event.stopPropagation();
+      event.preventDefault(); // do not scroll page
       playOrPause();
     }
   });
