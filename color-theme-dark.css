@@ -50,6 +50,7 @@ body.dark .playlist > .tabs > .tab-btns > a.active {
 }
 body.dark .playlist > .tabs > .tab {
   background-color: #202020;
+  color: gainsboro;
 }
 body.dark .playlist > .tabs > .add-tab > .add > a {
   background-color: #393bac;

@@ -181,14 +181,18 @@ input::placeholder {
   margin-right: 0;
 }
 
-.playlist > .tabs > .tab-btns > a.share-tab-btn {
-  background-image: url('share.svg');
+.playlist > .tabs > .tab-btns > a.profile-tab-btn {
+  background-image: url('user.svg');
 }
 .playlist > .tabs > .tab-btns > a.filter-tab-btn {
   background-image: url('filter.svg');
 }
+.playlist > .tabs > .tab-btns > a.share-tab-btn {
+  background-image: url('share.svg');
+}
 .playlist > .tabs > .tab-btns > a.notifications-tab-btn {
   background-image: url('bell.svg');
+  background-size: auto 1.075em;
 }
 .playlist > .tabs > .tab-btns > a.notifications-tab-btn.unread {
   background-image: url('bell-on.svg');
@@ -200,6 +204,7 @@ input::placeholder {
 
 .playlist > .tabs > .tab {
   padding: .25em;
+  font-size: .9em;
 }
 
 .playlist > .tabs > .add-tab > .add {

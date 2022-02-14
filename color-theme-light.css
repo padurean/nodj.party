@@ -44,6 +44,7 @@ input::placeholder {
 }
 .playlist > .tabs > .tab {
   background-color: #e8e8e8;
+  color: #101010;
 }
 .playlist > .tabs > .add-tab > .add > a {
   background-color: #393bac;

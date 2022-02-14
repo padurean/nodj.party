@@ -62,13 +62,15 @@ var topNavElem;
 var topNavHamburgerElem;
 var topNavLinksElem;
 
-var shareTabBtnElem;
+var profileTabBtnElem;
 var filterTabBtnElem;
+var shareTabBtnElem;
 var notificationsTabBtnElem;
 var addTabBtnElem;
 
-var shareTabElem;
+var profileTabElem;
 var filterTabElem;
+var shareTabElem;
 var notificationsTabElem;
 var addTabElem;
 
@@ -120,55 +122,61 @@ function addOnSpaceKeyUpListener() {
 }
 
 function addTabBtnsEventListeners() {
-  shareTabBtnElem.addEventListener('click', onTabBtnClick);
-  filterTabBtnElem.addEventListener('click', onTabBtnClick);
-  notificationsTabBtnElem.addEventListener('click', onTabBtnClick);
-  addTabBtnElem.addEventListener('click', onTabBtnClick);
+  profileTabBtnElem.addEventListener('click', onProfileTabBtnClick);
+  filterTabBtnElem.addEventListener('click', onFilterTabBtnClick);
+  shareTabBtnElem.addEventListener('click', onShareTabBtnClick);
+  notificationsTabBtnElem.addEventListener('click', onNotificationsTabBtnClick);
+  addTabBtnElem.addEventListener('click', onAddTabBtnClick);
 }
 
-function onTabBtnClick(event) {
+function onProfileTabBtnClick(event) {
   event.preventDefault();
-  if (this == shareTabBtnElem) {
-    switchToTab(
-      shareTabBtnElem,
-      shareTabElem,
-      [filterTabBtnElem, notificationsTabBtnElem, addTabBtnElem],
-      [filterTabElem, notificationsTabElem, addTabElem]);
-    return;
-  }
-  if (this == filterTabBtnElem) {
-    switchToTab(
-      filterTabBtnElem,
-      filterTabElem,
-      [shareTabBtnElem, notificationsTabBtnElem, addTabBtnElem],
-      [shareTabElem, notificationsTabElem, addTabElem]);
-    return;
-  }
-  if (this == notificationsTabBtnElem) {
-    switchToTab(
-      notificationsTabBtnElem,
-      notificationsTabElem,
-      [shareTabBtnElem, filterTabBtnElem, addTabBtnElem],
-      [shareTabElem, filterTabElem, addTabElem]);
-    return;
-  }
-  if (this == addTabBtnElem) {
-    switchToTab(
-      addTabBtnElem,
-      addTabElem,
-      [shareTabBtnElem, filterTabBtnElem, notificationsTabBtnElem],
-      [shareTabElem, filterTabElem, notificationsTabElem]);
-    return;
-  }
+  switchToTab(
+    profileTabBtnElem,
+    profileTabElem,
+    [filterTabBtnElem, shareTabBtnElem, notificationsTabBtnElem, addTabBtnElem],
+    [filterTabElem, shareTabElem, notificationsTabElem, addTabElem]);
+}
+function onFilterTabBtnClick(event) {
+  event.preventDefault();
+  switchToTab(
+    filterTabBtnElem,
+    filterTabElem,
+    [profileTabBtnElem, shareTabBtnElem, notificationsTabBtnElem, addTabBtnElem],
+    [profileTabElem, shareTabElem, notificationsTabElem, addTabElem]);
+}
+function onShareTabBtnClick(event) {
+  event.preventDefault();
+  switchToTab(
+    shareTabBtnElem,
+    shareTabElem,
+    [profileTabBtnElem, filterTabBtnElem, notificationsTabBtnElem, addTabBtnElem],
+    [profileTabElem, filterTabElem, notificationsTabElem, addTabElem]);
+}
+function onNotificationsTabBtnClick(event) {
+  event.preventDefault();
+  switchToTab(
+    notificationsTabBtnElem,
+    notificationsTabElem,
+    [profileTabBtnElem, filterTabBtnElem, shareTabBtnElem, addTabBtnElem],
+    [profileTabElem, filterTabElem, shareTabElem, addTabElem]);
+}
+function onAddTabBtnClick(event) {
+  event.preventDefault();
+  switchToTab(
+    addTabBtnElem,
+    addTabElem,
+    [profileTabBtnElem, filterTabBtnElem, shareTabBtnElem, notificationsTabBtnElem],
+    [profileTabElem, filterTabElem, shareTabElem, notificationsTabElem]);
 }
 
 function switchToTab(tabBtnToActivate, tabToActivate, tabBtnsToDeactivate, tabsToDeactivate) {
-  tabToActivate.classList.remove('hidden');
-  tabBtnToActivate.classList.add('active');
   for (var i = 0; i < tabBtnsToDeactivate.length; i++) {
     tabsToDeactivate[i].classList.add('hidden');
     tabBtnsToDeactivate[i].classList.remove('active');
   }
+  tabToActivate.classList.remove('hidden');
+  tabBtnToActivate.classList.add('active');
 }
 
 function scrollParentToChild(parent, child) {
@@ -303,13 +311,15 @@ function loadStaticElems() {
   topNavHamburgerElem = document.getElementById('top-nav-hamburger');
   topNavLinksElem = document.getElementById('top-nav-links');
 
-  shareTabBtnElem = document.getElementById('share-tab-btn');
+  profileTabBtnElem = document.getElementById('profile-tab-btn');
   filterTabBtnElem = document.getElementById('filter-tab-btn');
+  shareTabBtnElem = document.getElementById('share-tab-btn');
   notificationsTabBtnElem = document.getElementById('notifications-tab-btn');
   addTabBtnElem = document.getElementById('add-tab-btn');
 
-  shareTabElem = document.getElementById('share-tab');
+  profileTabElem = document.getElementById('profile-tab');
   filterTabElem = document.getElementById('filter-tab');
+  shareTabElem = document.getElementById('share-tab');
   notificationsTabElem = document.getElementById('notifications-tab');
   addTabElem = document.getElementById('add-tab');
 
