@@ -234,7 +234,7 @@ input::placeholder {
   height: 1.75em;
   line-height: 1.85em;
   margin: .25em .2em;
-  padding: 0 .4em;
+  padding: 0 0 0 .4em;
 }
 .playlist > .tabs > .add-tab > .add-error {
   cursor: pointer;
@@ -242,9 +242,12 @@ input::placeholder {
 .playlist > .tabs > .add-tab > .add-error::after {
   content: 'x';
   float: right;
-  margin-top: -.55em;
-  margin-right: -.25em;
-  transform:scale(1.25,1.0);
+  height: 1.5em;
+  margin: .125em .275em .125em 1em;
+  line-height: 1.4em;
+  background-color: rgba(0, 0, 0, .1);
+  padding: 0 .35em 0 .4em;
+  transform: scale(1.25, 1.0);
 }
 
 .playlist > .items {
