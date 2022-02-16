@@ -1,4 +1,5 @@
 var state = {
+  // playlist
   playlist: [],
   playlistIndexByVideoID: {},
   activeIndex: -1,
@@ -6,9 +7,6 @@ var state = {
 
   getPlaylist: function () {
     return this.playlist;
-  },
-  getPlaylistLength: function () {
-    return this.playlist.length;
   },
   setPlaylist: function (playlist) {
     this.playlist = playlist;
@@ -53,6 +51,19 @@ var state = {
   },
   getPausedAt: function () {
     return this.pausedAt;
+  },
+
+  // notifications
+  notifications: [],
+
+  getNotifications: function () {
+    return this.notifications;
+  },
+  setNotifications: function (notifications) {
+    this.notifications = notifications;
+  },
+  removeNotification: function(index) {
+    this.notifications.splice(index, 1);
   }
 }
 
@@ -110,6 +121,7 @@ window.addEventListener('load', (event) => {
     addToPlaylistSectionElem.classList.remove('hidden');
   });
   loadAndRenderPlaylist();
+  loadAndRenderNotifications();
 });
 
 function addOnSpaceKeyUpListener() {
@@ -136,6 +148,7 @@ function onProfileTabBtnClick(event) {
     profileTabElem,
     [filterTabBtnElem, shareTabBtnElem, notificationsTabBtnElem, addTabBtnElem],
     [filterTabElem, shareTabElem, notificationsTabElem, addTabElem]);
+  tracksElem.classList.add('hidden');
 }
 function onFilterTabBtnClick(event) {
   event.preventDefault();
@@ -152,6 +165,7 @@ function onShareTabBtnClick(event) {
     shareTabElem,
     [profileTabBtnElem, filterTabBtnElem, notificationsTabBtnElem, addTabBtnElem],
     [profileTabElem, filterTabElem, notificationsTabElem, addTabElem]);
+  tracksElem.classList.add('hidden');
 }
 function onNotificationsTabBtnClick(event) {
   event.preventDefault();
@@ -160,6 +174,7 @@ function onNotificationsTabBtnClick(event) {
     notificationsTabElem,
     [profileTabBtnElem, filterTabBtnElem, shareTabBtnElem, addTabBtnElem],
     [profileTabElem, filterTabElem, shareTabElem, addTabElem]);
+    tracksElem.classList.add('hidden');
 }
 function onAddTabBtnClick(event) {
   event.preventDefault();
@@ -168,6 +183,7 @@ function onAddTabBtnClick(event) {
     addTabElem,
     [profileTabBtnElem, filterTabBtnElem, shareTabBtnElem, notificationsTabBtnElem],
     [profileTabElem, filterTabElem, shareTabElem, notificationsTabElem]);
+  tracksElem.classList.remove('hidden');
 }
 
 function switchToTab(tabBtnToActivate, tabToActivate, tabBtnsToDeactivate, tabsToDeactivate) {
@@ -388,7 +404,7 @@ function onAddToPlaylistBtnClick(event) {
       thumbnail: json.thumbnail_url,
       title: json.title,
       user: 'someCurrentUsername',
-      rank: (state.getPlaylistLength() + 1) * 1000,
+      rank: (state.playlist.length + 1) * 1000,
       likes: 0
     });
     renderPlaylist();
@@ -459,8 +475,6 @@ function renderPlaylist() {
 
   var tracksElems = tracksElem.getElementsByClassName('item');
   for (var i = 0; i < tracksElems.length; i++) {
-    // var trackImgElem = tracksElems[i].getElementsByTagName('img')[0];
-    // trackImgElem.addEventListener('click', onTrackClick);
     var trackImgOverlayElem = tracksElems[i].querySelector('.overlay-btn');
     trackImgOverlayElem.addEventListener('click', onTrackClick);
   }
@@ -502,4 +516,47 @@ function videoIDFromURL(url) {
     videoID = urlPieces[urlPieces.length - 1];
   }
   return videoID;
+}
+
+function loadAndRenderNotifications() {
+  state.setNotifications([
+    {
+      message: '@somePartyGoer1 liked your video "Gesaffelstein & The Weeknd - Lost in the Fire (Official Video)". Video rank is now #1000.',
+      time: new Date(),
+    },
+    {
+      message: '@someOtherPartyGoer2 added "REZZ - Edge" to the playlist. Rank: #2000.',
+      time: new Date(),
+    },
+    {
+      message: '@yetAnotherPartyGoer3 added "Fantome - Pașii Mei (feat. Ioana Milculescu)" to the playlist. Rank: #3000.',
+      time: new Date(),
+    },
+  ]);
+  renderNotifications();
+}
+
+function renderNotifications() {
+  var templateElem = document.getElementById('notification-template');
+
+  notificationsTabElem.innerHTML = '';
+  var notifications = state.getNotifications();
+  for (var i = 0; i < notifications.length; i++) {
+    var html = templateElem.innerHTML.replaceAll('{index}', i);
+    html = html.replaceAll('{message}', notifications[i].message);
+    html = html.replaceAll('{time}', notifications[i].time.toLocaleString());
+    notificationsTabElem.innerHTML += html;
+  }
+
+  var notificationsElems = notificationsTabElem.getElementsByClassName('notification');
+  for (var i = 0; i < notificationsElems.length; i++) {
+    var markAsReadBtnElem = notificationsElems[i].querySelector('.mark-notification-as-read-btn');
+    markAsReadBtnElem.addEventListener('click', onMarkNotificationAsReadClick);
+  }
+}
+
+function onMarkNotificationAsReadClick(event) {
+  var notificationIndex = event.target.parentElement.getElementsByTagName('input')[0].value;
+  state.removeNotification(notificationIndex);
+  renderNotifications();
 }

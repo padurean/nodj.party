@@ -56,25 +56,53 @@
           <a href="#" id="notifications-tab-btn" class="notifications-tab-btn unread" title="Notifications"></a>
           <a href="#" id="add-tab-btn" class="add-tab-btn active" title="Add to playlist"></a>
         </section>
+
         <section id="profile-tab" class="tab profile-tab hidden">
           TODO OGG NOW: profile tab content
         </section>
+
         <section id="filter-tab" class="tab filter-tab hidden">
-          TODO OGG NOW: filter tab content
+          <section id="filter" class="filter">
+            <!-- TODO OGG NOW: this must be populated dynamically with partygoers -->
+            <select id="filter-playlist-select-user">
+              <option value="">From anyone</option>
+              <option value="somePartyGoer1">@somePartyGoer1</option>
+              <option value="someOtherPartyGoer2">@someOtherPartyGoer2</option>
+              <option value="yetAnotherPartyGoer3">@yetAnotherPartyGoer3</option>
+            </select>
+            <input type="search" id="filter-playlist-input" placeholder="Keyword(s)" />
+            <a href="#" id="filter-playlist-btn" class="btn">Filter</a>
+          </section>
+          <div id="filter-in-progress" class="filter-in-progress hidden">Filtering ...</div>
+          <div id="filter-error" class="filter-error hidden" title="Click / tap to hide this message"></div>
         </section>
+
         <section id="share-tab" class="tab share-tab hidden">
           TODO OGG NOW: share tab content
         </section>
+
+        <!-- BEGIN notification template -->
+        <div id="notification-template" class="hidden">
+          <div class="notification" id="notification-{index}">
+            <div class="message">{message}</div>
+            <a href="#" class="mark-notification-as-read-btn">x</a>
+            <div class="time">{time}</div>
+            <input type="hidden" value="{index}" />
+          </div>
+        </div>
+        <!-- END notification template -->
         <section id="notifications-tab" class="tab notifications-tab hidden">
           TODO OGG NOW: notifications tab content
         </section>
+
         <section id="add-tab" class="tab add-tab">
           <section id="add" class="add">
             <input type="url" id="add-to-playlist-input" placeholder="YouTube video URL" />
-            <a href="#" id="add-to-playlist-btn">Add</a>
+            <a href="#" id="add-to-playlist-btn" class="btn">Add</a>
           </section>
           <div id="add-in-progress" class="add-in-progress hidden">Adding ...</div>
           <div id="add-error" class="add-error hidden" title="Click / tap to hide this message"></div>
+          <!-- TODO OGG NOW: add an add-success div in which user is informed that video has been added with rank #xxx -->
         </section>
       </section>
       <!-- BEGIN playlist item template -->

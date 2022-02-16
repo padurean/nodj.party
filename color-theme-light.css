@@ -29,7 +29,11 @@ body > footer > a:first-child {
 a {
   color: #393bac;
 }
-input {
+.btn {
+  background-color: #393bac;
+  color: white;
+}
+input, select {
   border-color: #393bac;
 }
 input::placeholder {
@@ -45,10 +49,6 @@ input::placeholder {
 .playlist > .tabs > .tab {
   background-color: #e8e8e8;
   color: #101010;
-}
-.playlist > .tabs > .add-tab > .add > a {
-  background-color: #393bac;
-  color: white;
 }
 .playlist > .tabs > .add-tab > .add-in-progress,
 .playlist > .tabs > .add-tab > .add-error {

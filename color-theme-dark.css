@@ -34,9 +34,17 @@ body.dark .top-nav > nav > a:hover {
 body.dark a {
   color: #7274FC;
 }
+body.dark .btn {
+  background-color: #393bac;
+  color: whitesmoke;
+}
 body.dark input {
   background-color: #080808;
-  color: whitesmoke;
+  color: gainsboro;
+}
+body.dark select {
+  background-color: #080808;
+  color: gainsboro;
 }
 body.dark input::placeholder {
   color: gray;
@@ -51,10 +59,6 @@ body.dark .playlist > .tabs > .tab-btns > a.active {
 body.dark .playlist > .tabs > .tab {
   background-color: #202020;
   color: gainsboro;
-}
-body.dark .playlist > .tabs > .add-tab > .add > a {
-  background-color: #393bac;
-  color: whitesmoke;
 }
 body.dark .playlist > .items > .item {
   background-color: #202020;
