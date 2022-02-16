@@ -38,10 +38,7 @@ body.dark .btn {
   background-color: #393bac;
   color: whitesmoke;
 }
-body.dark input {
-  background-color: #080808;
-  color: gainsboro;
-}
+body.dark input,
 body.dark select {
   background-color: #080808;
   color: gainsboro;

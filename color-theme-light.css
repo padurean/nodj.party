@@ -34,7 +34,9 @@ a {
   color: white;
 }
 input, select {
+  background-color: white;
   border-color: #393bac;
+  color: black;
 }
 input::placeholder {
   color: gray;

@@ -228,14 +228,13 @@ input::placeholder {
   align-items: center;
 }
 .playlist > .tabs > .filter-tab > .filter > select {
-  flex: 0 1 100%;
-  margin: .2em auto;
+  flex: 0 1 80%;
+  margin: .2em .1em;
 }
 .playlist > .tabs > .filter-tab > .filter > input {
   flex: 0 1 80%;
   height: 1.85em;
-  margin-top: .25em;
-  margin-bottom: .2em;
+  margin: .25em .1em .2em .1em;
 }
 .playlist > .tabs > .filter-tab > .filter > a {
   display: inline-block;
@@ -272,6 +271,7 @@ input::placeholder {
 .playlist > .tabs > .add-tab > .add > input {
   flex: 0 1 80%;
   height: 1.25em;
+  margin: .25em .1em;
 }
 .playlist > .tabs > .add-tab > .add > a {
   display: inline-block;
