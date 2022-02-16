@@ -65,12 +65,13 @@
           <section id="filter" class="filter">
             <!-- TODO OGG NOW: this must be populated dynamically with partygoers -->
             <select id="filter-playlist-select-user">
-              <option value="">From anyone</option>
+              <option disabled="disabled" selected="selected" value="">added by:</option>
+              <option value="all">anyone</option>
               <option value="somePartyGoer1">@somePartyGoer1</option>
               <option value="someOtherPartyGoer2">@someOtherPartyGoer2</option>
               <option value="yetAnotherPartyGoer3">@yetAnotherPartyGoer3</option>
             </select>
-            <input type="search" id="filter-playlist-input" placeholder="Keyword(s)" />
+            <input type="search" id="filter-playlist-input" placeholder="keywords" />
             <a href="#" id="filter-playlist-btn" class="btn">Filter</a>
           </section>
           <div id="filter-in-progress" class="filter-in-progress hidden">Filtering ...</div>

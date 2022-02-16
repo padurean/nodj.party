@@ -157,6 +157,7 @@ function onFilterTabBtnClick(event) {
     filterTabElem,
     [profileTabBtnElem, shareTabBtnElem, notificationsTabBtnElem, addTabBtnElem],
     [profileTabElem, shareTabElem, notificationsTabElem, addTabElem]);
+  tracksElem.classList.add('hidden');
 }
 function onShareTabBtnClick(event) {
   event.preventDefault();

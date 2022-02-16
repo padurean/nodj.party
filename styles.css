@@ -152,7 +152,7 @@ select {
 	appearance: none;
   background-image: url('up-down-arrows.svg');
   background-repeat: no-repeat;
-  background-size: auto 1.2em;
+  background-size: auto 1em;
   background-position: right .1em center;
 }
 input::placeholder {
