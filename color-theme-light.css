@@ -62,16 +62,21 @@ input::placeholder {
 .playlist > .tabs > .add-tab > .add-error {
   background-color: #ED1C24;
 }
-.playlist > .tabs > .notifications-tab > .notification {
+.playlist > .tabs > .notifications-tab > .notifications > .notification {
   background-color: #f8f8f8;
 }
-.playlist > .tabs > .notifications-tab > .notification > .time {
+.playlist > .tabs > .notifications-tab > .notifications > .notification > .time {
   color: dimgray;
 }
-.playlist > .tabs > .notifications-tab > .notification > .close-btn {
+.playlist > .tabs > .notifications-tab > .notifications > .notification > .close-btn {
   color: dimgray;
 }
-
+.playlist > .tabs > .notifications-tab > .no-notifications-msg {
+  width: 100%;
+  text-align: center;
+  color: gray;
+  line-height: 2em;
+}
 .playlist > .items > .item {
   background-color: #f8f8f8;
 }

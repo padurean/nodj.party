@@ -64,6 +64,9 @@ var state = {
   },
   removeNotification: function(index) {
     this.notifications.splice(index, 1);
+  },
+  removeAllNotifications: function(index) {
+    this.notifications = [];
   }
 }
 
@@ -83,6 +86,10 @@ var profileTabElem;
 var filterTabElem;
 var shareTabElem;
 var notificationsTabElem;
+var notificationsElem;
+var notificationTemplateElem;
+var clearNotificationsBtnElem;
+var noNotificationsMsgElem;
 var addTabElem;
 
 var addToPlaylistSectionElem;
@@ -92,6 +99,7 @@ var addToPlaylistInProgressElem;
 var addToPlaylistErrorElem;
 var playlistElem;
 var tracksElem;
+var playlistItemTemplateElem;
 
 var player;
 
@@ -122,6 +130,11 @@ window.addEventListener('load', (event) => {
   });
   loadAndRenderPlaylist();
   loadAndRenderNotifications();
+  clearNotificationsBtnElem.addEventListener('click', function(event) {
+    event.preventDefault();
+    state.removeAllNotifications();
+    renderNotifications();
+  })
 });
 
 function addOnSpaceKeyUpListener() {
@@ -338,6 +351,10 @@ function loadStaticElems() {
   filterTabElem = document.getElementById('filter-tab');
   shareTabElem = document.getElementById('share-tab');
   notificationsTabElem = document.getElementById('notifications-tab');
+  notificationsElem = document.getElementById('notifications');
+  notificationTemplateElem = document.getElementById('notification-template');
+  clearNotificationsBtnElem = document.getElementById('clear-notifications-btn');
+  noNotificationsMsgElem = document.getElementById('no-notifications-msg');
   addTabElem = document.getElementById('add-tab');
 
   addToPlaylistSectionElem = document.getElementById('add');
@@ -347,6 +364,7 @@ function loadStaticElems() {
   addToPlaylistErrorElem = document.getElementById('add-error');
   playlistElem = document.getElementById('playlist');
   tracksElem = document.getElementById('items');
+  playlistItemTemplateElem = document.getElementById('playlist-item-template');
 }
 
 function toggleTopNav(event) {
@@ -460,12 +478,10 @@ function toHTMLEntities(str) {
 };
 
 function renderPlaylist() {
-  var templateElem = document.getElementById('playlist-item-template');
-
   tracksElem.innerHTML = '';
   var playlist = state.getPlaylist();
   for (var i = 0; i < playlist.length; i++) {
-    var html = templateElem.innerHTML.replaceAll('{index}', i);
+    var html = playlistItemTemplateElem.innerHTML.replaceAll('{index}', i);
     html = html.replaceAll('{thumbnail}', playlist[i].thumbnail);
     html = html.replaceAll('{title}', toHTMLEntities(playlist[i].title));
     html = html.replaceAll('{user}', playlist[i].user);
@@ -522,19 +538,19 @@ function videoIDFromURL(url) {
 function loadAndRenderNotifications() {
   state.setNotifications([
     {
-      message: '<a>@somePartyGoer1</a> liked your video "<a>Gesaffelstein & The Weeknd - Lost in the Fire (Official Video)</a>". Video rank is now #1000.',
+      message: '<a>@somePartyGoer1</a> liked your video <a>"Gesaffelstein & The Weeknd - Lost in the Fire (Official Video)"</a>. Video rank is now <a>#1000</a>.',
       time: new Date(),
     },
     {
-      message: '@someOtherPartyGoer2 added "REZZ - Edge" to the playlist. Rank: #2000.',
+      message: '<a>@someOtherPartyGoer2</a> added <a>"REZZ - Edge"</a> to the playlist. Rank: <a>#2000</a>.',
       time: new Date(),
     },
     {
-      message: '@yetAnotherPartyGoer3 joined the party!',
+      message: '<a>@yetAnotherPartyGoer3</a> joined the party!',
       time: new Date(),
     },
     {
-      message: '@yetAnotherPartyGoer3 added "Fantome - Pașii Mei (feat. Ioana Milculescu)" to the playlist. Rank: #3000.',
+      message: '<a>@yetAnotherPartyGoer3</a> added <a>"Fantome - Pașii Mei (feat. Ioana Milculescu)"</a> to the playlist. Rank: <a>#3000</a>.',
       time: new Date(),
     },
   ]);
@@ -542,29 +558,29 @@ function loadAndRenderNotifications() {
 }
 
 function renderNotifications() {
-  var templateElem = document.getElementById('notification-template');
-
-  notificationsTabElem.innerHTML = '';
+  notificationsElem.innerHTML = '';
   var notifications = state.getNotifications();
   if (notifications.length === 0) {
+    clearNotificationsBtnElem.classList.add('hidden');
+    noNotificationsMsgElem.classList.remove('hidden');
     return;
   }
 
   for (var i = 0; i < notifications.length; i++) {
-    var html = templateElem.innerHTML.replaceAll('{index}', i);
+    var html = notificationTemplateElem.innerHTML.replaceAll('{index}', i);
     html = html.replaceAll('{message}', notifications[i].message);
     html = html.replaceAll('{time}', notifications[i].time.toLocaleString());
-    notificationsTabElem.innerHTML += html;
+    notificationsElem.innerHTML += html;
   }
 
-  var notificationsElems = notificationsTabElem.getElementsByClassName('notification');
+  var notificationsElems = notificationsElem.getElementsByClassName('notification');
   for (var i = 0; i < notificationsElems.length; i++) {
     var markAsReadBtnElem = notificationsElems[i].querySelector('.close-btn');
     markAsReadBtnElem.addEventListener('click', onMarkNotificationAsReadClick);
   }
 
-  // TODO OGG NOW: implement the clearAllNotifications function
-  notificationsTabElem.innerHTML += '<a href="#" class="clear-notifications-btn" onclick="clearAllNotifications">Clear All</a>';
+  clearNotificationsBtnElem.classList.remove('hidden');
+  noNotificationsMsgElem.classList.add('hidden');
 }
 
 function onMarkNotificationAsReadClick(event) {
