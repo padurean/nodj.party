@@ -522,11 +522,15 @@ function videoIDFromURL(url) {
 function loadAndRenderNotifications() {
   state.setNotifications([
     {
-      message: '@somePartyGoer1 liked your video "Gesaffelstein & The Weeknd - Lost in the Fire (Official Video)". Video rank is now #1000.',
+      message: '<a>@somePartyGoer1</a> liked your video "<a>Gesaffelstein & The Weeknd - Lost in the Fire (Official Video)</a>". Video rank is now #1000.',
       time: new Date(),
     },
     {
       message: '@someOtherPartyGoer2 added "REZZ - Edge" to the playlist. Rank: #2000.',
+      time: new Date(),
+    },
+    {
+      message: '@yetAnotherPartyGoer3 joined the party!',
       time: new Date(),
     },
     {
@@ -542,6 +546,10 @@ function renderNotifications() {
 
   notificationsTabElem.innerHTML = '';
   var notifications = state.getNotifications();
+  if (notifications.length === 0) {
+    return;
+  }
+
   for (var i = 0; i < notifications.length; i++) {
     var html = templateElem.innerHTML.replaceAll('{index}', i);
     html = html.replaceAll('{message}', notifications[i].message);
@@ -551,9 +559,12 @@ function renderNotifications() {
 
   var notificationsElems = notificationsTabElem.getElementsByClassName('notification');
   for (var i = 0; i < notificationsElems.length; i++) {
-    var markAsReadBtnElem = notificationsElems[i].querySelector('.mark-notification-as-read-btn');
+    var markAsReadBtnElem = notificationsElems[i].querySelector('.close-btn');
     markAsReadBtnElem.addEventListener('click', onMarkNotificationAsReadClick);
   }
+
+  // TODO OGG NOW: implement the clearAllNotifications function
+  notificationsTabElem.innerHTML += '<a href="#" class="clear-notifications-btn" onclick="clearAllNotifications">Clear All</a>';
 }
 
 function onMarkNotificationAsReadClick(event) {

@@ -219,6 +219,45 @@ input::placeholder {
 .playlist > .tabs > .tab {
   padding: .25em;
   font-size: .9em;
+  display: flex;
+  flex-direction: column;
+}
+
+.playlist > .tabs > .notifications-tab > .notification {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: .25em .2em .5em .2em;
+  padding: .25em .25em .1em .25em;
+}
+.playlist > .tabs > .notifications-tab > .notification:last-child {
+  margin-bottom: .25em;
+}
+.playlist > .tabs > .notifications-tab > .notification > .message {
+  flex: 0 1 95%;
+  font-size: .95em;
+}
+.playlist > .tabs > .notifications-tab > .notification > .time {
+  flex: 0 0 100%;
+  font-size: .85em;
+  line-height: .85em;
+  margin-top: .5em;
+  text-align: right;
+  font-style: italic;
+  letter-spacing: .05em;
+  font-kerning: auto;
+}
+.playlist > .tabs > .notifications-tab > .notification > .close-btn {
+  flex: 1 0 5%;
+  text-align: right;
+  margin-top: -.25em;
+  line-height: .75em;
+  transform: scale(1.25, 1);
+}
+.playlist > .tabs > .notifications-tab > .clear-notifications-btn {
+  align-self: center;
+  margin: 0 0 .25em 0;
+  font-size: .95em;
 }
 
 .playlist > .tabs > .filter-tab > .filter {
