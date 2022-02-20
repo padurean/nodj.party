@@ -53,7 +53,7 @@
           <a href="#" id="profile-tab-btn" class="profile-tab-btn" title="Your profile"></a>
           <a href="#" id="filter-tab-btn" class="filter-tab-btn" title="Filter playlist"></a>
           <a href="#" id="share-tab-btn" class="share-tab-btn" title="Share party"></a>
-          <a href="#" id="notifications-tab-btn" class="notifications-tab-btn unread" title="Notifications"></a>
+          <a href="#" id="notifications-tab-btn" class="notifications-tab-btn" title="Notifications"></a>
           <a href="#" id="add-tab-btn" class="add-tab-btn active" title="Add to playlist"></a>
         </section>
 
@@ -82,19 +82,8 @@
           TODO OGG NOW: share tab content
         </section>
 
-        <!-- BEGIN notification template -->
-        <div id="notification-template" class="hidden">
-          <div class="notification" id="notification-{index}">
-            <div class="message">{message}</div>
-            <a href="#" class="close-btn">x</a>
-            <div class="time">{time}</div>
-            <input type="hidden" value="{index}" />
-          </div>
-        </div>
-        <!-- END notification template -->
         <section id="notifications-tab" class="tab notifications-tab hidden">
-          <div id="notifications" class="notifications"></div>
-          <em id="no-notifications-msg" class="no-notifications-msg hidden">No notifications</em>
+          <span id="notifications-msg" class="notifications-msg"></span>
           <a href="#" id="clear-notifications-btn" class="clear-notifications-btn hidden">Clear All</a>
         </section>
 
@@ -108,6 +97,21 @@
           <!-- TODO OGG NOW: add an add-success div in which user is informed that video has been added with rank #xxx -->
         </section>
       </section>
+
+      <!-- BEGIN notification template -->
+      <div id="notification-template" class="hidden">
+        <div class="notification" id="notification-{index}">
+          <div class="message">{message}</div>
+          <a href="#" class="close-btn">x</a>
+          <div class="time">{time}</div>
+          <input type="hidden" value="{index}" />
+        </div>
+      </div>
+      <!-- END notification template -->
+      <div id="notifications" class="notifications hidden">
+        <!-- This section is dynamically populated with notification template instances -->
+      </div>
+
       <!-- BEGIN playlist item template -->
       <div id="playlist-item-template" class="hidden">
         <div class="item" id="item-{index}">
@@ -128,6 +132,7 @@
       <section id="items" class="items">
         <!-- This section is dynamically populated with playlist item template instances -->
       </section>
+
     </section>
   </main>
   <footer>

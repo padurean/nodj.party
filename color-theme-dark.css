@@ -56,10 +56,11 @@ body.dark .playlist > .tabs > .tab {
   background-color: #202020;
   color: gainsboro;
 }
-body.dark  .playlist > .tabs > .notifications-tab > .notifications > .notification {
-  background-color: #080808;
+body.dark  .playlist > .notifications > .notification {
+  background-color: #202020;
+  color: gainsboro;
 }
-body.dark  .playlist > .tabs > .notifications-tab > .notifications > .notification > .message > a {
+body.dark  .playlist > .notifications > .notification > .message > a {
   color: darkgray;
 }
 body.dark .playlist > .items > .item {

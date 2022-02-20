@@ -89,7 +89,7 @@ var notificationsTabElem;
 var notificationsElem;
 var notificationTemplateElem;
 var clearNotificationsBtnElem;
-var noNotificationsMsgElem;
+var notificationsMsgElem;
 var addTabElem;
 
 var addToPlaylistSectionElem;
@@ -129,12 +129,12 @@ window.addEventListener('load', (event) => {
     addToPlaylistSectionElem.classList.remove('hidden');
   });
   loadAndRenderPlaylist();
-  loadAndRenderNotifications();
+  loadAndRenderNotifications(false);
   clearNotificationsBtnElem.addEventListener('click', function(event) {
     event.preventDefault();
     state.removeAllNotifications();
-    renderNotifications();
-  })
+    renderNotifications(true);
+  });
 });
 
 function addOnSpaceKeyUpListener() {
@@ -157,56 +157,57 @@ function addTabBtnsEventListeners() {
 function onProfileTabBtnClick(event) {
   event.preventDefault();
   switchToTab(
-    profileTabBtnElem,
-    profileTabElem,
+    [profileTabBtnElem],
+    [profileTabElem],
     [filterTabBtnElem, shareTabBtnElem, notificationsTabBtnElem, addTabBtnElem],
-    [filterTabElem, shareTabElem, notificationsTabElem, addTabElem]);
-  tracksElem.classList.add('hidden');
+    [filterTabElem, shareTabElem, notificationsTabElem, notificationsElem, addTabElem, tracksElem]);
 }
 function onFilterTabBtnClick(event) {
   event.preventDefault();
   switchToTab(
-    filterTabBtnElem,
-    filterTabElem,
+    [filterTabBtnElem],
+    [filterTabElem],
     [profileTabBtnElem, shareTabBtnElem, notificationsTabBtnElem, addTabBtnElem],
-    [profileTabElem, shareTabElem, notificationsTabElem, addTabElem]);
-  tracksElem.classList.add('hidden');
+    [profileTabElem, shareTabElem, notificationsTabElem,  notificationsElem, addTabElem, tracksElem]);
 }
 function onShareTabBtnClick(event) {
   event.preventDefault();
   switchToTab(
-    shareTabBtnElem,
-    shareTabElem,
+    [shareTabBtnElem],
+    [shareTabElem],
     [profileTabBtnElem, filterTabBtnElem, notificationsTabBtnElem, addTabBtnElem],
-    [profileTabElem, filterTabElem, notificationsTabElem, addTabElem]);
-  tracksElem.classList.add('hidden');
+    [profileTabElem, filterTabElem, notificationsTabElem, notificationsElem, addTabElem, tracksElem]);
 }
 function onNotificationsTabBtnClick(event) {
   event.preventDefault();
   switchToTab(
-    notificationsTabBtnElem,
-    notificationsTabElem,
+    [notificationsTabBtnElem],
+    [notificationsTabElem, notificationsElem],
     [profileTabBtnElem, filterTabBtnElem, shareTabBtnElem, addTabBtnElem],
-    [profileTabElem, filterTabElem, shareTabElem, addTabElem]);
-    tracksElem.classList.add('hidden');
+    [profileTabElem, filterTabElem, shareTabElem, addTabElem, tracksElem]);
 }
 function onAddTabBtnClick(event) {
   event.preventDefault();
   switchToTab(
-    addTabBtnElem,
-    addTabElem,
+    [addTabBtnElem],
+    [addTabElem, tracksElem],
     [profileTabBtnElem, filterTabBtnElem, shareTabBtnElem, notificationsTabBtnElem],
-    [profileTabElem, filterTabElem, shareTabElem, notificationsTabElem]);
-  tracksElem.classList.remove('hidden');
+    [profileTabElem, filterTabElem, shareTabElem, notificationsTabElem, notificationsElem]);
 }
 
-function switchToTab(tabBtnToActivate, tabToActivate, tabBtnsToDeactivate, tabsToDeactivate) {
-  for (var i = 0; i < tabBtnsToDeactivate.length; i++) {
-    tabsToDeactivate[i].classList.add('hidden');
-    tabBtnsToDeactivate[i].classList.remove('active');
+function switchToTab(toActivate, toShow, toDeactivate, toHide) {
+  for (var i = 0; i < toDeactivate.length; i++) {
+    toDeactivate[i].classList.remove('active');
   }
-  tabToActivate.classList.remove('hidden');
-  tabBtnToActivate.classList.add('active');
+  for (var i = 0; i < toHide.length; i++) {
+    toHide[i].classList.add('hidden');
+  }
+  for (var i = 0; i < toShow.length; i++) {
+    toShow[i].classList.remove('hidden');
+  }
+  for (var i = 0; i < toActivate.length; i++) {
+    toActivate[i].classList.add('active');
+  }
 }
 
 function scrollParentToChild(parent, child) {
@@ -354,7 +355,7 @@ function loadStaticElems() {
   notificationsElem = document.getElementById('notifications');
   notificationTemplateElem = document.getElementById('notification-template');
   clearNotificationsBtnElem = document.getElementById('clear-notifications-btn');
-  noNotificationsMsgElem = document.getElementById('no-notifications-msg');
+  notificationsMsgElem = document.getElementById('notifications-msg');
   addTabElem = document.getElementById('add-tab');
 
   addToPlaylistSectionElem = document.getElementById('add');
@@ -535,7 +536,7 @@ function videoIDFromURL(url) {
   return videoID;
 }
 
-function loadAndRenderNotifications() {
+function loadAndRenderNotifications(showNotifications) {
   state.setNotifications([
     {
       message: '<a>@somePartyGoer1</a> liked your video <a>"Gesaffelstein & The Weeknd - Lost in the Fire (Official Video)"</a>. Video rank is now <a>#1000</a>.',
@@ -554,15 +555,17 @@ function loadAndRenderNotifications() {
       time: new Date(),
     },
   ]);
-  renderNotifications();
+  renderNotifications(showNotifications);
 }
 
-function renderNotifications() {
+function renderNotifications(showNotifications) {
   notificationsElem.innerHTML = '';
   var notifications = state.getNotifications();
   if (notifications.length === 0) {
     clearNotificationsBtnElem.classList.add('hidden');
-    noNotificationsMsgElem.classList.remove('hidden');
+    notificationsMsgElem.innerHTML = '<em>No notifications</em>';
+    notificationsElem.classList.add('hidden');
+    notificationsTabBtnElem.classList.remove('unread');
     return;
   }
 
@@ -580,11 +583,15 @@ function renderNotifications() {
   }
 
   clearNotificationsBtnElem.classList.remove('hidden');
-  noNotificationsMsgElem.classList.add('hidden');
+  notificationsMsgElem.innerHTML = '<strong>' + notifications.length + '</strong> <em>notifications</em>';
+  if (showNotifications) {
+    notificationsElem.classList.remove('hidden');
+  }
+  notificationsTabBtnElem.classList.add('unread');
 }
 
 function onMarkNotificationAsReadClick(event) {
   var notificationIndex = event.target.parentElement.getElementsByTagName('input')[0].value;
   state.removeNotification(notificationIndex);
-  renderNotifications();
+  renderNotifications(true);
 }

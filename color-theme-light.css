@@ -56,26 +56,23 @@ input::placeholder {
 .playlist > .tabs > .add-tab > .add-error {
   color: white;
 }
+.playlist > .tabs > .notifications-tab > .notifications-msg {
+  color: gray;
+}
 .playlist > .tabs > .add-tab > .add-in-progress {
   background-color: #008A29;
 }
 .playlist > .tabs > .add-tab > .add-error {
   background-color: #ED1C24;
 }
-.playlist > .tabs > .notifications-tab > .notifications > .notification {
+.playlist > .notifications > .notification {
   background-color: #f8f8f8;
 }
-.playlist > .tabs > .notifications-tab > .notifications > .notification > .time {
+.playlist > .notifications > .notification > .time {
   color: dimgray;
 }
-.playlist > .tabs > .notifications-tab > .notifications > .notification > .close-btn {
+.playlist > .notifications > .notification > .close-btn {
   color: dimgray;
-}
-.playlist > .tabs > .notifications-tab > .no-notifications-msg {
-  width: 100%;
-  text-align: center;
-  color: gray;
-  line-height: 2em;
 }
 .playlist > .items > .item {
   background-color: #f8f8f8;

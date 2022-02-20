@@ -174,7 +174,6 @@ input::placeholder {
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;
-  /* margin-bottom: 1px; */
 }
 .playlist > .tabs > .tab-btns > a {
   display: inline-block;
@@ -222,45 +221,6 @@ input::placeholder {
   display: flex;
   flex-direction: column;
 }
-.playlist > .tabs > .notifications-tab > .notifications {
-  display: flex;
-  flex-direction: column;
-}
-.playlist > .tabs > .notifications-tab > .notifications > .notification {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  margin: .25em .2em .5em .2em;
-  padding: .25em .25em .1em .25em;
-}
-.playlist > .tabs > .notifications-tab > .notifications > .notification:last-child {
-  margin-bottom: .25em;
-}
-.playlist > .tabs > .notifications-tab > .notifications > .notification > .message {
-  flex: 0 1 95%;
-  font-size: .95em;
-}
-.playlist > .tabs > .notifications-tab > .notifications > .notification > .time {
-  flex: 0 0 100%;
-  font-size: .85em;
-  line-height: .85em;
-  margin-top: .5em;
-  text-align: right;
-  letter-spacing: .05em;
-  font-kerning: auto;
-}
-.playlist > .tabs > .notifications-tab > .notifications > .notification > .close-btn {
-  flex: 1 0 5%;
-  text-align: right;
-  margin-top: -.25em;
-  line-height: .75em;
-  transform: scale(1.25, 1);
-}
-.playlist > .tabs > .notifications-tab > .clear-notifications-btn {
-  align-self: center;
-  margin: 0 0 .25em 0;
-  font-size: .95em;
-}
 
 .playlist > .tabs > .filter-tab > .filter {
   display: flex;
@@ -303,6 +263,18 @@ input::placeholder {
   background-size: auto 1.55em;
 }
 
+.playlist > .tabs > .notifications-tab {
+  flex-direction: row;
+  justify-content: space-between;
+  padding: .5em;
+}
+.playlist > .tabs > .notifications-tab > .notifications-msg {
+  font-size: .95em;
+}
+.playlist > .tabs > .notifications-tab > .clear-notifications-btn {
+  font-size: .95em;
+}
+
 .playlist > .tabs > .add-tab > .add {
   display: flex;
   justify-content: space-between;
@@ -340,8 +312,44 @@ input::placeholder {
   background-size: auto 1.55em;
 }
 
-.playlist > .items {
+.playlist > .notifications {
+  display: flex;
+  flex-direction: column;
+}
+.playlist > .notifications > .notification {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
   margin-top: .5em;
+  padding: .25em .25em .1em .25em;
+}
+.playlist > .notifications > .notification:last-child {
+  margin-bottom: .25em;
+}
+.playlist > .notifications > .notification > .message {
+  flex: 0 1 96%;
+  font-size: .85em;
+  padding-left: .25em;
+}
+.playlist > .notifications > .notification > .close-btn {
+  text-align: right;
+  font-size: .9em;
+  height: .5em;
+  line-height: .2em;
+  margin-right: -.1em;
+  transform: scale(1.25, 1);
+}
+.playlist > .notifications > .notification > .time {
+  flex: 0 0 100%;
+  font-size: .75em;
+  line-height: 1em;
+  margin-top: .5em;
+  text-align: right;
+  letter-spacing: .05em;
+  font-kerning: auto;
+}
+
+.playlist > .items {
   max-height: 55vh;
   overflow-x: scroll;
 }
