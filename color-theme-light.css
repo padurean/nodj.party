@@ -52,17 +52,17 @@ input::placeholder {
   background-color: #e8e8e8;
   color: #101010;
 }
-.playlist > .tabs > .add-tab > .add-in-progress,
-.playlist > .tabs > .add-tab > .add-error {
+.playlist > .tabs > .playlist-tab > .add-in-progress,
+.playlist > .tabs > .playlist-tab > .add-error {
   color: white;
 }
 .playlist > .tabs > .notifications-tab > .notifications-msg {
   color: gray;
 }
-.playlist > .tabs > .add-tab > .add-in-progress {
+.playlist > .tabs > .playlist-tab > .add-in-progress {
   background-color: #008A29;
 }
-.playlist > .tabs > .add-tab > .add-error {
+.playlist > .tabs > .playlist-tab > .add-error {
   background-color: #ED1C24;
 }
 .playlist > .notifications > .notification {

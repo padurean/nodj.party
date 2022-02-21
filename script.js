@@ -62,10 +62,10 @@ var state = {
   setNotifications: function (notifications) {
     this.notifications = notifications;
   },
-  removeNotification: function(index) {
+  removeNotification: function (index) {
     this.notifications.splice(index, 1);
   },
-  removeAllNotifications: function(index) {
+  removeAllNotifications: function (index) {
     this.notifications = [];
   }
 }
@@ -80,7 +80,7 @@ var profileTabBtnElem;
 var filterTabBtnElem;
 var shareTabBtnElem;
 var notificationsTabBtnElem;
-var addTabBtnElem;
+var playlistTabBtnElem;
 
 var profileTabElem;
 var filterTabElem;
@@ -90,7 +90,7 @@ var notificationsElem;
 var notificationTemplateElem;
 var clearNotificationsBtnElem;
 var notificationsMsgElem;
-var addTabElem;
+var playlistTabElem;
 
 var addToPlaylistSectionElem;
 var addToPlaylistInputElem;
@@ -130,7 +130,7 @@ window.addEventListener('load', (event) => {
   });
   loadAndRenderPlaylist();
   loadAndRenderNotifications(false);
-  clearNotificationsBtnElem.addEventListener('click', function(event) {
+  clearNotificationsBtnElem.addEventListener('click', function (event) {
     event.preventDefault();
     state.removeAllNotifications();
     renderNotifications(true);
@@ -151,7 +151,7 @@ function addTabBtnsEventListeners() {
   filterTabBtnElem.addEventListener('click', onFilterTabBtnClick);
   shareTabBtnElem.addEventListener('click', onShareTabBtnClick);
   notificationsTabBtnElem.addEventListener('click', onNotificationsTabBtnClick);
-  addTabBtnElem.addEventListener('click', onAddTabBtnClick);
+  playlistTabBtnElem.addEventListener('click', onPlaylistTabBtnClick);
 }
 
 function onProfileTabBtnClick(event) {
@@ -159,38 +159,38 @@ function onProfileTabBtnClick(event) {
   switchToTab(
     [profileTabBtnElem],
     [profileTabElem],
-    [filterTabBtnElem, shareTabBtnElem, notificationsTabBtnElem, addTabBtnElem],
-    [filterTabElem, shareTabElem, notificationsTabElem, notificationsElem, addTabElem, tracksElem]);
+    [filterTabBtnElem, shareTabBtnElem, notificationsTabBtnElem, playlistTabBtnElem],
+    [filterTabElem, shareTabElem, notificationsTabElem, notificationsElem, playlistTabElem, tracksElem]);
 }
 function onFilterTabBtnClick(event) {
   event.preventDefault();
   switchToTab(
     [filterTabBtnElem],
     [filterTabElem],
-    [profileTabBtnElem, shareTabBtnElem, notificationsTabBtnElem, addTabBtnElem],
-    [profileTabElem, shareTabElem, notificationsTabElem,  notificationsElem, addTabElem, tracksElem]);
+    [profileTabBtnElem, shareTabBtnElem, notificationsTabBtnElem, playlistTabBtnElem],
+    [profileTabElem, shareTabElem, notificationsTabElem, notificationsElem, playlistTabElem, tracksElem]);
 }
 function onShareTabBtnClick(event) {
   event.preventDefault();
   switchToTab(
     [shareTabBtnElem],
     [shareTabElem],
-    [profileTabBtnElem, filterTabBtnElem, notificationsTabBtnElem, addTabBtnElem],
-    [profileTabElem, filterTabElem, notificationsTabElem, notificationsElem, addTabElem, tracksElem]);
+    [profileTabBtnElem, filterTabBtnElem, notificationsTabBtnElem, playlistTabBtnElem],
+    [profileTabElem, filterTabElem, notificationsTabElem, notificationsElem, playlistTabElem, tracksElem]);
 }
 function onNotificationsTabBtnClick(event) {
   event.preventDefault();
   switchToTab(
     [notificationsTabBtnElem],
     [notificationsTabElem, notificationsElem],
-    [profileTabBtnElem, filterTabBtnElem, shareTabBtnElem, addTabBtnElem],
-    [profileTabElem, filterTabElem, shareTabElem, addTabElem, tracksElem]);
+    [profileTabBtnElem, filterTabBtnElem, shareTabBtnElem, playlistTabBtnElem],
+    [profileTabElem, filterTabElem, shareTabElem, playlistTabElem, tracksElem]);
 }
-function onAddTabBtnClick(event) {
+function onPlaylistTabBtnClick(event) {
   event.preventDefault();
   switchToTab(
-    [addTabBtnElem],
-    [addTabElem, tracksElem],
+    [playlistTabBtnElem],
+    [playlistTabElem, tracksElem],
     [profileTabBtnElem, filterTabBtnElem, shareTabBtnElem, notificationsTabBtnElem],
     [profileTabElem, filterTabElem, shareTabElem, notificationsTabElem, notificationsElem]);
 }
@@ -346,7 +346,7 @@ function loadStaticElems() {
   filterTabBtnElem = document.getElementById('filter-tab-btn');
   shareTabBtnElem = document.getElementById('share-tab-btn');
   notificationsTabBtnElem = document.getElementById('notifications-tab-btn');
-  addTabBtnElem = document.getElementById('add-tab-btn');
+  playlistTabBtnElem = document.getElementById('playlist-tab-btn');
 
   profileTabElem = document.getElementById('profile-tab');
   filterTabElem = document.getElementById('filter-tab');
@@ -356,7 +356,7 @@ function loadStaticElems() {
   notificationTemplateElem = document.getElementById('notification-template');
   clearNotificationsBtnElem = document.getElementById('clear-notifications-btn');
   notificationsMsgElem = document.getElementById('notifications-msg');
-  addTabElem = document.getElementById('add-tab');
+  playlistTabElem = document.getElementById('playlist-tab');
 
   addToPlaylistSectionElem = document.getElementById('add');
   addToPlaylistInputElem = document.getElementById('add-to-playlist-input');
@@ -583,7 +583,11 @@ function renderNotifications(showNotifications) {
   }
 
   clearNotificationsBtnElem.classList.remove('hidden');
-  notificationsMsgElem.innerHTML = '<strong>' + notifications.length + '</strong> <em>notifications</em>';
+  var ns = 'notification';
+  if (notifications.length > 1) {
+    ns += 's';
+  }
+  notificationsMsgElem.innerHTML = '<strong>' + notifications.length + '</strong> <em>' + ns + '</em>';
   if (showNotifications) {
     notificationsElem.classList.remove('hidden');
   }
