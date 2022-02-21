@@ -201,7 +201,8 @@ input::placeholder {
   background-image: url('filter.svg');
 }
 .playlist > .tabs > .tab-btns > a.share-tab-btn {
-  background-image: url('share.svg');
+  background-image: url('users-link.svg');
+  background-size: auto 1.1em;
 }
 .playlist > .tabs > .tab-btns > a.notifications-tab-btn {
   background-image: url('bell.svg');
@@ -212,7 +213,7 @@ input::placeholder {
   background-size: auto 1.1em;
 }
 .playlist > .tabs > .tab-btns > a.add-tab-btn {
-  background-image: url('plus.svg');
+  background-image: url('playlist.svg');
 }
 
 .playlist > .tabs > .tab {
