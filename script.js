@@ -539,11 +539,11 @@ function videoIDFromURL(url) {
 function loadAndRenderNotifications(showNotifications) {
   state.setNotifications([
     {
-      message: '<a>@somePartyGoer1</a> liked your video <a>"Gesaffelstein & The Weeknd - Lost in the Fire (Official Video)"</a>. Video rank is now <a>#1000</a>.',
+      message: '<a>@somePartyGoer1</a> liked your video <a>"Gesaffelstein & The Weeknd - Lost in the Fire (Official Video)"</a>. Video is now on position <a>#1000</a>.',
       time: new Date(),
     },
     {
-      message: '<a>@someOtherPartyGoer2</a> added <a>"REZZ - Edge"</a> to the playlist. Rank: <a>#2000</a>.',
+      message: '<a>@someOtherPartyGoer2</a> added <a>"REZZ - Edge"</a> to the playlist. Video is on position <a>#2000</a>.',
       time: new Date(),
     },
     {
@@ -551,7 +551,7 @@ function loadAndRenderNotifications(showNotifications) {
       time: new Date(),
     },
     {
-      message: '<a>@yetAnotherPartyGoer3</a> added <a>"Fantome - Pașii Mei (feat. Ioana Milculescu)"</a> to the playlist. Rank: <a>#3000</a>.',
+      message: '<a>@yetAnotherPartyGoer3</a> added <a>"Fantome - Pașii Mei (feat. Ioana Milculescu)"</a> to the playlist. Video is on position <a>#3000</a>.',
       time: new Date(),
     },
   ]);
@@ -572,7 +572,9 @@ function renderNotifications(showNotifications) {
   for (var i = 0; i < notifications.length; i++) {
     var html = notificationTemplateElem.innerHTML.replaceAll('{index}', i);
     html = html.replaceAll('{message}', notifications[i].message);
-    html = html.replaceAll('{time}', notifications[i].time.toLocaleString());
+    html = html.replaceAll('{time}', notifications[i].time.toLocaleString(
+      window.navigator.language || window.navigator.userLanguage,
+      { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric' }));
     notificationsElem.innerHTML += html;
   }
 

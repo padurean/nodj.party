@@ -63,6 +63,10 @@ body.dark  .playlist > .notifications > .notification {
 body.dark  .playlist > .notifications > .notification > .message > a {
   color: darkgray;
 }
+body.dark .playlist > .notifications > .notification > .time,
+body.dark .playlist > .notifications > .notification > .close-btn {
+  color: dimgray;
+}
 body.dark .playlist > .items > .item {
   background-color: #202020;
 }
