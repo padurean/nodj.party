@@ -345,6 +345,7 @@ input::placeholder {
   font-size: .75em;
   line-height: 1em;
   margin-top: .4em;
+  margin-bottom: .2em;
   text-align: right;
   letter-spacing: .05em;
   font-kerning: auto;

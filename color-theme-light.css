@@ -68,6 +68,9 @@ input::placeholder {
 .playlist > .notifications > .notification {
   background-color: #f8f8f8;
 }
+.playlist > .notifications > .notification > .message > a {
+  color: #505050;
+}
 .playlist > .notifications > .notification > .time,
 .playlist > .notifications > .notification > .close-btn {
   color: darkgray;
