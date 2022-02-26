@@ -83,15 +83,23 @@ var notificationsTabBtnElem;
 var playlistTabBtnElem;
 
 var profileTabElem;
+
 var filterTabElem;
+
 var shareTabElem;
+var partyLinkCopiedElem;
+var partyLinkElem;
+var copyPartyLinkBtnElem;
+var partyLinkQRCodeContainerElem;
+var printPartyLinkQRCodeElem;
+
 var notificationsTabElem;
 var notificationsElem;
 var notificationTemplateElem;
 var clearNotificationsBtnElem;
 var notificationsMsgElem;
-var playlistTabElem;
 
+var playlistTabElem;
 var addToPlaylistSectionElem;
 var addToPlaylistInputElem;
 var addToPlaylistBtnElem;
@@ -135,6 +143,23 @@ window.addEventListener('load', (event) => {
     state.removeAllNotifications();
     renderNotifications(true);
   });
+
+  copyPartyLinkBtnElem.addEventListener('click', function(event) {
+    event.preventDefault();
+    copyElementText(partyLinkElem, partyLinkCopiedElem);
+  });
+
+  // generate QRCode for party link
+  new QRCode(partyLinkQRCodeContainerElem, {
+    text: partyLinkElem.innerText,
+    width: 256,
+    height: 256,
+    // colorDark : "#000000",
+    // colorLight : "#ffffff",
+    correctLevel : QRCode.CorrectLevel.H
+  });
+
+  printPartyLinkQRCodeElem.addEventListener('click', printPartyLinkQRCode);
 });
 
 function addOnSpaceKeyUpListener() {
@@ -349,15 +374,23 @@ function loadStaticElems() {
   playlistTabBtnElem = document.getElementById('playlist-tab-btn');
 
   profileTabElem = document.getElementById('profile-tab');
+
   filterTabElem = document.getElementById('filter-tab');
+
   shareTabElem = document.getElementById('share-tab');
+  partyLinkCopiedElem = document.getElementById('party-link-copied');
+  partyLinkElem = document.getElementById('party-link');
+  copyPartyLinkBtnElem = document.getElementById('copy-party-link-btn');
+  partyLinkQRCodeContainerElem = document.getElementById('party-link-qrcode');
+  printPartyLinkQRCodeElem = document.getElementById('print-party-link-qrcode-btn');
+
   notificationsTabElem = document.getElementById('notifications-tab');
   notificationsElem = document.getElementById('notifications');
   notificationTemplateElem = document.getElementById('notification-template');
   clearNotificationsBtnElem = document.getElementById('clear-notifications-btn');
   notificationsMsgElem = document.getElementById('notifications-msg');
-  playlistTabElem = document.getElementById('playlist-tab');
 
+  playlistTabElem = document.getElementById('playlist-tab');
   addToPlaylistSectionElem = document.getElementById('add');
   addToPlaylistInputElem = document.getElementById('add-to-playlist-input');
   addToPlaylistBtnElem = document.getElementById('add-to-playlist-btn');
@@ -600,4 +633,40 @@ function onMarkNotificationAsReadClick(event) {
   var notificationIndex = event.target.parentElement.getElementsByTagName('input')[0].value;
   state.removeNotification(notificationIndex);
   renderNotifications(true);
+}
+
+function selectElementText(elem) {
+  if (document.body.createTextRange) {
+    const range = document.body.createTextRange();
+    range.moveToElementText(elem);
+    range.select();
+  } else if (window.getSelection) {
+    const selection = window.getSelection();
+    const range = document.createRange();
+    range.selectNodeContents(elem);
+    selection.removeAllRanges();
+    selection.addRange(range);
+  } else if (console) {
+    console.warn("Could not select text in node: Unsupported browser.");
+  }
+}
+
+function copyElementText(elem, msgElem) {
+  selectElementText(elem);
+  navigator.clipboard.writeText(elem.innerText);
+  msgElem.classList.remove('hidden');
+  setTimeout(() => { msgElem.classList.add('hidden'); }, 2000);
+}
+
+function printPartyLinkQRCode(event) {
+    event.preventDefault();
+    var divContents = partyLinkQRCodeContainerElem.innerHTML;
+    var a = window.open('', '', 'height=600, width=600');
+    a.document.write('<html>');
+    a.document.write('<style>canvas, img { margin: 4em auto; }</style>');
+    a.document.write('<body style="text-align: center;">');
+    a.document.write(divContents);
+    a.document.write('</body></html>');
+    a.print();
+    a.window.close();
 }

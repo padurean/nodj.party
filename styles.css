@@ -264,6 +264,50 @@ input::placeholder {
   background-size: auto 1.55em;
 }
 
+.playlist > .tabs > .share-tab {
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: .5em;
+}
+.playlist > .tabs > .share-tab > .party-link-label {
+  flex: 0 0 50%;
+  margin-bottom: .25em;
+}
+.playlist > .tabs > .share-tab > .party-link-copied {
+  flex: 0 0 50%;
+  text-align: right;
+  margin-bottom: .25em;
+}
+.playlist > .tabs > .share-tab > .party-link {
+  flex: 0 1 80%;
+  word-break: break-all;
+  margin-right: .25em;
+}
+.playlist > .tabs > .share-tab > .copy-party-link-btn {
+  flex: 1 0 auto;
+  min-width: 3em;
+  height: 1.9em;
+  line-height: 1.9em;
+  margin-left: .1em;
+  text-align: center;
+}
+.playlist > .tabs > .share-tab > .party-link-qrcode {
+  width: 100%;
+  text-align: center;
+  margin-top: 1em;
+}
+.playlist > .tabs > .share-tab > .party-link-qrcode > canvas,
+.playlist > .tabs > .share-tab > .party-link-qrcode > img {
+  margin: 1em auto;
+}
+.playlist > .tabs > .share-tab > .print-party-link-qrcode-btn {
+  flex: 0 0 100%;
+  height: 1.9em;
+  line-height: 1.9em;
+  text-align: center;
+}
+
 .playlist > .tabs > .notifications-tab {
   flex-direction: row;
   justify-content: space-between;

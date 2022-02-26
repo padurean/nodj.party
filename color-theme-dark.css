@@ -56,11 +56,27 @@ body.dark .playlist > .tabs > .tab {
   background-color: #202020;
   color: gainsboro;
 }
-body.dark  .playlist > .notifications > .notification {
+body.dark .playlist > .tabs > .share-tab > .party-link-label {
+  color: gray;
+}
+body.dark .playlist > .tabs > .share-tab > .party-link {
+  color: #7274FC;
+}
+body.dark .playlist > .tabs > .share-tab > .party-link-qrcode {
+  border-top: 1px solid #303030;
+  background: transparent;
+}
+body.dark .playlist > .tabs > .share-tab > .party-link::selection {
+  background: #080808;
+}
+body.dark .playlist > .tabs > .share-tab > .party-link::-moz-selection {
+  background: #080808;
+}
+body.dark .playlist > .notifications > .notification {
   background-color: #202020;
   color: gainsboro;
 }
-body.dark  .playlist > .notifications > .notification > .message > a {
+body.dark .playlist > .notifications > .notification > .message > a {
   color: darkgray;
 }
 body.dark .playlist > .notifications > .notification > .time,

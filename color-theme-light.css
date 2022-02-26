@@ -65,6 +65,19 @@ input::placeholder {
 .playlist > .tabs > .playlist-tab > .add-error {
   background-color: #ED1C24;
 }
+.playlist > .tabs > .share-tab > .party-link-label {
+  color: gray;
+}
+.playlist > .tabs > .share-tab > .party-link-copied {
+  color: #008A29;
+}
+.playlist > .tabs > .share-tab > .party-link {
+  color: #393bac;
+}
+.playlist > .tabs > .share-tab > .party-link-qrcode {
+  border-top: 1px solid #e8e8e8;
+  background-color: white;
+}
 .playlist > .notifications > .notification {
   background-color: #f8f8f8;
 }

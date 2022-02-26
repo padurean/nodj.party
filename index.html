@@ -78,7 +78,13 @@
         </section>
 
         <section id="share-tab" class="tab share-tab hidden">
-          TODO OGG NOW: share tab content
+          <span class="party-link-label">Link to party:</span>
+          <span id="party-link-copied" class="party-link-copied hidden">Copied!</span>
+          <!-- TODO OGG: the value of the party-link needs to be set programatically -->
+          <span id="party-link" class="party-link">http://purecore.ro/nodj.party?id=abc123def456ghi789</span>
+          <a href="#" id="copy-party-link-btn" class="copy-party-link-btn btn">Copy</a>
+          <div id="party-link-qrcode" class="party-link-qrcode"></div>
+          <a href="#" id="print-party-link-qrcode-btn" class="print-party-link-qrcode-btn btn">Print QR Code</a>
         </section>
 
         <section id="notifications-tab" class="tab notifications-tab hidden">
@@ -138,6 +144,7 @@
     <a href="index.html">NoDJ.party</a>
     <span>2022 &copy; <a href="https://purecore.ro" target="_blank">PureCore.ro</a></span>
   </footer>
+  <script src="qrcode.min.js"></script>
   <script src="script.js"></script>
 </body>
 
