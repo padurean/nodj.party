@@ -62,6 +62,9 @@ body.dark .tabs-container > .tabs > .share-tab > .party-link-label {
 body.dark .tabs-container > .tabs > .share-tab > .party-link {
   color: #7274FC;
 }
+body.dark .tabs-container > .tabs > .share-tab > .toggle-party-link-qrcode-btn.active {
+  background-color: #404040;
+}
 body.dark .tabs-container > .tabs > .share-tab > .party-link-qrcode {
   border-top: 1px solid #303030;
   background: transparent;

@@ -93,6 +93,7 @@ var shareTabElem;
 var partyLinkCopiedElem;
 var partyLinkElem;
 var copyPartyLinkBtnElem;
+var togglePartyLinkQRCodeBtnElem;
 var partyLinkQRCodeContainerElem;
 var printPartyLinkQRCodeElem;
 
@@ -147,6 +148,12 @@ window.addEventListener('load', (event) => {
   copyPartyLinkBtnElem.addEventListener('click', function(event) {
     event.preventDefault();
     copyElementText(partyLinkElem, partyLinkCopiedElem);
+  });
+  togglePartyLinkQRCodeBtnElem.addEventListener('click', function(event) {
+    event.preventDefault();
+    partyLinkQRCodeContainerElem.classList.toggle('hidden');
+    printPartyLinkQRCodeElem.classList.toggle('hidden');
+    togglePartyLinkQRCodeBtnElem.classList.toggle('active');
   });
 
   // generate QRCode for party link
@@ -381,6 +388,7 @@ function loadStaticElems() {
   partyLinkCopiedElem = document.getElementById('party-link-copied');
   partyLinkElem = document.getElementById('party-link');
   copyPartyLinkBtnElem = document.getElementById('copy-party-link-btn');
+  togglePartyLinkQRCodeBtnElem = document.getElementById('toggle-party-link-qrcode-btn');
   partyLinkQRCodeContainerElem = document.getElementById('party-link-qrcode');
   printPartyLinkQRCodeElem = document.getElementById('print-party-link-qrcode-btn');
 

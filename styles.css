@@ -280,16 +280,16 @@ input::placeholder {
   margin-bottom: .25em;
 }
 .tabs-container > .tabs > .share-tab > .party-link {
-  flex: 0 1 80%;
+  flex: 0 1 100%;
   word-break: break-all;
   margin-right: .25em;
+  margin-bottom: .5em;
 }
-.tabs-container > .tabs > .share-tab > .copy-party-link-btn {
-  flex: 1 0 auto;
-  min-width: 3em;
+.tabs-container > .tabs > .share-tab > .copy-party-link-btn,
+.tabs-container > .tabs > .share-tab > .toggle-party-link-qrcode-btn {
+  flex: 0 1 49%;
   height: 1.9em;
   line-height: 1.9em;
-  margin-left: .1em;
   text-align: center;
 }
 .tabs-container > .tabs > .share-tab > .party-link-qrcode {

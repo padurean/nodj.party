@@ -74,6 +74,9 @@ input::placeholder {
 .tabs-container > .tabs > .share-tab > .party-link {
   color: #393bac;
 }
+.tabs-container > .tabs > .share-tab > .toggle-party-link-qrcode-btn.active {
+  background-color: gray;
+}
 .tabs-container > .tabs > .share-tab > .party-link-qrcode {
   border-top: 1px solid #e8e8e8;
   background-color: white;
