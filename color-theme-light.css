@@ -41,68 +41,68 @@ input, select {
 input::placeholder {
   color: gray;
 }
-.playlist > .tabs > .tab-btns > a {
+.tabs-container > .tabs > .tab-btns > a {
   background-color: #f8f8f8;
   color: gray;
 }
-.playlist > .tabs > .tab-btns > a.active {
+.tabs-container > .tabs > .tab-btns > a.active {
   background-color: #e8e8e8;
 }
-.playlist > .tabs > .tab {
+.tabs-container > .tabs > .tab {
   background-color: #e8e8e8;
   color: #101010;
 }
-.playlist > .tabs > .playlist-tab > .add-in-progress,
-.playlist > .tabs > .playlist-tab > .add-error {
+.tabs-container > .tabs > .playlist-tab > .add-in-progress,
+.tabs-container > .tabs > .playlist-tab > .add-error {
   color: white;
 }
-.playlist > .tabs > .notifications-tab > .notifications-msg {
+.tabs-container > .tabs > .notifications-tab > .notifications-msg {
   color: gray;
 }
-.playlist > .tabs > .playlist-tab > .add-in-progress {
+.tabs-container > .tabs > .playlist-tab > .add-in-progress {
   background-color: #008A29;
 }
-.playlist > .tabs > .playlist-tab > .add-error {
+.tabs-container > .tabs > .playlist-tab > .add-error {
   background-color: #ED1C24;
 }
-.playlist > .tabs > .share-tab > .party-link-label {
+.tabs-container > .tabs > .share-tab > .party-link-label {
   color: gray;
 }
-.playlist > .tabs > .share-tab > .party-link-copied {
+.tabs-container > .tabs > .share-tab > .party-link-copied {
   color: #008A29;
 }
-.playlist > .tabs > .share-tab > .party-link {
+.tabs-container > .tabs > .share-tab > .party-link {
   color: #393bac;
 }
-.playlist > .tabs > .share-tab > .party-link-qrcode {
+.tabs-container > .tabs > .share-tab > .party-link-qrcode {
   border-top: 1px solid #e8e8e8;
   background-color: white;
 }
-.playlist > .notifications > .notification {
+.tabs-container > .notifications > .notification {
   background-color: #f8f8f8;
 }
-.playlist > .notifications > .notification > .message > a {
+.tabs-container > .notifications > .notification > .message > a {
   color: #505050;
 }
-.playlist > .notifications > .notification > .time,
-.playlist > .notifications > .notification > .close-btn {
+.tabs-container > .notifications > .notification > .time,
+.tabs-container > .notifications > .notification > .close-btn {
   color: darkgray;
 }
-.playlist > .items > .item {
+.tabs-container > .tracks > .track {
   background-color: #f8f8f8;
 }
-.playlist > .items > .item.active {
+.tabs-container > .tracks > .track.active {
   background-color: #E3DAFF;
 }
-.playlist > .items > .item > .info > .user:before {
+.tabs-container > .tracks > .track > .info > .user:before {
   color : gray;
 }
-.playlist > .items > .item > .info > footer > .rank {
+.tabs-container > .tracks > .track > .info > footer > .rank {
   color: gray;
 }
-.playlist > .items > .item > .info > footer > .rank::before {
+.tabs-container > .tracks > .track > .info > footer > .rank::before {
   color: darkgray;
 }
-.playlist > .items > .item > .info > footer > .likes::after {
+.tabs-container > .tracks > .track > .info > footer > .likes::after {
   color: gray;
 }

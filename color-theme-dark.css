@@ -45,77 +45,77 @@ body.dark input, body.dark select {
 body.dark input::placeholder {
   color: gray;
 }
-body.dark .playlist > .tabs > .tab-btns > a {
+body.dark .tabs-container > .tabs > .tab-btns > a {
   background-color: #181818;
   color: gray;
 }
-body.dark .playlist > .tabs > .tab-btns > a.active {
+body.dark .tabs-container > .tabs > .tab-btns > a.active {
   background-color: #202020;
 }
-body.dark .playlist > .tabs > .tab {
+body.dark .tabs-container > .tabs > .tab {
   background-color: #202020;
   color: gainsboro;
 }
-body.dark .playlist > .tabs > .share-tab > .party-link-label {
+body.dark .tabs-container > .tabs > .share-tab > .party-link-label {
   color: gray;
 }
-body.dark .playlist > .tabs > .share-tab > .party-link {
+body.dark .tabs-container > .tabs > .share-tab > .party-link {
   color: #7274FC;
 }
-body.dark .playlist > .tabs > .share-tab > .party-link-qrcode {
+body.dark .tabs-container > .tabs > .share-tab > .party-link-qrcode {
   border-top: 1px solid #303030;
   background: transparent;
 }
-body.dark .playlist > .tabs > .share-tab > .party-link::selection {
+body.dark .tabs-container > .tabs > .share-tab > .party-link::selection {
   background: #080808;
 }
-body.dark .playlist > .tabs > .share-tab > .party-link::-moz-selection {
+body.dark .tabs-container > .tabs > .share-tab > .party-link::-moz-selection {
   background: #080808;
 }
-body.dark .playlist > .notifications > .notification {
+body.dark .tabs-container > .notifications > .notification {
   background-color: #202020;
   color: gainsboro;
 }
-body.dark .playlist > .notifications > .notification > .message > a {
+body.dark .tabs-container > .notifications > .notification > .message > a {
   color: darkgray;
 }
-body.dark .playlist > .notifications > .notification > .time,
-body.dark .playlist > .notifications > .notification > .close-btn {
+body.dark .tabs-container > .notifications > .notification > .time,
+body.dark .tabs-container > .notifications > .notification > .close-btn {
   color: dimgray;
 }
-body.dark .playlist > .items > .item {
+body.dark .tabs-container > .tracks > .track {
   background-color: #202020;
 }
-body.dark .playlist > .items > .item.active {
+body.dark .tabs-container > .tracks > .track.active {
   background-color: #333599;
 }
-body.dark .playlist > .items > .item > .info > .title {
+body.dark .tabs-container > .tracks > .track > .info > .title {
   color : whitesmoke;
 }
-body.dark .playlist > .items > .item.active > .info > .user {
+body.dark .tabs-container > .tracks > .track.active > .info > .user {
   color : #a3a5ff;
 }
-body.dark .playlist > .items > .item.active > .info > .user:before {
+body.dark .tabs-container > .tracks > .track.active > .info > .user:before {
   color : darkgray;
 }
-body.dark .playlist > .items > .item.active > .info > footer > .rank {
+body.dark .tabs-container > .tracks > .track.active > .info > footer > .rank {
   color: darkgray;
 }
-body.dark .playlist > .items > .item > .info > footer > .rank::before {
+body.dark .tabs-container > .tracks > .track > .info > footer > .rank::before {
   color: gray;
 }
-body.dark .playlist > .items > .item.active > .info > footer > .likes {
+body.dark .tabs-container > .tracks > .track.active > .info > footer > .likes {
   color: #a3a5ff;
 }
-body.dark .playlist > .items > .item.active > .info > footer > .likes::after {
+body.dark .tabs-container > .tracks > .track.active > .info > footer > .likes::after {
   color: darkgray;
 }
-body.dark .playlist > .items > .item > .info > footer > .like-btn::before {
+body.dark .tabs-container > .tracks > .track > .info > footer > .like-btn::before {
   filter: brightness(140%);
 }
-body.dark .playlist > .items > .item.active > .info > footer > .like-btn::before {
+body.dark .tabs-container > .tracks > .track.active > .info > footer > .like-btn::before {
   filter: brightness(200%);
 }
-body.dark .playlist > .items > .item.active > .info > footer > .like-btn {
+body.dark .tabs-container > .tracks > .track.active > .info > footer > .like-btn {
   color: #a3a5ff;
 }

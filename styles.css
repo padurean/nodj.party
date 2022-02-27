@@ -164,18 +164,18 @@ input::placeholder {
   display: none !important;
 }
 
-.playlist {
+.tabs-container {
   width: 420px;
   max-width: 100%;
   margin-bottom: 5em;
 }
 
-.playlist > .tabs > .tab-btns {
+.tabs-container > .tabs > .tab-btns {
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;
 }
-.playlist > .tabs > .tab-btns > a {
+.tabs-container > .tabs > .tab-btns > a {
   display: inline-block;
   margin-right: 1px;
   margin-bottom: 1px;
@@ -187,58 +187,58 @@ input::placeholder {
   background-size: auto 1em;
   background-position: center;
 }
-.playlist > .tabs > .tab-btns > a.active {
+.tabs-container > .tabs > .tab-btns > a.active {
   margin-bottom: 0;
 }
-.playlist > .tabs > .tab-btns > a:last-child {
+.tabs-container > .tabs > .tab-btns > a:last-child {
   margin-right: 0;
 }
 
-.playlist > .tabs > .tab-btns > a.profile-tab-btn {
+.tabs-container > .tabs > .tab-btns > a.profile-tab-btn {
   background-image: url('user.svg');
 }
-.playlist > .tabs > .tab-btns > a.filter-tab-btn {
+.tabs-container > .tabs > .tab-btns > a.filter-tab-btn {
   background-image: url('filter.svg');
 }
-.playlist > .tabs > .tab-btns > a.share-tab-btn {
+.tabs-container > .tabs > .tab-btns > a.share-tab-btn {
   background-image: url('users-link.svg');
   background-size: auto 1.1em;
 }
-.playlist > .tabs > .tab-btns > a.notifications-tab-btn {
+.tabs-container > .tabs > .tab-btns > a.notifications-tab-btn {
   background-image: url('bell.svg');
   background-size: auto 1.075em;
 }
-.playlist > .tabs > .tab-btns > a.notifications-tab-btn.unread {
+.tabs-container > .tabs > .tab-btns > a.notifications-tab-btn.unread {
   background-image: url('bell-on.svg');
   background-size: auto 1.1em;
 }
-.playlist > .tabs > .tab-btns > a.playlist-tab-btn {
+.tabs-container > .tabs > .tab-btns > a.playlist-tab-btn {
   background-image: url('playlist.svg');
 }
 
-.playlist > .tabs > .tab {
+.tabs-container > .tabs > .tab {
   padding: .25em;
   font-size: .9em;
   display: flex;
   flex-direction: column;
 }
 
-.playlist > .tabs > .filter-tab > .filter {
+.tabs-container > .tabs > .filter-tab > .filter {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
 }
-.playlist > .tabs > .filter-tab > .filter > select {
+.tabs-container > .tabs > .filter-tab > .filter > select {
   flex: 0 1 80%;
   margin: .2em .1em;
 }
-.playlist > .tabs > .filter-tab > .filter > input {
+.tabs-container > .tabs > .filter-tab > .filter > input {
   flex: 0 1 80%;
   height: 1.85em;
   margin: .25em .1em .2em .1em;
 }
-.playlist > .tabs > .filter-tab > .filter > a {
+.tabs-container > .tabs > .filter-tab > .filter > a {
   display: inline-block;
   margin-left: .1em;
   margin-right: .1em;
@@ -248,15 +248,15 @@ input::placeholder {
   flex: 1 0 auto;
   text-align: center;
 }
-.playlist > .tabs > .filter-tab > .filter-in-progress,
-.playlist > .tabs > .filter-tab > .filter-error {
+.tabs-container > .tabs > .filter-tab > .filter-in-progress,
+.tabs-container > .tabs > .filter-tab > .filter-error {
   font-size: 1em;
   height: 1.75em;
   line-height: 1.85em;
   margin: .25em .2em;
   padding: 0 1em 0 .4em;
 }
-.playlist > .tabs > .filter-tab > .filter-error {
+.tabs-container > .tabs > .filter-tab > .filter-error {
   cursor: pointer;
   background-image: url('close.svg');
   background-repeat: no-repeat;
@@ -264,27 +264,27 @@ input::placeholder {
   background-size: auto 1.55em;
 }
 
-.playlist > .tabs > .share-tab {
+.tabs-container > .tabs > .share-tab {
   flex-direction: row;
   justify-content: space-between;
   flex-wrap: wrap;
   padding: .5em;
 }
-.playlist > .tabs > .share-tab > .party-link-label {
+.tabs-container > .tabs > .share-tab > .party-link-label {
   flex: 0 0 50%;
   margin-bottom: .25em;
 }
-.playlist > .tabs > .share-tab > .party-link-copied {
+.tabs-container > .tabs > .share-tab > .party-link-copied {
   flex: 0 0 50%;
   text-align: right;
   margin-bottom: .25em;
 }
-.playlist > .tabs > .share-tab > .party-link {
+.tabs-container > .tabs > .share-tab > .party-link {
   flex: 0 1 80%;
   word-break: break-all;
   margin-right: .25em;
 }
-.playlist > .tabs > .share-tab > .copy-party-link-btn {
+.tabs-container > .tabs > .share-tab > .copy-party-link-btn {
   flex: 1 0 auto;
   min-width: 3em;
   height: 1.9em;
@@ -292,46 +292,46 @@ input::placeholder {
   margin-left: .1em;
   text-align: center;
 }
-.playlist > .tabs > .share-tab > .party-link-qrcode {
+.tabs-container > .tabs > .share-tab > .party-link-qrcode {
   width: 100%;
   text-align: center;
   margin-top: 1em;
 }
-.playlist > .tabs > .share-tab > .party-link-qrcode > canvas,
-.playlist > .tabs > .share-tab > .party-link-qrcode > img {
+.tabs-container > .tabs > .share-tab > .party-link-qrcode > canvas,
+.tabs-container > .tabs > .share-tab > .party-link-qrcode > img {
   margin: 1em auto;
 }
-.playlist > .tabs > .share-tab > .print-party-link-qrcode-btn {
+.tabs-container > .tabs > .share-tab > .print-party-link-qrcode-btn {
   flex: 0 0 100%;
   height: 1.9em;
   line-height: 1.9em;
   text-align: center;
 }
 
-.playlist > .tabs > .notifications-tab {
+.tabs-container > .tabs > .notifications-tab {
   flex-direction: row;
   justify-content: space-between;
   padding: .5em;
 }
-.playlist > .tabs > .notifications-tab > .notifications-msg {
+.tabs-container > .tabs > .notifications-tab > .notifications-msg {
   font-size: .95em;
 }
-.playlist > .tabs > .notifications-tab > .clear-notifications-btn {
+.tabs-container > .tabs > .notifications-tab > .clear-notifications-btn {
   font-size: .95em;
 }
 
-.playlist > .tabs > .playlist-tab > .add {
+.tabs-container > .tabs > .playlist-tab > .add {
   display: flex;
   justify-content: space-between;
   align-items: center;
   height: 2.25em;
 }
-.playlist > .tabs > .playlist-tab > .add > input {
+.tabs-container > .tabs > .playlist-tab > .add > input {
   flex: 0 1 80%;
   height: 1.25em;
   margin: .25em .1em;
 }
-.playlist > .tabs > .playlist-tab > .add > a {
+.tabs-container > .tabs > .playlist-tab > .add > a {
   display: inline-block;
   margin-left: .1em;
   margin-right: .1em;
@@ -341,15 +341,15 @@ input::placeholder {
   flex: 1 0 auto;
   text-align: center;
 }
-.playlist > .tabs > .playlist-tab > .add-in-progress,
-.playlist > .tabs > .playlist-tab > .add-error {
+.tabs-container > .tabs > .playlist-tab > .add-in-progress,
+.tabs-container > .tabs > .playlist-tab > .add-error {
   font-size: 1em;
   height: 1.75em;
   line-height: 1.85em;
   margin: .25em .2em;
   padding: 0 1em 0 .4em;
 }
-.playlist > .tabs > .playlist-tab > .add-error {
+.tabs-container > .tabs > .playlist-tab > .add-error {
   cursor: pointer;
   background-image: url('close.svg');
   background-repeat: no-repeat;
@@ -357,26 +357,26 @@ input::placeholder {
   background-size: auto 1.55em;
 }
 
-.playlist > .notifications {
+.tabs-container > .notifications {
   display: flex;
   flex-direction: column;
 }
-.playlist > .notifications > .notification {
+.tabs-container > .notifications > .notification {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   margin-top: .5em;
   padding: .25em .25em .1em .25em;
 }
-.playlist > .notifications > .notification:last-child {
+.tabs-container > .notifications > .notification:last-child {
   margin-bottom: .25em;
 }
-.playlist > .notifications > .notification > .message {
+.tabs-container > .notifications > .notification > .message {
   flex: 0 1 96%;
   font-size: .85em;
   padding-left: .25em;
 }
-.playlist > .notifications > .notification > .close-btn {
+.tabs-container > .notifications > .notification > .close-btn {
   text-align: right;
   font-size: .9em;
   height: .5em;
@@ -384,7 +384,7 @@ input::placeholder {
   margin-right: -.1em;
   transform: scale(1.25, 1);
 }
-.playlist > .notifications > .notification > .time {
+.tabs-container > .notifications > .notification > .time {
   flex: 0 0 100%;
   font-size: .75em;
   line-height: 1em;
@@ -395,18 +395,18 @@ input::placeholder {
   font-kerning: auto;
 }
 
-.playlist > .items {
+.tabs-container > .tracks {
   max-height: 55vh;
   overflow-x: scroll;
 }
 
-.playlist > .items > .item {
+.tabs-container > .tracks > .track {
   display: flex;
   position: relative;
   width: 100%;
   margin-top: .5em;
 }
-.playlist > .items > .item > .overlay-btn {
+.tabs-container > .tracks > .track > .overlay-btn {
   position: absolute;
   display: flex;
   align-items: center;
@@ -419,63 +419,63 @@ input::placeholder {
   background-repeat:  no-repeat;
   background-position: center;
 }
-.playlist > .items > .item > .overlay-btn.play {
+.tabs-container > .tracks > .track > .overlay-btn.play {
   background-image: url('play.svg');
 
 }
-.playlist > .items > .item > .overlay-btn.pause {
+.tabs-container > .tracks > .track > .overlay-btn.pause {
   background-image: url('pause.svg');
 }
-.playlist > .items > .item > img {
+.tabs-container > .tracks > .track > img {
   width: 25%;
   align-self: center;
   flex: 0 0 auto;
   cursor: pointer;
   margin: .25em;
 }
-.playlist > .items > .item > .info {
+.tabs-container > .tracks > .track > .info {
   display: flex;
   width: 100%;
   flex-direction: column;
   justify-content: space-between;
   margin: .25em .5em .25em .25em;
 }
-.playlist > .items > .item > .info > .title {
+.tabs-container > .tracks > .track > .info > .title {
   font-size: .9em;
   font-weight: 500;
 }
-.playlist > .items > .item > .info > .user {
+.tabs-container > .tracks > .track > .info > .user {
   align-self: flex-start;
   font-size: .85em;
   margin-top: .25em;
 }
-.playlist > .items > .item > .info > .user:before {
+.tabs-container > .tracks > .track > .info > .user:before {
   content: "@";
 }
-.playlist > .items > .item > .info > footer {
+.tabs-container > .tracks > .track > .info > footer {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   margin-top: .25em;
 }
-.playlist > .items > .item > .info > footer > .rank,
-.playlist > .items > .item > .info > footer > .likes,
-.playlist > .items > .item > .info > footer > .like-btn {
+.tabs-container > .tracks > .track > .info > footer > .rank,
+.tabs-container > .tracks > .track > .info > footer > .likes,
+.tabs-container > .tracks > .track > .info > footer > .like-btn {
   font-size: .85em;
 }
-.playlist > .items > .item > .info > footer > .rank {
+.tabs-container > .tracks > .track > .info > footer > .rank {
   margin-right: auto;
 }
-.playlist > .items > .item > .info > footer > .rank::before {
+.tabs-container > .tracks > .track > .info > footer > .rank::before {
   content: "#";
 }
-.playlist > .items > .item > .info > footer > .likes {
+.tabs-container > .tracks > .track > .info > footer > .likes {
   margin-right: 1em;
 }
-.playlist > .items > .item > .info > footer > .likes:after {
+.tabs-container > .tracks > .track > .info > footer > .likes:after {
   content: " likes";
 }
-.playlist > .items > .item > .info > footer > .like-btn::before {
+.tabs-container > .tracks > .track > .info > footer > .like-btn::before {
   content: "";
   display: inline-block;
   width: 1em;

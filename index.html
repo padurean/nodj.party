@@ -47,7 +47,9 @@
   <main>
     <!-- <iframe> (and video player) will replace this <div> tag. -->
     <div id="player-1"></div>
-    <section id="playlist" class="playlist">
+
+    <section id="tabs-container" class="tabs-container">
+
       <section id="tabs" class="tabs">
         <section id="tab-btns" class="tab-btns">
           <a href="#" id="profile-tab-btn" class="profile-tab-btn" title="Videos you've added"></a>
@@ -117,9 +119,9 @@
         <!-- This section is dynamically populated with notification template instances -->
       </div>
 
-      <!-- BEGIN playlist item template -->
-      <div id="playlist-item-template" class="hidden">
-        <div class="item" id="item-{index}">
+      <!-- BEGIN playlist track template -->
+      <div id="playlist-track-template" class="hidden">
+        <div class="track" id="track-{index}">
           <div class="overlay-btn play">&nbsp;</div>
           <img src="{thumbnail}" alt="{title}">
           <section class="info">
@@ -133,9 +135,9 @@
           <input type="hidden" value="{index}" />
         </div>
       </div>
-      <!-- END playlist item template -->
-      <section id="items" class="items">
-        <!-- This section is dynamically populated with playlist item template instances -->
+      <!-- END playlist track template -->
+      <section id="tracks" class="tracks">
+        <!-- This section is dynamically populated with playlist track template instances -->
       </section>
 
     </section>

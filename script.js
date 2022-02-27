@@ -27,9 +27,9 @@ var state = {
       return;
     }
     this.activeIndex = newActiveIndex;
-    highlightActiveItem();
+    highlightActiveTrack();
     if (prevActiveIndex >= 0) {
-      unhighlightItem(prevActiveIndex);
+      unhighlightTrack(prevActiveIndex);
     }
   },
   getActiveIndex: function () {
@@ -76,6 +76,9 @@ var topNavElem;
 var topNavHamburgerElem;
 var topNavLinksElem;
 
+var player;
+var tabContainerElem;
+
 var profileTabBtnElem;
 var filterTabBtnElem;
 var shareTabBtnElem;
@@ -105,11 +108,8 @@ var addToPlaylistInputElem;
 var addToPlaylistBtnElem;
 var addToPlaylistInProgressElem;
 var addToPlaylistErrorElem;
-var playlistElem;
 var tracksElem;
-var playlistItemTemplateElem;
-
-var player;
+var playlistTrackTemplateElem;
 
 window.addEventListener('load', (event) => {
   loadYouTubeIframeAPI();
@@ -310,31 +310,31 @@ function onPlayerStateChange(event) {
   }
 }
 
-function highlightActiveItem() {
+function highlightActiveTrack() {
   var activeIndex = state.getActiveIndex();
   if (activeIndex < 0) {
     return;
   }
-  var itemElem = document.getElementById('item-' + activeIndex);
-  itemElem.classList.add('active');
-  scrollParentToChild(tracksElem, itemElem);
+  var trackElem = document.getElementById('track-' + activeIndex);
+  trackElem.classList.add('active');
+  scrollParentToChild(tracksElem, trackElem);
 }
 
-function unhighlightItem(index) {
-  var itemElem = document.getElementById('item-' + index);
-  itemElem.classList.remove('active');
+function unhighlightTrack(index) {
+  var trackElem = document.getElementById('track-' + index);
+  trackElem.classList.remove('active');
 }
 
 function showPlayOverlayBtn() {
-  var activeItemElem = document.getElementById('item-' + state.getActiveIndex());
-  var trackImgOverlayElem = activeItemElem.querySelector('.overlay-btn');
+  var activeTrackElem = document.getElementById('track-' + state.getActiveIndex());
+  var trackImgOverlayElem = activeTrackElem.querySelector('.overlay-btn');
   trackImgOverlayElem.classList.remove('pause');
   trackImgOverlayElem.classList.add('play');
 }
 
 function showPauseOverlayBtn() {
-  var activeItemElem = document.getElementById('item-' + state.getActiveIndex());
-  var trackImgOverlayElem = activeItemElem.querySelector('.overlay-btn');
+  var activeTrackElem = document.getElementById('track-' + state.getActiveIndex());
+  var trackImgOverlayElem = activeTrackElem.querySelector('.overlay-btn');
   trackImgOverlayElem.classList.remove('play');
   trackImgOverlayElem.classList.add('pause');
 }
@@ -396,9 +396,9 @@ function loadStaticElems() {
   addToPlaylistBtnElem = document.getElementById('add-to-playlist-btn');
   addToPlaylistInProgressElem = document.getElementById('add-in-progress');
   addToPlaylistErrorElem = document.getElementById('add-error');
-  playlistElem = document.getElementById('playlist');
-  tracksElem = document.getElementById('items');
-  playlistItemTemplateElem = document.getElementById('playlist-item-template');
+  tabContainerElem = document.getElementById('tab-container');
+  tracksElem = document.getElementById('tracks');
+  playlistTrackTemplateElem = document.getElementById('playlist-track-template');
 }
 
 function toggleTopNav(event) {
@@ -461,7 +461,7 @@ function onAddToPlaylistBtnClick(event) {
       likes: 0
     });
     renderPlaylist();
-    highlightActiveItem();
+    highlightActiveTrack();
     addToPlaylistInputElem.value = '';
     addToPlaylistSectionElem.classList.remove('hidden');
     // console.log('noembed response:', json);
@@ -515,7 +515,7 @@ function renderPlaylist() {
   tracksElem.innerHTML = '';
   var playlist = state.getPlaylist();
   for (var i = 0; i < playlist.length; i++) {
-    var html = playlistItemTemplateElem.innerHTML.replaceAll('{index}', i);
+    var html = playlistTrackTemplateElem.innerHTML.replaceAll('{index}', i);
     html = html.replaceAll('{thumbnail}', playlist[i].thumbnail);
     html = html.replaceAll('{title}', toHTMLEntities(playlist[i].title));
     html = html.replaceAll('{user}', playlist[i].user);
@@ -524,7 +524,7 @@ function renderPlaylist() {
     tracksElem.innerHTML += html;
   }
 
-  var tracksElems = tracksElem.getElementsByClassName('item');
+  var tracksElems = tracksElem.getElementsByClassName('track');
   for (var i = 0; i < tracksElems.length; i++) {
     var trackImgOverlayElem = tracksElems[i].querySelector('.overlay-btn');
     trackImgOverlayElem.addEventListener('click', onTrackClick);
