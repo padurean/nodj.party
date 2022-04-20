@@ -487,7 +487,7 @@ function loadAndRenderPlaylist() {
   state.setPlaylist([
     {
       url: 'https://www.youtube.com/watch?v=ZGDGdRIxvd0',
-      thumbnail: 'http://img.youtube.com/vi/ZGDGdRIxvd0/0.jpg',
+      thumbnail: 'https://img.youtube.com/vi/ZGDGdRIxvd0/0.jpg',
       title: 'Gesaffelstein & The Weeknd - Lost in the Fire (Official Video)',
       user: 'somePartyGoer1',
       rank: 1000,
@@ -495,7 +495,7 @@ function loadAndRenderPlaylist() {
     },
     {
       url: 'https://youtu.be/XkGz_4KYjKM',
-      thumbnail: 'http://img.youtube.com/vi/XkGz_4KYjKM/0.jpg',
+      thumbnail: 'https://img.youtube.com/vi/XkGz_4KYjKM/0.jpg',
       title: 'REZZ - Edge',
       user: 'someOtherPartyGoer2',
       rank: 2000,
@@ -503,7 +503,7 @@ function loadAndRenderPlaylist() {
     },
     {
       url: 'https://www.youtube.com/watch?v=DNhDh3xKwOo',
-      thumbnail: 'http://img.youtube.com/vi/DNhDh3xKwOo/0.jpg',
+      thumbnail: 'https://img.youtube.com/vi/DNhDh3xKwOo/0.jpg',
       title: 'Fantome - Pașii Mei (feat. Ioana Milculescu)',
       user: 'yetAnotherPartyGoer3',
       rank: 3000,
