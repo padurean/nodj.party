@@ -117,8 +117,8 @@ window.addEventListener('load', (event) => {
   loadStaticElems();
 
   const isDarkModeSet = localStorage.getItem('dark');
-  if (!isDarkModeSet || isDarkModeSet === 'true') {
-    bodyElem.classList.add('dark');
+  if (isDarkModeSet === 'false') {
+    bodyElem.classList.remove('dark');
   }
   toggleColorThemeBtnElem.addEventListener('click', function (event) {
     event.preventDefault();
