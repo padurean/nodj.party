@@ -56,8 +56,13 @@ body.dark .tabs-container > .tabs > .tab {
   background-color: #202020;
   color: gainsboro;
 }
-body.dark .tabs-container > .tabs > .share-tab > .party-link-label {
+body.dark .tabs-container > .tabs > .share-tab > .party-link-label,
+body.dark .tabs-container > .tabs > .playlist-tab > .add-to-playlist-label,
+body.dark .tabs-container > .tabs > .playlist-tab > .filter > .filter-playlist-label {
   color: gray;
+}
+body.dark .tabs-container > .tabs > .playlist-tab > .filter {
+  border-color: #080808;
 }
 body.dark .tabs-container > .tabs > .share-tab > .party-link {
   color: #7274FC;

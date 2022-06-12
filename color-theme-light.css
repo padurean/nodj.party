@@ -65,8 +65,13 @@ input::placeholder {
 .tabs-container > .tabs > .playlist-tab > .add-error {
   background-color: #ED1C24;
 }
-.tabs-container > .tabs > .share-tab > .party-link-label {
+.tabs-container > .tabs > .share-tab > .party-link-label,
+.tabs-container > .tabs > .playlist-tab > .add-to-playlist-label,
+.tabs-container > .tabs > .playlist-tab > .filter > .filter-playlist-label {
   color: gray;
+}
+.tabs-container > .tabs > .playlist-tab > .filter {
+  border-color: white;
 }
 .tabs-container > .tabs > .share-tab > .party-link-copied {
   color: #008A29;

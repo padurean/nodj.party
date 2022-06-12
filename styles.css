@@ -179,7 +179,7 @@ input::placeholder {
   display: inline-block;
   margin-right: 1px;
   margin-bottom: 1px;
-  width: 25%;
+  width: 33.33%;
   height: 1.75em;
   line-height: 1.75em;
   text-align: center;
@@ -194,12 +194,6 @@ input::placeholder {
   margin-right: 0;
 }
 
-.tabs-container > .tabs > .tab-btns > a.profile-tab-btn {
-  background-image: url('user.svg');
-}
-.tabs-container > .tabs > .tab-btns > a.filter-tab-btn {
-  background-image: url('filter.svg');
-}
 .tabs-container > .tabs > .tab-btns > a.share-tab-btn {
   background-image: url('users-link.svg');
   background-size: auto 1.1em;
@@ -221,47 +215,6 @@ input::placeholder {
   font-size: .9em;
   display: flex;
   flex-direction: column;
-}
-
-.tabs-container > .tabs > .filter-tab > .filter {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
-}
-.tabs-container > .tabs > .filter-tab > .filter > select {
-  flex: 0 1 80%;
-  margin: .2em .1em;
-}
-.tabs-container > .tabs > .filter-tab > .filter > input {
-  flex: 0 1 80%;
-  height: 1.85em;
-  margin: .25em .1em .2em .1em;
-}
-.tabs-container > .tabs > .filter-tab > .filter > a {
-  display: inline-block;
-  margin-left: .1em;
-  margin-right: .1em;
-  min-width: 3em;
-  height: 1.9em;
-  line-height: 1.9em;
-  flex: 1 0 auto;
-  text-align: center;
-}
-.tabs-container > .tabs > .filter-tab > .filter-in-progress,
-.tabs-container > .tabs > .filter-tab > .filter-error {
-  font-size: 1em;
-  height: 1.75em;
-  line-height: 1.85em;
-  margin: .25em .2em;
-  padding: 0 1em 0 .4em;
-}
-.tabs-container > .tabs > .filter-tab > .filter-error {
-  cursor: pointer;
-  background-image: url('close.svg');
-  background-repeat: no-repeat;
-  background-position: right .1em center;
-  background-size: auto 1.55em;
 }
 
 .tabs-container > .tabs > .share-tab {
@@ -320,6 +273,22 @@ input::placeholder {
   font-size: .95em;
 }
 
+.tabs-container > .tabs > .playlist-tab > .add-to-playlist-label,
+.tabs-container > .tabs > .playlist-tab > .filter > .filter-playlist-label {
+  margin: .25em;
+  font-size: .95em;
+}
+.tabs-container > .tabs > .playlist-tab > .add-to-playlist-label > span:first-child {
+  font-size: 1.4em;
+  line-height: 1em;
+  color: #6A6CFB;
+}
+.tabs-container > .tabs > .playlist-tab > .filter > .filter-playlist-label > span:first-child {
+  font-size: 1.2em;
+  line-height: 1em;
+  color: #6A6CFB;
+  vertical-align: -.075em;
+}
 .tabs-container > .tabs > .playlist-tab > .add {
   display: flex;
   justify-content: space-between;
@@ -350,6 +319,51 @@ input::placeholder {
   padding: 0 1em 0 .4em;
 }
 .tabs-container > .tabs > .playlist-tab > .add-error {
+  cursor: pointer;
+  background-image: url('close.svg');
+  background-repeat: no-repeat;
+  background-position: right .1em center;
+  background-size: auto 1.55em;
+}
+
+.tabs-container > .tabs > .playlist-tab > .filter {
+  border-top: solid 1px;
+  margin-top: .25em;
+  padding-top: .25em;
+
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+.tabs-container > .tabs > .playlist-tab > .filter > select {
+  flex: 0 1 80%;
+  margin: .2em .1em;
+}
+.tabs-container > .tabs > .playlist-tab > .filter > input {
+  flex: 0 1 80%;
+  height: 1.85em;
+  margin: .25em .1em .2em .1em;
+}
+.tabs-container > .tabs > .playlist-tab > .filter > a {
+  display: inline-block;
+  margin-left: .1em;
+  margin-right: .1em;
+  min-width: 3em;
+  height: 1.9em;
+  line-height: 1.9em;
+  flex: 1 0 auto;
+  text-align: center;
+}
+.tabs-container > .tabs > .playlist-tab > .filter-in-progress,
+.tabs-container > .tabs > .playlist-tab > .filter-error {
+  font-size: 1em;
+  height: 1.75em;
+  line-height: 1.85em;
+  margin: .25em .2em;
+  padding: 0 1em 0 .4em;
+}
+.tabs-container > .tabs > .playlist-tab > .filter-error {
   cursor: pointer;
   background-image: url('close.svg');
   background-repeat: no-repeat;

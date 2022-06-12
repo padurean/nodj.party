@@ -79,15 +79,9 @@ var topNavLinksElem;
 var player;
 var tabContainerElem;
 
-var profileTabBtnElem;
-var filterTabBtnElem;
 var shareTabBtnElem;
 var notificationsTabBtnElem;
 var playlistTabBtnElem;
-
-var profileTabElem;
-
-var filterTabElem;
 
 var shareTabElem;
 var partyLinkCopiedElem;
@@ -179,52 +173,34 @@ function addOnSpaceKeyUpListener() {
 }
 
 function addTabBtnsEventListeners() {
-  profileTabBtnElem.addEventListener('click', onProfileTabBtnClick);
-  filterTabBtnElem.addEventListener('click', onFilterTabBtnClick);
   shareTabBtnElem.addEventListener('click', onShareTabBtnClick);
   notificationsTabBtnElem.addEventListener('click', onNotificationsTabBtnClick);
   playlistTabBtnElem.addEventListener('click', onPlaylistTabBtnClick);
 }
 
-function onProfileTabBtnClick(event) {
-  event.preventDefault();
-  switchToTab(
-    [profileTabBtnElem],
-    [profileTabElem],
-    [filterTabBtnElem, shareTabBtnElem, notificationsTabBtnElem, playlistTabBtnElem],
-    [filterTabElem, shareTabElem, notificationsTabElem, notificationsElem, playlistTabElem, tracksElem]);
-}
-function onFilterTabBtnClick(event) {
-  event.preventDefault();
-  switchToTab(
-    [filterTabBtnElem],
-    [filterTabElem],
-    [profileTabBtnElem, shareTabBtnElem, notificationsTabBtnElem, playlistTabBtnElem],
-    [profileTabElem, shareTabElem, notificationsTabElem, notificationsElem, playlistTabElem, tracksElem]);
-}
 function onShareTabBtnClick(event) {
   event.preventDefault();
   switchToTab(
     [shareTabBtnElem],
     [shareTabElem],
-    [profileTabBtnElem, filterTabBtnElem, notificationsTabBtnElem, playlistTabBtnElem],
-    [profileTabElem, filterTabElem, notificationsTabElem, notificationsElem, playlistTabElem, tracksElem]);
+    [notificationsTabBtnElem, playlistTabBtnElem],
+    [notificationsTabElem, notificationsElem, playlistTabElem, tracksElem]);
 }
 function onNotificationsTabBtnClick(event) {
   event.preventDefault();
   switchToTab(
     [notificationsTabBtnElem],
     [notificationsTabElem, notificationsElem],
-    [profileTabBtnElem, filterTabBtnElem, shareTabBtnElem, playlistTabBtnElem],
-    [profileTabElem, filterTabElem, shareTabElem, playlistTabElem, tracksElem]);
+    [shareTabBtnElem, playlistTabBtnElem],
+    [shareTabElem, playlistTabElem, tracksElem]);
 }
 function onPlaylistTabBtnClick(event) {
   event.preventDefault();
   switchToTab(
     [playlistTabBtnElem],
     [playlistTabElem, tracksElem],
-    [profileTabBtnElem, filterTabBtnElem, shareTabBtnElem, notificationsTabBtnElem],
-    [profileTabElem, filterTabElem, shareTabElem, notificationsTabElem, notificationsElem]);
+    [shareTabBtnElem, notificationsTabBtnElem],
+    [shareTabElem, notificationsTabElem, notificationsElem]);
 }
 
 function switchToTab(toActivate, toShow, toDeactivate, toHide) {
@@ -374,15 +350,9 @@ function loadStaticElems() {
   topNavHamburgerElem = document.getElementById('top-nav-hamburger');
   topNavLinksElem = document.getElementById('top-nav-links');
 
-  profileTabBtnElem = document.getElementById('profile-tab-btn');
-  filterTabBtnElem = document.getElementById('filter-tab-btn');
   shareTabBtnElem = document.getElementById('share-tab-btn');
   notificationsTabBtnElem = document.getElementById('notifications-tab-btn');
   playlistTabBtnElem = document.getElementById('playlist-tab-btn');
-
-  profileTabElem = document.getElementById('profile-tab');
-
-  filterTabElem = document.getElementById('filter-tab');
 
   shareTabElem = document.getElementById('share-tab');
   partyLinkCopiedElem = document.getElementById('party-link-copied');
@@ -584,16 +554,28 @@ function loadAndRenderNotifications(showNotifications) {
       time: new Date(),
     },
     {
+      message: '<a>@somePartyGoer1</a> liked your video <a>"Gesaffelstein & The Weeknd - Lost in the Fire (Official Video)"</a>. Video is now on position <a>#1000</a>.',
+      time: new Date('June 12, 2022 14:27:03'),
+    },
+    {
       message: '<a>@someOtherPartyGoer2</a> added <a>"REZZ - Edge"</a> to the playlist. Video is on position <a>#2000</a>.',
-      time: new Date(),
+      time: new Date('June 08, 2022 12:24:15'),
     },
     {
       message: '<a>@yetAnotherPartyGoer3</a> joined the party!',
-      time: new Date(),
+      time: new Date('June 05, 2022 23:24:23'),
     },
     {
       message: '<a>@yetAnotherPartyGoer3</a> added <a>"Fantome - Pașii Mei (feat. Ioana Milculescu)"</a> to the playlist. Video is on position <a>#3000</a>.',
-      time: new Date(),
+      time: new Date('June 01, 2022 03:24:33'),
+    },
+    {
+      message: '<a>@yetAnotherPartyGoer3</a> added <a>"Fantome - Pașii Mei (feat. Ioana Milculescu)"</a> to the playlist. Video is on position <a>#3000</a>.',
+      time: new Date('June 01, 2021 03:24:59'),
+    },
+    {
+      message: '<a>@yetAnotherPartyGoer3</a> added <a>"Fantome - Pașii Mei (feat. Ioana Milculescu)"</a> to the playlist. Video is on position <a>#3000</a>.',
+      time: new Date('Dec 31, 2020 03:24:00'),
     },
   ]);
   renderNotifications(showNotifications);
@@ -613,9 +595,7 @@ function renderNotifications(showNotifications) {
   for (var i = 0; i < notifications.length; i++) {
     var html = notificationTemplateElem.innerHTML.replaceAll('{index}', i);
     html = html.replaceAll('{message}', notifications[i].message);
-    html = html.replaceAll('{time}', notifications[i].time.toLocaleString(
-      window.navigator.language || window.navigator.userLanguage,
-      { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric' }));
+    html = html.replaceAll('{time}', getTimeAgo(notifications[i].time));
     notificationsElem.innerHTML += html;
   }
 
@@ -677,4 +657,44 @@ function printPartyLinkQRCode(event) {
     a.document.write('</body></html>');
     a.print();
     a.window.close();
+}
+
+const MINUTE = 60,
+  HOUR = MINUTE * 60,
+  DAY = HOUR * 24,
+  YEAR = DAY * 365,
+  DATE_FORMAT_NO_YEAR = {
+    month: "short",
+    weekday: 'short',
+    day: "numeric",
+    hour: 'numeric',
+    hour12: true,
+    minute: 'numeric',
+    second: 'numeric'
+  },
+  DATE_FORMAT = {
+    year: "numeric",
+    month: "short",
+    weekday: 'short',
+    day: 'numeric',
+    hour: 'numeric',
+    hour12: true,
+    minute: 'numeric',
+    second: 'numeric'
+  };
+
+function getTimeAgo(date) {
+  const secondsAgo = Math.round((+new Date() - date) / 1000);
+
+  if (secondsAgo < MINUTE) {
+    return secondsAgo + "s ago";
+  } else if (secondsAgo < HOUR) {
+    return (Math.round((secondsAgo / MINUTE) * 10) / 10) + "m ago";
+  } else if (secondsAgo < DAY) {
+    return (Math.round((secondsAgo / HOUR) * 10) / 10) + "h ago";
+  } else if (secondsAgo < YEAR) {
+    return date.toLocaleString("default", DATE_FORMAT_NO_YEAR);
+  } else {
+    return date.toLocaleString("default", DATE_FORMAT);
+  }
 }
