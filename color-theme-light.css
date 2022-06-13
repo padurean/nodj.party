@@ -70,6 +70,14 @@ input::placeholder {
 .tabs-container > .tabs > .playlist-tab > .filter > .filter-playlist-label {
   color: gray;
 }
+.tabs-container > .tabs > .playlist-tab > .add-to-playlist-label::before,
+.tabs-container > .tabs > .playlist-tab > .filter > .filter-playlist-label::before {
+  color: gray;
+}
+.tabs-container > .tabs > .playlist-tab > .add-to-playlist-label.active::before,
+.tabs-container > .tabs > .playlist-tab > .filter > .filter-playlist-label.active::before {
+  color: darkgray;
+}
 .tabs-container > .tabs > .playlist-tab > .filter {
   border-color: white;
 }

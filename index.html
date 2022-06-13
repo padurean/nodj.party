@@ -75,8 +75,8 @@
 
         <section id="playlist-tab" class="tab playlist-tab">
           <!-- Add section -->
-          <div class="add-to-playlist-label"><span>&plus;</span> Add to playlist</div>
-          <section id="add" class="add">
+          <div id="add-to-playlist-label" class="add-to-playlist-label">Add</div>
+          <section id="add" class="add hidden">
             <input type="url" id="add-to-playlist-input" placeholder="YouTube video URL" />
             <a href="#" id="add-to-playlist-btn" class="btn">Add</a>
           </section>
@@ -86,19 +86,16 @@
 
           <!-- Filter section -->
           <section id="filter" class="filter">
-            <div class="filter-playlist-label"><span>&#11606;</span> Filter playlist</div>
+            <div id="filter-playlist-label" class="filter-playlist-label">Filter</div>
             <!-- TODO OGG: this must be populated dynamically with partygoers -->
-            <select id="filter-playlist-select-user">
+            <select id="filter-playlist-select-user" class="hidden">
               <option value="">added by anyone</option>
               <option value="somePartyGoer1">@somePartyGoer1</option>
               <option value="someOtherPartyGoer2">@someOtherPartyGoer2</option>
               <option value="yetAnotherPartyGoer3">@yetAnotherPartyGoer3</option>
             </select>
-            <input type="search" id="filter-playlist-input" placeholder="keywords" />
-            <a href="#" id="filter-playlist-btn" class="btn">Filter</a>
+            <input type="search" id="filter-playlist-input" class="hidden" placeholder="keywords" />
           </section>
-          <div id="filter-in-progress" class="filter-in-progress hidden">Filtering ...</div>
-          <div id="filter-error" class="filter-error hidden" title="Click / tap to hide this message"></div>
         </section>
       </section>
 

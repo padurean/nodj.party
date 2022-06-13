@@ -103,6 +103,11 @@ var addToPlaylistInputElem;
 var addToPlaylistBtnElem;
 var addToPlaylistInProgressElem;
 var addToPlaylistErrorElem;
+var addToPlaylistLabelElem;
+var addSectionElem;
+var filterPlaylistLabelElem;
+var filterPlaylistSelectUserElem;
+var filterPlaylistInputElem;
 var tracksElem;
 var playlistTrackTemplateElem;
 
@@ -130,6 +135,15 @@ window.addEventListener('load', (event) => {
   addToPlaylistErrorElem.addEventListener('click', function (event) {
     this.classList.add('hidden');
     addToPlaylistSectionElem.classList.remove('hidden');
+  });
+  addToPlaylistLabelElem.addEventListener('click', function (event) {
+    addToPlaylistLabelElem.classList.toggle('active');
+    addSectionElem.classList.toggle('hidden');
+  });
+  filterPlaylistLabelElem.addEventListener('click', function (event) {
+    filterPlaylistLabelElem.classList.toggle('active');
+    filterPlaylistSelectUserElem.classList.toggle('hidden');
+    filterPlaylistInputElem.classList.toggle('hidden');
   });
   loadAndRenderPlaylist();
   loadAndRenderNotifications(false);
@@ -374,6 +388,11 @@ function loadStaticElems() {
   addToPlaylistBtnElem = document.getElementById('add-to-playlist-btn');
   addToPlaylistInProgressElem = document.getElementById('add-in-progress');
   addToPlaylistErrorElem = document.getElementById('add-error');
+  addToPlaylistLabelElem = document.getElementById('add-to-playlist-label');
+  addSectionElem = document.getElementById('add');
+  filterPlaylistLabelElem = document.getElementById('filter-playlist-label');
+  filterPlaylistSelectUserElem = document.getElementById('filter-playlist-select-user');
+  filterPlaylistInputElem = document.getElementById('filter-playlist-input');
   tabContainerElem = document.getElementById('tab-container');
   tracksElem = document.getElementById('tracks');
   playlistTrackTemplateElem = document.getElementById('playlist-track-template');
