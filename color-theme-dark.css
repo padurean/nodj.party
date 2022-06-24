@@ -56,9 +56,7 @@ body.dark .tabs-container > .tabs > .tab {
   background-color: #202020;
   color: gainsboro;
 }
-body.dark .tabs-container > .tabs > .share-tab > .party-link-label,
-body.dark .tabs-container > .tabs > .playlist-tab > .add-to-playlist-label,
-body.dark .tabs-container > .tabs > .playlist-tab > .filter > .filter-playlist-label {
+body.dark .tabs-container > .tabs > .share-tab > .party-link-label {
   color: gray;
 }
 body.dark .tabs-container > .tabs > .playlist-tab > .filter {
@@ -67,7 +65,8 @@ body.dark .tabs-container > .tabs > .playlist-tab > .filter {
 body.dark .tabs-container > .tabs > .share-tab > .party-link {
   color: #7274FC;
 }
-body.dark .tabs-container > .tabs > .share-tab > .toggle-party-link-qrcode-btn.active {
+body.dark .tabs-container > .tabs > .share-tab > .toggle-party-link-qrcode-btn.active,
+body.dark .tabs-container > .tabs > .playlist-tab > .toggle-playlist-inputs-section > a.active {
   background-color: #404040;
 }
 body.dark .tabs-container > .tabs > .share-tab > .party-link-qrcode {

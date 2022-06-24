@@ -74,8 +74,12 @@
         </section>
 
         <section id="playlist-tab" class="tab playlist-tab">
+          <section class="toggle-playlist-inputs-section">
+            <a href="#" id="toggle-add-to-playlist-btn" class="toggle-add-to-playlist-btn btn">Add</a>
+            <a href="#" id="toggle-filter-playlist-btn" class="toggle-filter-playlist-btn btn">Filter</a>
+          </section>
+
           <!-- Add section -->
-          <div id="add-to-playlist-label" class="add-to-playlist-label">Add</div>
           <section id="add" class="add hidden">
             <input type="url" id="add-to-playlist-input" placeholder="YouTube video URL" />
             <a href="#" id="add-to-playlist-btn" class="btn">Add</a>
@@ -86,7 +90,6 @@
 
           <!-- Filter section -->
           <section id="filter" class="filter">
-            <div id="filter-playlist-label" class="filter-playlist-label">Filter</div>
             <!-- TODO OGG: this must be populated dynamically with partygoers -->
             <select id="filter-playlist-select-user" class="hidden">
               <option value="">added by anyone</option>

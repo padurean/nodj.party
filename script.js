@@ -103,9 +103,9 @@ var addToPlaylistInputElem;
 var addToPlaylistBtnElem;
 var addToPlaylistInProgressElem;
 var addToPlaylistErrorElem;
-var addToPlaylistLabelElem;
+var toggleAddToPlaylistBtnElem;
+var toggleFilterPlaylistBtnElem;
 var addSectionElem;
-var filterPlaylistLabelElem;
 var filterPlaylistSelectUserElem;
 var filterPlaylistInputElem;
 var tracksElem;
@@ -136,14 +136,19 @@ window.addEventListener('load', (event) => {
     this.classList.add('hidden');
     addToPlaylistSectionElem.classList.remove('hidden');
   });
-  addToPlaylistLabelElem.addEventListener('click', function (event) {
-    addToPlaylistLabelElem.classList.toggle('active');
+  toggleAddToPlaylistBtnElem.addEventListener('click', function (event) {
+    toggleAddToPlaylistBtnElem.classList.toggle('active');
+    toggleFilterPlaylistBtnElem.classList.remove('active');
     addSectionElem.classList.toggle('hidden');
+    filterPlaylistSelectUserElem.classList.add('hidden');
+    filterPlaylistInputElem.classList.add('hidden');
   });
-  filterPlaylistLabelElem.addEventListener('click', function (event) {
-    filterPlaylistLabelElem.classList.toggle('active');
+  toggleFilterPlaylistBtnElem.addEventListener('click', function (event) {
+    toggleFilterPlaylistBtnElem.classList.toggle('active');
+    toggleAddToPlaylistBtnElem.classList.remove('active');
     filterPlaylistSelectUserElem.classList.toggle('hidden');
     filterPlaylistInputElem.classList.toggle('hidden');
+    addSectionElem.classList.add('hidden');
   });
   loadAndRenderPlaylist();
   loadAndRenderNotifications(false);
@@ -388,9 +393,9 @@ function loadStaticElems() {
   addToPlaylistBtnElem = document.getElementById('add-to-playlist-btn');
   addToPlaylistInProgressElem = document.getElementById('add-in-progress');
   addToPlaylistErrorElem = document.getElementById('add-error');
-  addToPlaylistLabelElem = document.getElementById('add-to-playlist-label');
+  toggleAddToPlaylistBtnElem = document.getElementById('toggle-add-to-playlist-btn');
+  toggleFilterPlaylistBtnElem = document.getElementById('toggle-filter-playlist-btn');
   addSectionElem = document.getElementById('add');
-  filterPlaylistLabelElem = document.getElementById('filter-playlist-label');
   filterPlaylistSelectUserElem = document.getElementById('filter-playlist-select-user');
   filterPlaylistInputElem = document.getElementById('filter-playlist-input');
   tabContainerElem = document.getElementById('tab-container');

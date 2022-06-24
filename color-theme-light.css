@@ -65,18 +65,8 @@ input::placeholder {
 .tabs-container > .tabs > .playlist-tab > .add-error {
   background-color: #ED1C24;
 }
-.tabs-container > .tabs > .share-tab > .party-link-label,
-.tabs-container > .tabs > .playlist-tab > .add-to-playlist-label,
-.tabs-container > .tabs > .playlist-tab > .filter > .filter-playlist-label {
+.tabs-container > .tabs > .share-tab > .party-link-label {
   color: gray;
-}
-.tabs-container > .tabs > .playlist-tab > .add-to-playlist-label::before,
-.tabs-container > .tabs > .playlist-tab > .filter > .filter-playlist-label::before {
-  color: gray;
-}
-.tabs-container > .tabs > .playlist-tab > .add-to-playlist-label.active::before,
-.tabs-container > .tabs > .playlist-tab > .filter > .filter-playlist-label.active::before {
-  color: darkgray;
 }
 .tabs-container > .tabs > .playlist-tab > .filter {
   border-color: white;
@@ -87,7 +77,8 @@ input::placeholder {
 .tabs-container > .tabs > .share-tab > .party-link {
   color: #393bac;
 }
-.tabs-container > .tabs > .share-tab > .toggle-party-link-qrcode-btn.active {
+.tabs-container > .tabs > .share-tab > .toggle-party-link-qrcode-btn.active,
+.tabs-container > .tabs > .playlist-tab > .toggle-playlist-inputs-section > a.active {
   background-color: gray;
 }
 .tabs-container > .tabs > .share-tab > .party-link-qrcode {
