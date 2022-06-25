@@ -158,9 +158,19 @@ window.addEventListener('load', (event) => {
     renderNotifications(true);
   });
 
+  var copyInProgress = false;
   copyPartyLinkBtnElem.addEventListener('click', function(event) {
     event.preventDefault();
+    if (copyInProgress) {
+      return
+    }
+    copyInProgress = true;
+    copyPartyLinkBtnElem.classList.add('active');
     copyElementText(partyLinkElem, partyLinkCopiedElem);
+    setTimeout(() => {
+      copyPartyLinkBtnElem.classList.remove('active');
+      copyInProgress = false;
+    }, 2000);
   });
   togglePartyLinkQRCodeBtnElem.addEventListener('click', function(event) {
     event.preventDefault();

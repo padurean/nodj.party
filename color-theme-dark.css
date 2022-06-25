@@ -65,9 +65,19 @@ body.dark .tabs-container > .tabs > .playlist-tab > .filter {
 body.dark .tabs-container > .tabs > .share-tab > .party-link {
   color: #7274FC;
 }
+body.dark .tabs-container > .tabs > .share-tab > .toggle-party-link-qrcode-btn,
+body.dark .tabs-container > .tabs > .share-tab > .copy-party-link-btn,
+body.dark .tabs-container > .tabs > .playlist-tab > .toggle-playlist-inputs-section > a {
+  border: 1px solid #393AAD;
+}
 body.dark .tabs-container > .tabs > .share-tab > .toggle-party-link-qrcode-btn.active,
+body.dark .tabs-container > .tabs > .share-tab > .copy-party-link-btn.active,
 body.dark .tabs-container > .tabs > .playlist-tab > .toggle-playlist-inputs-section > a.active {
   background-color: #404040;
+  border-top-color: #080808;
+  border-left-color: #080808;
+  border-right-color: #393bac;
+  border-bottom-color: #393bac;
 }
 body.dark .tabs-container > .tabs > .share-tab > .party-link-qrcode {
   border-top: 1px solid #303030;

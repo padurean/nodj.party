@@ -77,9 +77,20 @@ input::placeholder {
 .tabs-container > .tabs > .share-tab > .party-link {
   color: #393bac;
 }
+.tabs-container > .tabs > .share-tab > .toggle-party-link-qrcode-btn,
+.tabs-container > .tabs > .share-tab > .copy-party-link-btn,
+.tabs-container > .tabs > .playlist-tab > .toggle-playlist-inputs-section > a {
+  border: 1px solid #393bac;
+}
 .tabs-container > .tabs > .share-tab > .toggle-party-link-qrcode-btn.active,
+.tabs-container > .tabs > .share-tab > .copy-party-link-btn.active,
 .tabs-container > .tabs > .playlist-tab > .toggle-playlist-inputs-section > a.active {
   background-color: gray;
+  border: 1px solid;
+  border-top-color: #505050;
+  border-left-color: #505050;
+  border-right-color: white;
+  border-bottom-color: white;
 }
 .tabs-container > .tabs > .share-tab > .party-link-qrcode {
   border-top: 1px solid #e8e8e8;
