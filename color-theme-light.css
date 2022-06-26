@@ -53,13 +53,15 @@ input::placeholder {
   color: #101010;
 }
 .tabs-container > .tabs > .playlist-tab > .add-in-progress,
-.tabs-container > .tabs > .playlist-tab > .add-error {
+.tabs-container > .tabs > .playlist-tab > .add-error,
+.tabs-container > .tabs > .playlist-tab > .add-success {
   color: white;
 }
 .tabs-container > .tabs > .notifications-tab > .notifications-msg {
   color: gray;
 }
-.tabs-container > .tabs > .playlist-tab > .add-in-progress {
+.tabs-container > .tabs > .playlist-tab > .add-in-progress,
+.tabs-container > .tabs > .playlist-tab > .add-success {
   background-color: #008A29;
 }
 .tabs-container > .tabs > .playlist-tab > .add-error {

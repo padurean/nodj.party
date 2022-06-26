@@ -115,6 +115,7 @@ var addToPlaylistInputElem;
 var addToPlaylistBtnElem;
 var addToPlaylistInProgressElem;
 var addToPlaylistErrorElem;
+var addToPlaylistSuccessElem;
 var toggleAddToPlaylistBtnElem;
 var toggleFilterPlaylistBtnElem;
 var addSectionElem;
@@ -148,19 +149,42 @@ window.addEventListener('load', (event) => {
     this.classList.add('hidden');
     addToPlaylistSectionElem.classList.remove('hidden');
   });
+  addToPlaylistSuccessElem.addEventListener('click', function (event) {
+    this.classList.add('hidden');
+    addToPlaylistSectionElem.classList.remove('hidden');
+  });
   toggleAddToPlaylistBtnElem.addEventListener('click', function (event) {
-    toggleAddToPlaylistBtnElem.classList.toggle('active');
-    toggleFilterPlaylistBtnElem.classList.remove('active');
-    addSectionElem.classList.toggle('hidden');
+    if (toggleAddToPlaylistBtnElem.classList.contains('active')) {
+      addSectionElem.classList.add('hidden');
+      addToPlaylistInProgressElem.classList.add('hidden');
+      addToPlaylistErrorElem.classList.add('hidden');
+      addToPlaylistSuccessElem.classList.add('hidden');
+      addToPlaylistInputElem.value = '';
+      toggleAddToPlaylistBtnElem.classList.remove('active');
+      return;
+    }
     filterPlaylistSelectUserElem.classList.add('hidden');
     filterPlaylistInputElem.classList.add('hidden');
+    toggleFilterPlaylistBtnElem.classList.remove('active');
+    addSectionElem.classList.remove('hidden');
+    toggleAddToPlaylistBtnElem.classList.add('active');
   });
   toggleFilterPlaylistBtnElem.addEventListener('click', function (event) {
-    toggleFilterPlaylistBtnElem.classList.toggle('active');
-    toggleAddToPlaylistBtnElem.classList.remove('active');
-    filterPlaylistSelectUserElem.classList.toggle('hidden');
-    filterPlaylistInputElem.classList.toggle('hidden');
+    if (toggleFilterPlaylistBtnElem.classList.contains('active')) {
+      filterPlaylistSelectUserElem.classList.add('hidden');
+      filterPlaylistInputElem.classList.add('hidden');
+      toggleFilterPlaylistBtnElem.classList.remove('active');
+      return
+    }
     addSectionElem.classList.add('hidden');
+    addToPlaylistInProgressElem.classList.add('hidden');
+    addToPlaylistErrorElem.classList.add('hidden');
+    addToPlaylistSuccessElem.classList.add('hidden');
+    addToPlaylistInputElem.value = '';
+    toggleAddToPlaylistBtnElem.classList.remove('active');
+    filterPlaylistSelectUserElem.classList.remove('hidden');
+    filterPlaylistInputElem.classList.remove('hidden');
+    toggleFilterPlaylistBtnElem.classList.add('active');
   });
   loadAndRenderPlaylist();
   loadAndRenderPartygoers(false);
@@ -418,6 +442,7 @@ function loadStaticElems() {
   addToPlaylistBtnElem = document.getElementById('add-to-playlist-btn');
   addToPlaylistInProgressElem = document.getElementById('add-in-progress');
   addToPlaylistErrorElem = document.getElementById('add-error');
+  addToPlaylistSuccessElem = document.getElementById('add-success');
   toggleAddToPlaylistBtnElem = document.getElementById('toggle-add-to-playlist-btn');
   toggleFilterPlaylistBtnElem = document.getElementById('toggle-filter-playlist-btn');
   addSectionElem = document.getElementById('add');
@@ -451,16 +476,31 @@ function isValidHttpUrl(string) {
   return url.protocol === "http:" || url.protocol === "https:";
 }
 
+function showError(err) {
+  addToPlaylistErrorElem.innerText = err;
+  addToPlaylistErrorElem.classList.remove('hidden');
+}
+
+function showSuccess(msg) {
+  addToPlaylistSuccessElem.innerText = msg;
+  addToPlaylistSuccessElem.classList.remove('hidden');
+}
+var addToPlaylistInProgress = false;
 function onAddToPlaylistBtnClick(event) {
   event.preventDefault();
+  if (addToPlaylistInProgress) {
+    return;
+  }
+  addToPlaylistInProgress = true;
   var youTubeVideoURL = addToPlaylistInputElem.value.trim();
   if (!youTubeVideoURL) {
+    addToPlaylistInProgress = false;
     return;
   }
   addToPlaylistSectionElem.classList.add('hidden');
   if (!isValidHttpUrl(youTubeVideoURL)) {
-    addToPlaylistErrorElem.innerText = 'Invalid URL';
-    addToPlaylistErrorElem.classList.remove('hidden');
+    showError('Invalid URL 🥴');
+    addToPlaylistInProgress = false;
     return;
   }
   addToPlaylistInProgressElem.classList.remove('hidden');
@@ -473,12 +513,12 @@ function onAddToPlaylistBtnClick(event) {
       if (console) {
         console.error('Add to playlist failed:', json.error);
       }
-      addToPlaylistErrorElem.innerText = 'Add to playlist failed :(';
-      addToPlaylistErrorElem.classList.remove('hidden');
+      showError('Add to playlist failed 🧐');
+      addToPlaylistInProgress = false;
       return;
     }
     var videoID = videoIDFromURL(json.url);
-    state.addToPlaylist({
+    var trackObj = {
       videoID: videoID,
       url: json.url,
       thumbnail: json.thumbnail_url,
@@ -486,19 +526,20 @@ function onAddToPlaylistBtnClick(event) {
       user: 'someCurrentUsername',
       rank: (state.playlist.length + 1) * 1000,
       likes: 0
-    });
+    }
+    state.addToPlaylist(trackObj);
     renderPlaylist();
     highlightActiveTrack();
     addToPlaylistInputElem.value = '';
-    addToPlaylistSectionElem.classList.remove('hidden');
-    // console.log('noembed response:', json);
+    showSuccess('Track added on position '+trackObj.rank+' 🎉');
+    addToPlaylistInProgress = false;
   }).catch(function (err) {
     if (console) {
       console.error('Error fetching video', youTubeVideoURL, err);
     }
     addToPlaylistInProgressElem.classList.add('hidden');
-    addToPlaylistErrorElem.innerText = 'Add to playlist failed :(';
-    addToPlaylistErrorElem.classList.remove('hidden');
+    showError('Add to playlist failed 😤');
+    addToPlaylistInProgress = false;
   });
 }
 
@@ -618,7 +659,6 @@ function loadAndRenderPartygoers(showPartygoers) {
 }
 
 function renderPartygoers(showPartygoers) {
-  // TODO OGG NOW:
   partygoersElem.innerHTML = '';
   var partygoers = state.getPartygoers();
   if (partygoers.length === 0) {
