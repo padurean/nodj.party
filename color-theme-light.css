@@ -81,14 +81,15 @@ input::placeholder {
 .tabs-container > .tabs > .share-tab > .copy-party-link-btn,
 .tabs-container > .tabs > .playlist-tab > .toggle-playlist-inputs-section > a {
   border: 1px solid #393bac;
+  background-color: #F8F8F8;
+  color: #393bac;
 }
 .tabs-container > .tabs > .share-tab > .toggle-party-link-qrcode-btn.active,
 .tabs-container > .tabs > .share-tab > .copy-party-link-btn.active,
 .tabs-container > .tabs > .playlist-tab > .toggle-playlist-inputs-section > a.active {
-  background-color: gray;
-  border: 1px solid;
-  border-top-color: #505050;
-  border-left-color: #505050;
+  background-color: #E8E8E8;
+  border-top-color: darkgray;
+  border-left-color: darkgray;
   border-right-color: white;
   border-bottom-color: white;
 }

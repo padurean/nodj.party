@@ -68,16 +68,18 @@ body.dark .tabs-container > .tabs > .share-tab > .party-link {
 body.dark .tabs-container > .tabs > .share-tab > .toggle-party-link-qrcode-btn,
 body.dark .tabs-container > .tabs > .share-tab > .copy-party-link-btn,
 body.dark .tabs-container > .tabs > .playlist-tab > .toggle-playlist-inputs-section > a {
-  border: 1px solid #393AAD;
+  border: 1px solid #393bac;
+  background-color: #181818;
+  color: #7274fc;
 }
 body.dark .tabs-container > .tabs > .share-tab > .toggle-party-link-qrcode-btn.active,
 body.dark .tabs-container > .tabs > .share-tab > .copy-party-link-btn.active,
 body.dark .tabs-container > .tabs > .playlist-tab > .toggle-playlist-inputs-section > a.active {
-  background-color: #404040;
+  background-color: #202020;
   border-top-color: #080808;
   border-left-color: #080808;
-  border-right-color: #393bac;
-  border-bottom-color: #393bac;
+  border-right-color: #303030;
+  border-bottom-color: #303030;
 }
 body.dark .tabs-container > .tabs > .share-tab > .party-link-qrcode {
   border-top: 1px solid #303030;
