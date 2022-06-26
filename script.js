@@ -53,6 +53,16 @@ var state = {
     return this.pausedAt;
   },
 
+  // partygoers
+  partygoers: [],
+
+  getPartygoers: function () {
+    return this.partygoers;
+  },
+  setPartygoers: function (partygoers) {
+    this.partygoers = partygoers;
+  },
+
   // notifications
   notifications: [],
 
@@ -90,6 +100,8 @@ var copyPartyLinkBtnElem;
 var togglePartyLinkQRCodeBtnElem;
 var partyLinkQRCodeContainerElem;
 var printPartyLinkQRCodeElem;
+var partygoersElem;
+var partygoerTemplateElem;
 
 var notificationsTabElem;
 var notificationsElem;
@@ -151,6 +163,7 @@ window.addEventListener('load', (event) => {
     addSectionElem.classList.add('hidden');
   });
   loadAndRenderPlaylist();
+  loadAndRenderPartygoers(false);
   loadAndRenderNotifications(false);
   clearNotificationsBtnElem.addEventListener('click', function (event) {
     event.preventDefault();
@@ -211,7 +224,7 @@ function onShareTabBtnClick(event) {
   event.preventDefault();
   switchToTab(
     [shareTabBtnElem],
-    [shareTabElem],
+    [shareTabElem, partygoersElem],
     [notificationsTabBtnElem, playlistTabBtnElem],
     [notificationsTabElem, notificationsElem, playlistTabElem, tracksElem]);
 }
@@ -221,7 +234,7 @@ function onNotificationsTabBtnClick(event) {
     [notificationsTabBtnElem],
     [notificationsTabElem, notificationsElem],
     [shareTabBtnElem, playlistTabBtnElem],
-    [shareTabElem, playlistTabElem, tracksElem]);
+    [shareTabElem, partygoersElem, playlistTabElem, tracksElem]);
 }
 function onPlaylistTabBtnClick(event) {
   event.preventDefault();
@@ -229,7 +242,7 @@ function onPlaylistTabBtnClick(event) {
     [playlistTabBtnElem],
     [playlistTabElem, tracksElem],
     [shareTabBtnElem, notificationsTabBtnElem],
-    [shareTabElem, notificationsTabElem, notificationsElem]);
+    [shareTabElem, partygoersElem, notificationsTabElem, notificationsElem]);
 }
 
 function switchToTab(toActivate, toShow, toDeactivate, toHide) {
@@ -390,6 +403,8 @@ function loadStaticElems() {
   togglePartyLinkQRCodeBtnElem = document.getElementById('toggle-party-link-qrcode-btn');
   partyLinkQRCodeContainerElem = document.getElementById('party-link-qrcode');
   printPartyLinkQRCodeElem = document.getElementById('print-party-link-qrcode-btn');
+  partygoersElem = document.getElementById('partygoers');
+  partygoerTemplateElem = document.getElementById('partygoer-template');
 
   notificationsTabElem = document.getElementById('notifications-tab');
   notificationsElem = document.getElementById('notifications');
@@ -579,6 +594,81 @@ function videoIDFromURL(url) {
     videoID = urlPieces[urlPieces.length - 1];
   }
   return videoID;
+}
+
+function loadAndRenderPartygoers(showPartygoers) {
+  state.setPartygoers([
+    {
+      photo: "",
+      name: "A Partygoer One",
+      username: "somePartyGoer1"
+    },
+    {
+      photo: "",
+      name: "B Partygoer Two",
+      username: "somePartyGoer2"
+    },
+    {
+      photo: "",
+      name: "C Partygoer Three",
+      username: "somePartyGoer3"
+    },
+  ]);
+  renderPartygoers(showPartygoers);
+}
+
+function renderPartygoers(showPartygoers) {
+  // TODO OGG NOW:
+  partygoersElem.innerHTML = '';
+  var partygoers = state.getPartygoers();
+  if (partygoers.length === 0) {
+    return;
+  }
+
+  for (var i = 0; i < partygoers.length; i++) {
+    var html = partygoerTemplateElem.innerHTML.replaceAll('{index}', i);
+    if (partygoers[i].photo !== "") {
+      html = html.replaceAll('{photo}', partygoers[i].photo);
+      html = html.replaceAll('nophoto-hidden', 'hidden');
+      html = html.replaceAll('photo-hidden', '');
+    } else {
+      var namePieces = partygoers[i].name.split(" ");
+      var initials = partygoers[i].name.charAt(0);
+      if (namePieces.length > 0) {
+        initials = namePieces[0].charAt(0);
+      }
+      if (namePieces.length > 1) {
+        initials += namePieces[1].charAt(0);
+      }
+      html = html.replaceAll('color;', stringToHexColor(partygoers[i].name)+";");
+      html = html.replaceAll('{letter}', initials);
+      html = html.replaceAll('photo-hidden', 'hidden');
+      html = html.replaceAll('nophoto-hidden', '');
+    }
+    html = html.replaceAll('{name}', partygoers[i].name);
+    html = html.replaceAll('{username}', partygoers[i].username);
+    partygoersElem.innerHTML += html;
+  }
+
+  if (showPartygoers) {
+    partygoersElem.classList.remove('hidden');
+  }
+}
+
+function stringToHexColor(str) {
+  var hash = 0;
+    if (str.length === 0) return hash;
+    for (var i = 0; i < str.length; i++) {
+        hash = str.charCodeAt(i) + ((hash << 5) - hash);
+        hash = hash & hash;
+    }
+    var color = '#';
+    for (var i = 0; i < 3; i++) {
+        var value = (hash >> (i * 8)) & 255;
+        var v = ('00' + value.toString(16));
+        color += v.substring(v.length-2, v.length);
+    }
+    return color;
 }
 
 function loadAndRenderNotifications(showNotifications) {

@@ -337,16 +337,45 @@ input::placeholder {
   margin: .25em .1em .2em .1em;
 }
 
-.tabs-container > .notifications {
+.tabs-container > .notifications,
+.tabs-container > .partygoers {
   display: flex;
   flex-direction: column;
 }
-.tabs-container > .notifications > .notification {
+.tabs-container > .notifications > .notification,
+.tabs-container > .partygoers > .partygoer {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   margin-top: .5em;
   padding: .25em .25em .1em .25em;
+}
+.tabs-container > .partygoers > .partygoer {
+  justify-content: flex-start;
+  padding: .25em;
+  font-size: .85em;
+}
+.tabs-container > .partygoers > .partygoer > .photo,
+.tabs-container > .partygoers > .partygoer > .nophoto {
+  flex: 0 0 auto;
+  vertical-align: middle;
+  aspect-ratio: 1/1;
+  margin-right: .5em;
+}
+.tabs-container > .partygoers > .partygoer > .nophoto {
+  text-transform: capitalize;
+  text-align: center;
+  font-size: 1.5em;
+  height: 2em;
+  line-height: 2em;
+  border-width: 1px;
+  border-style: solid;
+}
+.tabs-container > .partygoers > .partygoer > .info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  vertical-align: middle;
 }
 .tabs-container > .notifications > .notification:last-child {
   margin-bottom: .25em;

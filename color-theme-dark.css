@@ -91,7 +91,8 @@ body.dark .tabs-container > .tabs > .share-tab > .party-link::selection {
 body.dark .tabs-container > .tabs > .share-tab > .party-link::-moz-selection {
   background: #080808;
 }
-body.dark .tabs-container > .notifications > .notification {
+body.dark .tabs-container > .partygoers > .partygoer,
+  body.dark .tabs-container > .notifications > .notification {
   background-color: #202020;
   color: gainsboro;
 }

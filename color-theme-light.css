@@ -97,6 +97,7 @@ input::placeholder {
   border-top: 1px solid #e8e8e8;
   background-color: white;
 }
+.tabs-container > .partygoers > .partygoer,
 .tabs-container > .notifications > .notification {
   background-color: #f8f8f8;
 }

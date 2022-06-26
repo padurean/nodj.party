@@ -102,6 +102,23 @@
         </section>
       </section>
 
+      <!-- BEGIN partygoer template -->
+      <div id="partygoer-template" class="hidden">
+        <div class="partygoer" id="partygoer-{index}">
+          <img src="{photo}" alt="{name} (@{username})" class=".photo photo-hidden">
+          <div style="color: color; border-color: color;" class="nophoto nophoto-hidden">{letter}</div>
+          <section class="info">
+            <div class="name">{name}</div>
+            <div class="username">@{username}</div>
+          </section>
+          <input type="hidden" value="{index}" />
+        </div>
+      </div>
+      <!-- END partygoer template -->
+      <div id="partygoers" class="partygoers hidden">
+        <!-- This section is dynamically populated with partygoer template instances -->
+      </div>
+
       <!-- BEGIN notification template -->
       <div id="notification-template" class="hidden">
         <div class="notification" id="notification-{index}">
