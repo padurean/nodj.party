@@ -103,6 +103,9 @@ input::placeholder {
 .tabs-container > .notifications > .notification {
   background-color: #f8f8f8;
 }
+.tabs-container > .partygoers > .partygoer > .info > .username::before {
+  color: gray;
+}
 .tabs-container > .notifications > .notification > .message > a {
   color: #505050;
 }
@@ -116,7 +119,7 @@ input::placeholder {
 .tabs-container > .tracks > .track.active {
   background-color: #E3DAFF;
 }
-.tabs-container > .tracks > .track > .info > .user:before {
+.tabs-container > .tracks > .track > .info > .user::before {
   color : gray;
 }
 .tabs-container > .tracks > .track > .info > footer > .rank {

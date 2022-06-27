@@ -363,13 +363,18 @@ input::placeholder {
   vertical-align: middle;
   aspect-ratio: 1/1;
   margin-right: .5em;
+  margin-left: .1em;
+  border-radius: 50%;
+}
+.tabs-container > .partygoers > .partygoer > .photo {
+  height: 3.15em;
 }
 .tabs-container > .partygoers > .partygoer > .nophoto {
   text-transform: capitalize;
   text-align: center;
   font-size: 1.5em;
   height: 2em;
-  line-height: 2em;
+  line-height: 2.075em;
   border-width: 1px;
   border-style: solid;
 }
@@ -378,6 +383,9 @@ input::placeholder {
   flex-direction: column;
   justify-content: space-around;
   vertical-align: middle;
+}
+.tabs-container > .partygoers > .partygoer > .info > .username::before {
+  content: "@";
 }
 .tabs-container > .notifications > .notification:last-child {
   margin-bottom: .25em;
@@ -460,7 +468,7 @@ input::placeholder {
   font-size: .85em;
   margin-top: .25em;
 }
-.tabs-container > .tracks > .track > .info > .user:before {
+.tabs-container > .tracks > .track > .info > .user::before {
   content: "@";
 }
 .tabs-container > .tracks > .track > .info > footer {

@@ -92,9 +92,12 @@ body.dark .tabs-container > .tabs > .share-tab > .party-link::-moz-selection {
   background: #080808;
 }
 body.dark .tabs-container > .partygoers > .partygoer,
-  body.dark .tabs-container > .notifications > .notification {
+body.dark .tabs-container > .notifications > .notification {
   background-color: #202020;
   color: gainsboro;
+}
+body.dark .tabs-container > .partygoers > .partygoer > .info > .username::before {
+  color: gray;
 }
 body.dark .tabs-container > .notifications > .notification > .message > a {
   color: darkgray;
@@ -115,7 +118,7 @@ body.dark .tabs-container > .tracks > .track > .info > .title {
 body.dark .tabs-container > .tracks > .track.active > .info > .user {
   color : #a3a5ff;
 }
-body.dark .tabs-container > .tracks > .track.active > .info > .user:before {
+body.dark .tabs-container > .tracks > .track.active > .info > .user::before {
   color : darkgray;
 }
 body.dark .tabs-container > .tracks > .track.active > .info > footer > .rank {
